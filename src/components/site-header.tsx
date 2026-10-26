@@ -377,8 +377,8 @@ export function SiteHeader() {
       ref={headerRef}
       className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-md"
     >
-      <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 py-3 md:px-10">
-        <Link href="/" className="shrink-0 rounded-sm" aria-label={t.a11y.home}>
+      <div className="mx-auto flex w-full min-w-0 max-w-[1400px] items-center gap-2 px-3 py-3 sm:gap-4 sm:px-4 md:px-10">
+        <Link href="/" className="min-w-0 shrink rounded-sm" aria-label={t.a11y.home}>
           <Logo />
         </Link>
 
@@ -389,9 +389,9 @@ export function SiteHeader() {
                 key={item.href}
                 ref={servicesButtonRef}
                 type="button"
-                className={`inline-flex h-11 items-center gap-1.5 rounded-[5px] px-3 text-sm ${
+                className={`inline-flex h-11 items-center gap-1.5 rounded-[5px] px-3 text-sm transition-colors duration-300 ease-out-expo ${
                   isCurrent(pathname, item.href) || servicesOpen
-                    ? "bg-ice text-navy"
+                    ? "text-orange-deep"
                     : "text-ink hover:bg-ice"
                 }`}
                 aria-expanded={servicesOpen}
@@ -411,9 +411,9 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex h-11 items-center rounded-[5px] px-3 text-sm ${
+                className={`inline-flex h-11 items-center rounded-[5px] px-3 text-sm transition-colors duration-300 ease-out-expo ${
                   isCurrent(pathname, item.href)
-                    ? "bg-ice text-navy"
+                    ? "text-orange-deep"
                     : "text-ink hover:bg-ice"
                 }`}
                 aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
@@ -424,7 +424,7 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <div className="ms-auto flex items-center gap-2">
+        <div className="ms-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <a
             href={`tel:${company.phoneTel}`}
             className="hidden h-11 items-center gap-2 px-2 text-sm text-navy xl:inline-flex"
@@ -480,7 +480,9 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex h-12 items-center border-b border-line text-base"
+              className={`flex h-12 items-center border-b border-line text-base ${
+                isCurrent(pathname, item.href) ? "text-orange-deep" : "text-ink"
+              }`}
               aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
             >
               {item.label}

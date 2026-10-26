@@ -37,6 +37,9 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  background: var(--paper);
   scroll-padding-top: 5.5rem;
 }
 
@@ -56,6 +59,8 @@ html[data-motion="on"] .service-rail-in {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans), sans-serif;

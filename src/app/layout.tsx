@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Outfit } from "next/font/google";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
@@ -37,6 +37,13 @@ const arabicDisplay = Noto_Naskh_Arabic({
   variable: "--font-arabic-display",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#f4f8fb",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
@@ -89,7 +96,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${outfit.variable} ${plex.variable} ${arabicSans.variable} ${arabicDisplay.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
+      <body className="flex min-h-full w-full min-w-0 flex-col bg-paper font-sans text-ink">
         <script
           dangerouslySetInnerHTML={{
             __html:
@@ -119,7 +126,7 @@ async function LocalizedDocument({ children }: { children: ReactNode }) {
       <div
         lang={locale}
         dir={arabic ? "rtl" : "ltr"}
-        className={`flex min-h-full flex-1 flex-col ${arabic ? "font-arabic" : "font-sans"}`}
+        className={`flex min-h-full w-full min-w-0 max-w-full flex-1 flex-col ${arabic ? "font-arabic" : "font-sans"}`}
       >
         <a
           href="#content"
@@ -130,7 +137,7 @@ async function LocalizedDocument({ children }: { children: ReactNode }) {
         <Suspense fallback={<HeaderFallback />}>
           <SiteHeader />
         </Suspense>
-        <main id="content" className="flex-1">
+        <main id="content" className="w-full min-w-0 flex-1">
           {children}
         </main>
         <SiteFooter />

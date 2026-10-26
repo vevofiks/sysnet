@@ -47,7 +47,7 @@ export function Logo({ tone = "navy" }: { tone?: "navy" | "ice" }) {
         width={272}
         height={90}
         priority={tone === "navy"}
-        className={`${height} w-auto ${tone === "ice" ? "brightness-0 invert" : ""}`}
+        className={`${height} w-auto max-w-[34vw] sm:max-w-none ${tone === "ice" ? "brightness-0 invert" : ""}`}
       />
     </span>
   );

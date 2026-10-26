@@ -76,21 +76,11 @@ export async function Landing() {
             {industries.map((item) => (
               <article
                 key={item.index}
-                className={`border-b border-white/15 p-5 last:border-b-0 md:border-b-0 md:border-e md:last:border-e-0 ${
-                  item.active ? "bg-orange-deep text-white" : ""
-                }`}
+                className="border-b border-white/15 p-5 last:border-b-0 md:border-b-0 md:border-e md:last:border-e-0"
               >
-                <p className={`font-mono text-sm ${item.active ? "text-white" : "text-orange-soft"}`}>
-                  {item.index}
-                </p>
+                <p className="font-mono text-sm text-orange-soft">{item.index}</p>
                 <h3 className="mt-6 text-lg font-medium leading-snug">{item.title}</h3>
-                <p
-                  className={`mt-3 text-sm leading-relaxed ${
-                    item.active ? "text-white/90" : "text-ice/75"
-                  }`}
-                >
-                  {item.text}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ice/75">{item.text}</p>
               </article>
             ))}
           </Stagger>
@@ -112,14 +102,19 @@ export async function Landing() {
           {featured.map((service) => (
             <article
               key={service.slug}
-              className="flex flex-col rounded-[18px] border border-line bg-white p-6 text-ink shadow-lift transition-colors duration-300 ease-out-expo hover:bg-ice"
+              className="group flex flex-col rounded-[18px] border border-line bg-white p-6 text-ink shadow-lift transition-colors duration-300 ease-out-expo hover:border-orange-deep hover:bg-orange-deep hover:text-white"
             >
-              <ServiceIcon name={service.icon} className="size-6 text-navy" />
+              <ServiceIcon
+                name={service.icon}
+                className="size-6 text-navy transition-colors duration-300 ease-out-expo group-hover:text-white"
+              />
               <h3 className="mt-8 text-xl font-medium tracking-normal">{service.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{service.summary}</p>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted transition-colors duration-300 ease-out-expo group-hover:text-white/90">
+                {service.summary}
+              </p>
               <Link
                 href={`/services#${service.slug}`}
-                className="mt-6 inline-flex h-11 items-center gap-2 text-sm font-medium uppercase tracking-normal text-navy"
+                className="mt-6 inline-flex h-11 items-center gap-2 text-sm font-medium uppercase tracking-normal text-navy transition-colors duration-300 ease-out-expo group-hover:text-white"
               >
                 {t.priced.seeScope}
                 <ArrowRight className="size-4 rtl:rotate-180" strokeWidth={1.5} aria-hidden="true" />

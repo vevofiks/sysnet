@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { Photo } from "@/components/brand";
 import { useCopy, useLocale } from "@/components/locale";
 import { content } from "@/lib/content";
@@ -11,6 +11,7 @@ import { useMotionReady } from "@/lib/use-motion";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const frame = "min-h-[34rem] sm:min-h-[calc(100svh-4rem)]";
+const SLIDE_MS = 5600;
 
 function pad(value: number) {
   return String(value).padStart(2, "0");
@@ -49,6 +50,7 @@ export function Hero() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
+  const meter = useAnimation();
   const count = slides.length;
   const slide = slides[index];
 
@@ -57,9 +59,22 @@ export function Hero() {
     const id = window.setInterval(() => {
       setDirection(1);
       setIndex((current) => (current + 1) % count);
-    }, 5600);
+    }, SLIDE_MS);
     return () => window.clearInterval(id);
   }, [on, paused, index, count]);
+
+  useEffect(() => {
+    if (!on) return;
+    if (paused) {
+      meter.stop();
+      return;
+    }
+    meter.set({ scaleX: 0 });
+    void meter.start({
+      scaleX: 1,
+      transition: { duration: SLIDE_MS / 1000, ease: "linear" },
+    });
+  }, [on, paused, index, meter]);
 
   function go(delta: number) {
     setDirection(delta);
@@ -76,9 +91,9 @@ export function Hero() {
   const travel = (sign: number) => `${sign * (rtl ? -100 : 100)}%`;
 
   return (
-    <section className="relative bg-navy text-ice">
+    <section className="relative w-full max-w-full overflow-hidden bg-navy text-ice">
       <div
-        className={`relative overflow-hidden ${frame}`}
+        className={`relative w-full max-w-full overflow-hidden [contain:paint] ${frame}`}
         role="region"
         aria-roledescription="carousel"
         aria-label={t.a11y.heroSlides}
@@ -116,7 +131,12 @@ export function Hero() {
             exit="exit"
             transition={{ duration: on ? 0.7 : 0, ease }}
           >
-            <div className="absolute inset-0">
+            <motion.div
+              className="absolute inset-0"
+              initial={on ? { scale: 1.12 } : false}
+              animate={{ scale: 1 }}
+              transition={{ duration: on ? 7.2 : 0, ease }}
+            >
               <Photo
                 src={slide.image}
                 alt={slide.alt}
@@ -124,18 +144,33 @@ export function Hero() {
                 priority={index === 0}
                 className="object-cover object-[center_35%]"
               />
-            </div>
+            </motion.div>
             <div className="absolute inset-0 hidden bg-gradient-to-r from-navy-deep from-10% via-navy/80 via-48% to-transparent sm:block rtl:bg-gradient-to-l" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/75 to-navy-deep/25 sm:from-navy-deep/80 sm:via-navy-deep/20 sm:to-transparent" />
             <div className="relative flex h-full items-end">
               <div className="mx-auto w-full max-w-[1400px] px-4 pb-24 pt-10 sm:pb-28 sm:pt-16 md:px-10 md:pb-32">
-                <h1 className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl">
+                <motion.h1
+                  className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl"
+                  initial={on ? { opacity: 0, y: 28 } : false}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: on ? 0.75 : 0, delay: on ? 0.18 : 0, ease }}
+                >
                   {slide.title}
-                </h1>
-                <p className="mt-3 line-clamp-4 max-w-[40ch] text-sm leading-relaxed text-ice/90 sm:mt-5 sm:line-clamp-none sm:max-w-[48ch] sm:text-base md:text-lg">
+                </motion.h1>
+                <motion.p
+                  className="mt-3 line-clamp-4 max-w-[40ch] text-sm leading-relaxed text-ice/90 sm:mt-5 sm:line-clamp-none sm:max-w-[48ch] sm:text-base md:text-lg"
+                  initial={on ? { opacity: 0, y: 20 } : false}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: on ? 0.7 : 0, delay: on ? 0.32 : 0, ease }}
+                >
                   {slide.body}
-                </p>
-                <div className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
+                </motion.p>
+                <motion.div
+                  className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3"
+                  initial={on ? { opacity: 0, y: 16 } : false}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: on ? 0.65 : 0, delay: on ? 0.46 : 0, ease }}
+                >
                   <Link
                     href={slide.href}
                     className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[5px] bg-paper px-5 text-sm font-medium uppercase tracking-normal text-navy hover:bg-ice sm:w-auto"
@@ -151,18 +186,30 @@ export function Hero() {
                       {slide.secondary}
                     </Link>
                   ) : null}
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.article>
         </AnimatePresence>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">
-          <div className="mx-auto flex w-full max-w-[1400px] items-center gap-4 px-4 pb-6 md:justify-center md:px-10 md:pb-8">
+          <div className="mx-auto flex w-full min-w-0 max-w-[1400px] items-center gap-3 px-4 pb-6 sm:gap-4 md:justify-center md:px-10 md:pb-8">
             <p className="font-mono text-sm tabular-nums text-ice" dir="ltr">
               {pad(index + 1)}
               <span className="text-ice/45"> / {pad(count)}</span>
             </p>
+            {on ? (
+              <span
+                className="hidden h-px w-16 overflow-hidden bg-ice/25 sm:block"
+                aria-hidden="true"
+              >
+                <motion.span
+                  className="block h-full origin-left bg-orange-deep rtl:origin-right"
+                  initial={{ scaleX: 0 }}
+                  animate={meter}
+                />
+              </span>
+            ) : null}
             <div
               className="pointer-events-auto ms-auto flex items-center gap-2 sm:gap-3 md:ms-0"
               onMouseEnter={() => setPaused(true)}
@@ -181,7 +228,7 @@ export function Hero() {
                       className="inline-flex h-11 w-5 items-center justify-center sm:w-6"
                     >
                       <span
-                        className={`block h-1 rounded-full sm:h-1.5 ${
+                        className={`block h-1 rounded-full transition-[width,background-color] duration-500 ease-out-expo motion-reduce:transition-none sm:h-1.5 ${
                           active ? "w-5 bg-ice sm:w-8" : "w-1.5 bg-ice/40"
                         }`}
                       />
