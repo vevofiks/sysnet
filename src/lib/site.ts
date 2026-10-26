@@ -170,6 +170,7 @@ export const industries = [
     index: "02",
     title: "Warehouses & logistics",
     text: "Aisle, dock, and yard coverage, with retention long enough for a dispute.",
+    active: true,
   },
   {
     index: "03",

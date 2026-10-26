@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Photo } from "@/components/brand";
 import { useCopy, useLocale } from "@/components/locale";
@@ -49,7 +49,6 @@ export function Hero() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
-  const drag = useRef<{ x: number; y: number } | null>(null);
   const count = slides.length;
   const slide = slides[index];
 
@@ -79,27 +78,10 @@ export function Hero() {
   return (
     <section className="relative bg-navy text-ice">
       <div
-        className={`relative touch-pan-y overflow-hidden ${frame}`}
+        className={`relative overflow-hidden ${frame}`}
         role="region"
         aria-roledescription="carousel"
         aria-label={t.a11y.heroSlides}
-        onPointerDown={(event) => {
-          if (event.pointerType !== "touch") return;
-          if ((event.target as HTMLElement).closest("a, button")) return;
-          drag.current = { x: event.clientX, y: event.clientY };
-        }}
-        onPointerUp={(event) => {
-          const start = drag.current;
-          drag.current = null;
-          if (!start || event.pointerType !== "touch") return;
-          const dx = event.clientX - start.x;
-          const dy = event.clientY - start.y;
-          if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
-          go((dx < 0 ? 1 : -1) * (rtl ? -1 : 1));
-        }}
-        onPointerCancel={() => {
-          drag.current = null;
-        }}
         onFocus={() => setPaused(true)}
         onBlur={(event) => {
           const next = event.relatedTarget;
@@ -143,9 +125,8 @@ export function Hero() {
                 className="object-cover object-[center_35%]"
               />
             </div>
-            <div className="absolute inset-0 hidden bg-gradient-to-r from-navy-deep from-10% via-navy/80 via-42% to-transparent to-62% sm:block rtl:bg-gradient-to-l" />
-            <div className="absolute inset-y-0 start-0 hidden w-[46%] bg-gradient-to-t from-navy-deep/80 via-navy-deep/20 to-transparent sm:block" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/75 to-navy-deep/25 sm:hidden" />
+            <div className="absolute inset-0 hidden bg-gradient-to-r from-navy-deep from-10% via-navy/80 via-48% to-transparent sm:block rtl:bg-gradient-to-l" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/75 to-navy-deep/25 sm:from-navy-deep/80 sm:via-navy-deep/20 sm:to-transparent" />
             <div className="relative flex h-full items-end">
               <div className="mx-auto w-full max-w-[1400px] px-4 pb-24 pt-10 sm:pb-28 sm:pt-16 md:px-10 md:pb-32">
                 <h1 className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl">

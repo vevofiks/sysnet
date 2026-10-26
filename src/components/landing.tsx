@@ -76,11 +76,21 @@ export async function Landing() {
             {industries.map((item) => (
               <article
                 key={item.index}
-                className="border-b border-white/15 p-5 transition-colors duration-300 ease-out-expo last:border-b-0 hover:bg-orange/20 md:border-b-0 md:border-e md:last:border-e-0"
+                className={`border-b border-white/15 p-5 last:border-b-0 md:border-b-0 md:border-e md:last:border-e-0 ${
+                  item.active ? "bg-orange-deep text-white" : ""
+                }`}
               >
-                <p className="font-mono text-sm text-orange-soft">{item.index}</p>
+                <p className={`font-mono text-sm ${item.active ? "text-white" : "text-orange-soft"}`}>
+                  {item.index}
+                </p>
                 <h3 className="mt-6 text-lg font-medium leading-snug">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ice/75">{item.text}</p>
+                <p
+                  className={`mt-3 text-sm leading-relaxed ${
+                    item.active ? "text-white/90" : "text-ice/75"
+                  }`}
+                >
+                  {item.text}
+                </p>
               </article>
             ))}
           </Stagger>
@@ -102,7 +112,7 @@ export async function Landing() {
           {featured.map((service) => (
             <article
               key={service.slug}
-              className="flex flex-col rounded-[18px] border border-line bg-white p-6 text-ink shadow-lift transition-colors duration-300 ease-out-expo hover:bg-orange-soft"
+              className="flex flex-col rounded-[18px] border border-line bg-white p-6 text-ink shadow-lift transition-colors duration-300 ease-out-expo hover:bg-ice"
             >
               <ServiceIcon name={service.icon} className="size-6 text-navy" />
               <h3 className="mt-8 text-xl font-medium tracking-normal">{service.title}</h3>

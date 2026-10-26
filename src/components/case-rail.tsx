@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Photo } from "@/components/brand";
 import { useCopy } from "@/components/locale";
@@ -73,22 +73,22 @@ export function CaseRail({ items }: { items: Project[] }) {
             style={{ transform: `scaleX(${Math.max(progress, 0.18)})` }}
           />
         </div>
-        <div className="ms-auto inline-flex items-center rounded-full border border-navy/15 bg-navy-deep p-1">
+        <div className="ms-auto flex gap-2">
           <button
             type="button"
             onClick={() => move(-1)}
-            className="inline-flex size-11 items-center justify-center rounded-full text-ice transition-colors duration-300 ease-out-expo hover:bg-ice hover:text-navy"
+            className="inline-flex size-11 items-center justify-center rounded-[5px] border border-line bg-card hover:border-navy"
             aria-label={t.a11y.prevProject}
           >
-            <ChevronLeft className="size-5 rtl:rotate-180" strokeWidth={1.25} aria-hidden="true" />
+            <ArrowLeft className="size-4 rtl:rotate-180" strokeWidth={1.5} />
           </button>
           <button
             type="button"
             onClick={() => move(1)}
-            className="inline-flex size-11 items-center justify-center rounded-full text-ice transition-colors duration-300 ease-out-expo hover:bg-ice hover:text-navy"
+            className="inline-flex size-11 items-center justify-center rounded-[5px] bg-orange-deep text-white hover:bg-[#9a3412]"
             aria-label={t.a11y.nextProject}
           >
-            <ChevronRight className="size-5 rtl:rotate-180" strokeWidth={1.25} aria-hidden="true" />
+            <ArrowRight className="size-4 rtl:rotate-180" strokeWidth={1.5} />
           </button>
         </div>
       </div>
