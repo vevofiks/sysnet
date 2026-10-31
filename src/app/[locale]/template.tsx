@@ -1,22 +1,24 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { useEffect, useState, type ReactNode } from "react";
 import { useMotionReady } from "@/lib/use-motion";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+const MotionShell = dynamic(
+  () => import("./template-motion").then((mod) => mod.MotionShell),
+  { ssr: false },
+);
+
+let clientReady = false;
 
 export default function Template({ children }: { children: ReactNode }) {
   const on = useMotionReady();
+  const [animate] = useState(() => clientReady);
 
-  return (
-    <motion.div
-      key={on ? "motion" : "still"}
-      initial={on ? { y: 16 } : false}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.55, ease }}
-    >
-      {children}
-    </motion.div>
-  );
+  useEffect(() => {
+    clientReady = true;
+  }, []);
+
+  if (!on || !animate) return children;
+  return <MotionShell>{children}</MotionShell>;
 }

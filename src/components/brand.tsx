@@ -38,7 +38,6 @@ export function Logo({ tone = "navy" }: { tone?: "navy" | "ice" }) {
         alt=""
         width={143}
         height={133}
-        priority={tone === "navy"}
         className={`${height} w-auto`}
       />
       <Image
@@ -46,7 +45,6 @@ export function Logo({ tone = "navy" }: { tone?: "navy" | "ice" }) {
         alt="Sysnet Technology"
         width={272}
         height={90}
-        priority={tone === "navy"}
         className={`${height} w-auto max-w-[34vw] sm:max-w-none ${tone === "ice" ? "brightness-0 invert" : ""}`}
       />
     </span>
@@ -71,6 +69,7 @@ export function Photo({
   priority = false,
   sizes = "(min-width: 768px) 50vw, 100vw",
   fit = "cover",
+  quality = 70,
 }: {
   src: string;
   alt: string;
@@ -78,6 +77,7 @@ export function Photo({
   priority?: boolean;
   sizes?: string;
   fit?: "cover" | "contain";
+  quality?: number;
 }) {
   if (fit === "contain") {
     return (
@@ -87,6 +87,7 @@ export function Photo({
         width={1600}
         height={1067}
         priority={priority}
+        quality={quality}
         sizes={sizes}
         className="h-auto w-full object-contain"
         style={{ width: "100%", height: "auto" }}
@@ -100,6 +101,7 @@ export function Photo({
       alt={alt}
       fill
       priority={priority}
+      quality={quality}
       sizes={sizes}
       className={className}
     />

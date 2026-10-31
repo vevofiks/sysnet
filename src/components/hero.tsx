@@ -1,16 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import { Photo } from "@/components/brand";
+import { useEffect, useState, type ReactNode } from "react";
 import { useCopy, useLocale } from "@/components/locale";
 import { content } from "@/lib/content";
 import { localePath } from "@/lib/paths";
 import { useMotionReady } from "@/lib/use-motion";
 
-const ease = [0.16, 1, 0.3, 1] as const;
 const frame = "min-h-[34rem] sm:min-h-[calc(100svh-4rem)]";
 const SLIDE_MS = 5600;
 
@@ -18,7 +16,7 @@ function pad(value: number) {
   return String(value).padStart(2, "0");
 }
 
-export function Hero() {
+export function Hero({ children }: { children: ReactNode }) {
   const locale = useLocale();
   const t = useCopy();
   const on = useMotionReady();
@@ -49,12 +47,10 @@ export function Hero() {
     })),
   ];
   const [index, setIndex] = useState(0);
-  const [hasAdvanced, setHasAdvanced] = useState(false);
   const [direction, setDirection] = useState(1);
   const [userPaused, setUserPaused] = useState(false);
   const [hoverPaused, setHoverPaused] = useState(false);
   const paused = userPaused || hoverPaused;
-  const meter = useAnimation();
   const count = slides.length;
   const slide = slides[index];
 
@@ -62,27 +58,12 @@ export function Hero() {
     if (!on || paused) return;
     const id = window.setInterval(() => {
       setDirection(1);
-      setHasAdvanced(true);
       setIndex((current) => (current + 1) % count);
     }, SLIDE_MS);
     return () => window.clearInterval(id);
   }, [on, paused, index, count]);
 
-  useEffect(() => {
-    if (!on) return;
-    if (paused) {
-      meter.stop();
-      return;
-    }
-    meter.set({ scaleX: 0 });
-    void meter.start({
-      scaleX: 1,
-      transition: { duration: SLIDE_MS / 1000, ease: "linear" },
-    });
-  }, [on, paused, index, meter]);
-
   function go(delta: number) {
-    setHasAdvanced(true);
     setDirection(delta);
     setIndex((current) => (current + delta + count) % count);
   }
@@ -90,13 +71,9 @@ export function Hero() {
   function goTo(next: number) {
     if (next === index) return;
     const forward = (next - index + count) % count;
-    setHasAdvanced(true);
     setDirection(forward <= count / 2 ? 1 : -1);
     setIndex(next);
   }
-
-  const travel = (sign: number) => `${sign * (rtl ? -100 : 100)}%`;
-  const leadIn = slide.key === "company" && !hasAdvanced;
 
   return (
     <section className="relative w-full max-w-full overflow-hidden bg-navy text-ice">
@@ -124,72 +101,31 @@ export function Hero() {
         <p className="sr-only" aria-live="polite">
           {slide.title}
         </p>
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.article
-            key={slide.key}
-            className="absolute inset-0"
-            custom={direction}
-            variants={{
-              enter: (delta: number) => ({ x: on ? travel(delta) : 0, zIndex: 1 }),
-              center: { x: 0, zIndex: 1 },
-              exit: (delta: number) => ({ x: on ? travel(-delta) : 0, zIndex: 0 }),
-            }}
-            initial={leadIn ? false : "enter"}
-            animate="center"
-            exit="exit"
-            transition={{ duration: on ? 0.7 : 0, ease }}
-          >
-            <motion.div
-              className="absolute inset-0"
-              initial={on && !leadIn ? { scale: 1.12 } : false}
-              animate={{ scale: 1 }}
-              transition={{ duration: on ? 7.2 : 0, ease }}
-            >
-              <Photo
+        {index === 0 ? (
+          <div className="absolute inset-0">{children}</div>
+        ) : (
+          <article key={slide.key} className="hero-slide absolute inset-0" data-direction={direction}>
+            <div className="hero-slide-photo absolute inset-0">
+              <Image
                 src={slide.image}
                 alt={slide.alt}
+                fill
                 sizes="100vw"
-                priority={index === 0}
+                quality={70}
                 className="object-cover object-[center_35%]"
               />
-            </motion.div>
+            </div>
             <div className="absolute inset-0 hidden bg-gradient-to-r from-navy-deep from-10% via-navy/80 via-48% to-transparent sm:block rtl:bg-gradient-to-l" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/75 to-navy-deep/25 sm:from-navy-deep/80 sm:via-navy-deep/20 sm:to-transparent" />
             <div className="relative flex h-full items-end">
               <div className="mx-auto w-full max-w-[1400px] px-4 pb-24 pt-10 sm:pb-28 sm:pt-16 md:px-10 md:pb-32">
-                {slide.key === "company" ? (
-                  <motion.h1
-                    className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl"
-                    initial={on && !leadIn ? { opacity: 0, y: 28 } : false}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: on ? 0.75 : 0, delay: on ? 0.18 : 0, ease }}
-                  >
-                    {slide.title}
-                  </motion.h1>
-                ) : (
-                  <motion.p
-                    className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl"
-                    initial={on && !leadIn ? { opacity: 0, y: 28 } : false}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: on ? 0.75 : 0, delay: on ? 0.18 : 0, ease }}
-                  >
-                    {slide.title}
-                  </motion.p>
-                )}
-                <motion.p
-                  className="mt-3 line-clamp-4 max-w-[40ch] text-sm leading-relaxed text-ice/90 sm:mt-5 sm:line-clamp-none sm:max-w-[48ch] sm:text-base md:text-lg"
-                  initial={on && !leadIn ? { opacity: 0, y: 20 } : false}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: on ? 0.7 : 0, delay: on ? 0.32 : 0, ease }}
-                >
+                <p className="hero-slide-title hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl">
+                  {slide.title}
+                </p>
+                <p className="hero-slide-body mt-3 line-clamp-4 max-w-[40ch] text-sm leading-relaxed text-ice/90 sm:mt-5 sm:line-clamp-none sm:max-w-[48ch] sm:text-base md:text-lg">
                   {slide.body}
-                </motion.p>
-                <motion.div
-                  className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3"
-                  initial={on && !leadIn ? { opacity: 0, y: 16 } : false}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: on ? 0.65 : 0, delay: on ? 0.46 : 0, ease }}
-                >
+                </p>
+                <div className="hero-slide-actions mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
                   <Link
                     href={slide.href}
                     className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[5px] bg-paper px-5 text-sm font-medium uppercase tracking-normal text-navy hover:bg-ice sm:w-auto"
@@ -205,11 +141,11 @@ export function Hero() {
                       {slide.secondary}
                     </Link>
                   ) : null}
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.article>
-        </AnimatePresence>
+          </article>
+        )}
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">
           <div className="mx-auto flex w-full min-w-0 max-w-[1400px] items-center gap-3 px-4 pb-6 sm:gap-4 md:justify-center md:px-10 md:pb-8">
@@ -217,18 +153,12 @@ export function Hero() {
               {pad(index + 1)}
               <span className="text-ice/45"> / {pad(count)}</span>
             </p>
-            {on ? (
+            <span className="hidden h-px w-16 overflow-hidden bg-ice/25 sm:block" aria-hidden="true">
               <span
-                className="hidden h-px w-16 overflow-hidden bg-ice/25 sm:block"
-                aria-hidden="true"
-              >
-                <motion.span
-                  className="block h-full origin-left bg-orange-deep rtl:origin-right"
-                  initial={{ scaleX: 0 }}
-                  animate={meter}
-                />
-              </span>
-            ) : null}
+                key={index}
+                className={`hero-meter block h-full origin-left bg-orange-deep rtl:origin-right ${paused ? "is-paused" : ""}`}
+              />
+            </span>
             <div
               className="pointer-events-auto ms-auto flex items-center gap-2 sm:gap-3 md:ms-0"
               onMouseEnter={() => setHoverPaused(true)}

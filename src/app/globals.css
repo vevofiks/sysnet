@@ -106,6 +106,89 @@ body {
   letter-spacing: 0;
 }
 
+@keyframes hero-meter {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hero-slide-in {
+  from {
+    transform: translate3d(var(--hero-from, 100%), 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-ken {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+html[data-motion="on"] .hero-slide {
+  animation: hero-slide-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html[data-motion="on"] .hero-slide[data-direction="-1"] {
+  --hero-from: -100%;
+}
+
+html[dir="rtl"][data-motion="on"] .hero-slide[data-direction="1"] {
+  --hero-from: -100%;
+}
+
+html[dir="rtl"][data-motion="on"] .hero-slide[data-direction="-1"] {
+  --hero-from: 100%;
+}
+
+html[data-motion="on"] .hero-slide-photo {
+  animation: hero-ken 7.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html[data-motion="on"] .hero-slide-title {
+  animation: hero-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+html[data-motion="on"] .hero-slide-body {
+  animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+html[data-motion="on"] .hero-slide-actions {
+  animation: hero-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.46s both;
+}
+
+html[data-motion="on"] .hero-meter {
+  transform-origin: left;
+  animation: hero-meter 5.6s linear forwards;
+}
+
+html[dir="rtl"][data-motion="on"] .hero-meter {
+  transform-origin: right;
+}
+
+.hero-meter.is-paused {
+  animation-play-state: paused;
+}
+
 @keyframes service-rail-in {
   from {
     opacity: 0;

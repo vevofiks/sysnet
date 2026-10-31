@@ -152,9 +152,9 @@ export const services: Service[] = [
     title: "Installation & Maintenance",
     icon: "maintenance",
     summary:
-      "Our technicians install, then the same desk books the maintenance visit.",
+      "A repair visit is booked with the Malaz desk. Camera and alarm alerts stay with the building.",
     detail:
-      "Fault calls come to +966 53 298 0149. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
+      "Camera and alarm alerts are set to the building admin's phone, or to that site's alarm system. They do not ring +966 53 298 0149. That number is the Malaz desk, for a survey or a booked repair visit. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
     image: "/images/tech.jpg",
     alt: "A technician in a yellow hard hat terminating wires at a wall-mounted panel",
   },

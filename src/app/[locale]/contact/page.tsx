@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { PageHero } from "@/components/brand";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd } from "@/components/json-ld";
@@ -9,6 +10,8 @@ import { parseLocale } from "@/lib/locale";
 import { breadcrumbSchema } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
+
+const ContactMap = dynamic(() => import("@/components/contact-map").then((mod) => mod.ContactMap));
 
 export async function generateMetadata({
   params,
@@ -78,13 +81,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       </section>
       <section className="border-t border-line">
         <h2 className="sr-only">{t.a11y.mapHeading}</h2>
-        <iframe
-          title={t.a11y.mapTitle}
-          src={mapSrc}
-          className="h-[420px] w-full border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        <ContactMap src={mapSrc} title={t.a11y.mapTitle} />
       </section>
     </>
   );

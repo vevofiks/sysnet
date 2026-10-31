@@ -104,7 +104,7 @@ export const en = {
       "Floor plan marked before hardware is ordered",
       "Recorders, readers, and patch panels in one cabinet",
       "Handover with labels, passwords, and a test sheet",
-      "Fault calls return to +966 53 298 0149",
+      "Camera and alarm alerts go to the building admin",
     ],
     alt: "White dome camera with two antennas mounted on an exterior wall",
   },
@@ -353,18 +353,18 @@ export const en = {
     },
     maintenance: {
       title: "Installation & Maintenance",
-      summary: "Our technicians install, then the same desk books the maintenance visit.",
+      summary: "A repair visit is booked with the Malaz desk. Camera and alarm alerts stay with the building.",
       detail:
-        "Fault calls come to +966 53 298 0149. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
+        "Camera and alarm alerts are set to the building admin's phone, or to that site's alarm system. They do not ring +966 53 298 0149. That number is the Malaz desk, for a survey or a booked repair visit. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
       alt: "A technician in a yellow hard hat terminating wires at a wall-mounted panel",
       includes: [
-        "Fault calls to +966 53 298 0149, the same number as the install",
+        "Camera and alarm alerts to the building admin's phone, or to that site's alarm",
         "A system we did not install, taken on when the recorder is reachable",
         "A cable that has to be pulled again, written on the survey before any invoice",
         "A booked return visit, not an open promise",
-        "The same desk that wrote the original survey",
+        "A repair visit booked with the desk that wrote the original survey",
       ],
-      leaves: ["A fault number that is the install number", "A note if a run must be replaced", "A date for the next visit"],
+      leaves: ["Alerts on the admin's phone or the building alarm", "A note if a run must be replaced", "A date for the next visit"],
     },
   },
   projects: {
@@ -420,7 +420,7 @@ export const en = {
     workTitle: "What the technicians actually do on site.",
     work: [
       "They photograph the rooms, mark camera views, and count cable runs before an order is placed. On install day they terminate, label, and test. A fire sounder is proved. A door reader writes a log. A recorder plays back the gate.",
-      "Maintenance stays with the same phone number. If another company left the system, we take it when the recorder is reachable and the cables can be identified.",
+      "A repair visit is booked with the Malaz desk. Camera and alarm alerts are set to the building admin's phone or that site's alarm system. If another company left the system, we take it when the recorder is reachable and the cables can be identified.",
     ],
     skylineAlt: "Riyadh skyline with the Kingdom Centre tower under a clear sky",
     techAlt: "A technician in a yellow hard hat wiring a wall-mounted panel",
@@ -429,7 +429,7 @@ export const en = {
     title: "CCTV and cabling services in Riyadh.",
     lede: "Each scope below is something we price on its own. Most Riyadh jobs combine two or three: a camera, a reader, and the cable between them.",
     other: "The other lines on the same visit.",
-    includes: "What the survey prices.",
+    includes: "What the survey covers.",
     leaves: "Left with the building.",
   },
   projectsPage: {

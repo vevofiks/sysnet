@@ -1,13 +1,49 @@
 "use client";
 
-import { Children, type ReactNode } from "react";
-import { motion } from "framer-motion";
-import { useLocale } from "@/components/locale";
+import { useSyncExternalStore, type ReactNode } from "react";
 import { useMotionReady } from "@/lib/use-motion";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+type LiveModule = typeof import("./motion-live");
 
-const view = { once: true, amount: 0.3 } as const;
+let liveModule: LiveModule | null = null;
+let started = false;
+const listeners = new Set<() => void>();
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot() {
+  return liveModule;
+}
+
+function getServerSnapshot() {
+  return null;
+}
+
+function ensureLive() {
+  if (started || typeof window === "undefined") return;
+  started = true;
+  const run = () => {
+    window.removeEventListener("pointerdown", run);
+    window.removeEventListener("keydown", run);
+    window.removeEventListener("scroll", run, true);
+    void import("./motion-live").then((mod) => {
+      liveModule = mod;
+      listeners.forEach((listener) => listener());
+    });
+  };
+  window.addEventListener("pointerdown", run, { once: true, passive: true });
+  window.addEventListener("keydown", run, { once: true });
+  window.addEventListener("scroll", run, { once: true, passive: true, capture: true });
+}
+
+function useLiveModule(enabled: boolean) {
+  const mod = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  if (enabled) ensureLive();
+  return enabled ? mod : null;
+}
 
 export function Reveal({
   children,
@@ -16,31 +52,9 @@ export function Reveal({
   children: ReactNode;
   className?: string;
 }) {
-  const on = useMotionReady();
-  const rtl = useLocale() === "ar";
-  const items = Children.toArray(children);
-
-  if (!on) return <div className={className}>{children}</div>;
-
-  return (
-    <div className={className}>
-      {items.map((child, index) => (
-        <motion.div
-          key={index}
-          initial={{
-            opacity: 0,
-            x: index === 0 ? (rtl ? 72 : -72) : 0,
-            y: index === 0 ? 0 : 40,
-          }}
-          whileInView={{ opacity: 1, x: 0, y: 0 }}
-          viewport={view}
-          transition={{ duration: 0.9, delay: index * 0.08, ease }}
-        >
-          {child}
-        </motion.div>
-      ))}
-    </div>
-  );
+  const live = useLiveModule(useMotionReady());
+  if (!live) return <div className={className}>{children}</div>;
+  return <live.LiveReveal className={className}>{children}</live.LiveReveal>;
 }
 
 export function Stagger({
@@ -50,27 +64,9 @@ export function Stagger({
   children: ReactNode;
   className?: string;
 }) {
-  const on = useMotionReady();
-  const items = Children.toArray(children);
-
-  if (!on) return <div className={className}>{children}</div>;
-
-  return (
-    <div className={className}>
-      {items.map((child, index) => (
-        <motion.div
-          key={index}
-          className="h-full min-w-0 [&>*]:h-full"
-          initial={{ opacity: 0, y: 48 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.85, delay: index * 0.07, ease }}
-        >
-          {child}
-        </motion.div>
-      ))}
-    </div>
-  );
+  const live = useLiveModule(useMotionReady());
+  if (!live) return <div className={className}>{children}</div>;
+  return <live.LiveStagger className={className}>{children}</live.LiveStagger>;
 }
 
 export function Fade({
@@ -80,19 +76,7 @@ export function Fade({
   children: ReactNode;
   className?: string;
 }) {
-  const on = useMotionReady();
-
-  if (!on) return <div className={className}>{children}</div>;
-
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, scale: 1.04 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={view}
-      transition={{ duration: 1.05, ease }}
-    >
-      {children}
-    </motion.div>
-  );
+  const live = useLiveModule(useMotionReady());
+  if (!live) return <div className={className}>{children}</div>;
+  return <live.LiveFade className={className}>{children}</live.LiveFade>;
 }

@@ -37,7 +37,7 @@ const en = {
         heading: "How the survey becomes a price",
         body: [
           "Call the Malaz desk on +966 53 298 0149 or send the district and the building type. We photograph the rooms, the gate, and the cabinet location, then write a parts list you can read. The quote separates cameras, recorder, cable, and labour. Brands on that list are the ones already used on these sites: Hikvision, Dahua, EZVIZ, IDIS, IMOU, and Samsung, chosen for the view rather than for a logo on the van.",
-          "Installation is the same crew. Cable is numbered at both ends, the recorder is racked with the patch panel when the building also has data, and playback is proved before handover. Fault calls come back to the same phone number.",
+          "Installation is the same crew. Cable is numbered at both ends, the recorder is racked with the patch panel when the building also has data, and playback is proved before handover. Camera and alarm alerts are set to the building admin's phone or that site's alarm system. They do not ring the Malaz desk.",
         ],
       },
     ],
@@ -88,7 +88,7 @@ const en = {
       {
         heading: "How a gate survey is priced",
         body: [
-          "Tell the desk the district, whether it is a villa gate or a building lobby, and how many monitors you need. We measure the cable run, photograph the gate, and write the station, the monitor, the power supply, and the lock interface as separate lines. Installation and a later maintenance visit stay on +966 53 298 0149.",
+          "Tell the desk the district, whether it is a villa gate or a building lobby, and how many monitors you need. We measure the cable run, photograph the gate, and write the station, the monitor, the power supply, and the lock interface as separate lines. A later visit is booked with the Malaz desk on +966 53 298 0149. The station calls the indoor monitor, not our number.",
           "Handover is the password if the station has one, a note of which button calls which monitor, and a test of the lock with you watching. That is the job, not a box left in the majlis.",
         ],
       },
@@ -137,7 +137,7 @@ const en = {
         heading: "How a cabling survey is written",
         body: [
           "We count outlets per room, photograph the riser, and note the cabinet location. The parts list separates cable, patch panels, faceplates, fiber if it is needed, and labour. j5create docks and desk accessories are specified with the computers scope when the fit-out includes workstations, not hidden inside the cable price.",
-          "Testing is the last step, not a promise. You get the sheet. Fault calls later come to +966 53 298 0149, and if a run has to be replaced we say that rather than reterminating a crushed cable and hoping.",
+          "Testing is the last step, not a promise. You get the sheet. A later repair visit is booked with the Malaz desk. Camera and alarm alerts stay with the building admin. If a run has to be replaced we say that rather than reterminating a crushed cable and hoping.",
         ],
       },
     ],
@@ -325,7 +325,7 @@ const en = {
       {
         heading: "Booking the survey",
         body: [
-          "Send the building type and the district to the Malaz desk. If you already have a fire alarm drawing, send that too. We will say what is missing and what is only due for a service date. Maintenance after installation stays on +966 53 298 0149.",
+          "Send the building type and the district to the Malaz desk. If you already have a fire alarm drawing, send that too. We will say what is missing and what is only due for a service date. A later service visit is booked with the Malaz desk. The alarm itself calls the building admin, not that number.",
         ],
       },
     ],
@@ -372,7 +372,7 @@ const en = {
       {
         heading: "How to start",
         body: [
-          "Tell the desk the district, villa or office, and what already exists. We survey before anyone orders hardware. Handover is the labeled cabinet, the passwords, and a short test with you present. The phone number does not change afterwards: +966 53 298 0149.",
+          "Tell the desk the district, villa or office, and what already exists. We survey before anyone orders hardware. Handover is the labeled cabinet, the passwords, and a short test with you present. +966 53 298 0149 stays the desk number for booking a visit. Camera and alarm alerts are set to the building admin.",
         ],
       },
     ],
@@ -391,7 +391,7 @@ const en = {
       },
       {
         q: "Who maintains it later?",
-        a: "The Malaz desk. Fault calls come back to the number on the handover sheet.",
+        a: "A repair visit is booked with the Malaz desk. Camera and alarm alerts go to the building admin's phone or that site's alarm system, not to our number.",
       },
     ],
   },
@@ -493,13 +493,13 @@ const en = {
     h1: "CCTV and alarm maintenance in Riyadh",
     seoTitle: "CCTV and Alarm Maintenance Visits in Riyadh",
     seoDescription:
-      "Installation and later maintenance from the same Malaz desk. Call +966 53 298 0149 for a fault on cameras, alarms, or cabling in Riyadh today.",
+      "Book a Riyadh repair visit with the Malaz desk on +966 53 298 0149. Camera and alarm alerts go to the building admin, not to this number.",
     related: ["cctv", "fire-alarm", "cabling"],
     sections: [
       {
         heading: "What maintenance covers",
         body: [
-          "Installation and maintenance is the promise that the crew who fitted the system is the crew you call when it fails. Fault calls come to +966 53 298 0149. We look at cameras that have gone dark, recorders that stopped, readers that beep and do not open, and cable that was crushed by someone else's ceiling work. If we did not install the system, we still take it on when we can reach the recorder and identify the cables.",
+          "Installation and maintenance means the crew who fitted the system can come back when you book a visit. Camera and alarm alerts are set to the building admin's phone, or to that site's alarm system. They do not ring +966 53 298 0149. That number is only the Malaz desk. We look at cameras that have gone dark, recorders that stopped, readers that beep and do not open, and cable that was crushed by someone else's ceiling work. If we did not install the system, we still take it on when we can reach the recorder and identify the cables.",
           "We do not sell a vague annual contract made of visits nobody scheduled. A maintenance visit has a fault or a test list. If a run has to be replaced, the survey says that. Reterminating a dead cable and calling it repaired is how buildings end up with the same fault twice.",
         ],
       },
@@ -507,7 +507,7 @@ const en = {
         heading: "Systems we did not install",
         body: [
           "A lot of Riyadh buildings have a recorder in a cupboard and no passwords. We will try. If the cables are unidentified and the panel is locked with a password nobody has, we say what we could not see. We do not invent a health report. When we can take the system on, the handover from that first visit is the new password, a channel list, and the faults we found.",
-          "Fire alarm, access, intercom, and data are in the same phone queue. You do not need a different company for each blinking light, unless the survey shows a specialist part we do not carry. We will say so.",
+          "Fire alarm, access, intercom, and data are one crew when you book a visit. You do not need a different company for each blinking light, unless the survey shows a specialist part we do not carry. We will say so. The live alarm still calls the building admin, not our desk.",
         ],
       },
       {
@@ -523,8 +523,8 @@ const en = {
         a: "Yes, when we can reach the recorder and identify the cables. If we cannot, the visit report says what is missing.",
       },
       {
-        q: "What number do we call for a fault?",
-        a: "+966 53 298 0149. That is the Malaz desk, Saturday to Thursday, 9:00 to 18:00.",
+        q: "Where do camera and alarm alerts go?",
+        a: "To the building admin's phone, or to that site's alarm system. To book a repair visit, call the Malaz desk on +966 53 298 0149, Saturday to Thursday, 9:00 to 18:00.",
       },
       {
         q: "Do you replace cable or only reset the recorder?",
@@ -532,7 +532,7 @@ const en = {
       },
       {
         q: "Is fire alarm maintenance on the same desk?",
-        a: "Yes. Alarm, access, intercom, and cameras come back to the same number.",
+        a: "Yes, as a booked visit with the Malaz desk. The alarm call itself goes to the building admin, not to our number.",
       },
     ],
   },
@@ -565,7 +565,7 @@ const ar: Record<keyof typeof en, Guide> = {
         heading: "كيف تصبح المعاينة سعرًا",
         body: [
           "اتصل بمكتب الملز على ‎+966 53 298 0149 أو أرسل الحي ونوع المبنى. نصور الغرف والبوابة ومكان الخزانة، ثم نكتب قائمة قطع تُقرأ. العرض يفصل الكاميرات وجهاز التسجيل والكيبل والعمل. العلامات التي تُكتب هي التي نركّبها: Hikvision وDahua وEZVIZ وIDIS وIMOU وSamsung، وتُختار للمشهد لا لشعار على السيارة.",
-          "التركيب للفريق نفسه. الكيبل مرقّم من الطرفين، وجهاز التسجيل يُركّب مع لوحة التوصيل حين يكون في المبنى بيانات، والإعادة تُثبت قبل التسليم. بلاغات الأعطال ترجع إلى الرقم نفسه.",
+          "التركيب للفريق نفسه. الكيبل مرقّم من الطرفين، وجهاز التسجيل يُركّب مع لوحة التوصيل حين يكون في المبنى بيانات، والإعادة تُثبت قبل التسليم. تنبيهات الكاميرا والإنذار تُضبط على جوال مدير المبنى أو نظام إنذار ذلك الموقع. لا ترن على مكتب الملز.",
         ],
       },
     ],
@@ -616,7 +616,7 @@ const ar: Record<keyof typeof en, Guide> = {
       {
         heading: "كيف يُسعَّر مسح البوابة",
         body: [
-          "أخبر المكتب بالحي، وهل هي بوابة فيلا أو بهو مبنى، وكم شاشة تحتاج. نقيس التمديد ونصور البوابة ونكتب المحطة والشاشة ومزوّد الطاقة وواجهة القفل أسطرًا منفصلة. التركيب وزيارة الصيانة اللاحقة يبقيان على ‎+966 53 298 0149.",
+          "أخبر المكتب بالحي، وهل هي بوابة فيلا أو بهو مبنى، وكم شاشة تحتاج. نقيس التمديد ونصور البوابة ونكتب المحطة والشاشة ومزوّد الطاقة وواجهة القفل أسطرًا منفصلة. الزيارة اللاحقة تُحجز مع مكتب الملز على ‎+966 53 298 0149. المحطة تتصل بالشاشة الداخلية لا برقمنا.",
           "التسليم هو كلمة المرور إن وُجدت، وملاحظة أي زر يتصل بأي شاشة، وتجربة القفل وأنت ترى. هذا هو العمل، لا صندوق يُترك في المجلس.",
         ],
       },
@@ -665,7 +665,7 @@ const ar: Record<keyof typeof en, Guide> = {
         heading: "كيف تُكتب معاينة التمديد",
         body: [
           "نعدّ المخارج في كل غرفة ونصور الصاعد ونحدد مكان الخزانة. قائمة القطع تفصل الكيبل ولوحات التوصيل والأوجه والألياف إن لزم والعمل. قواعد j5create وملحقات المكتب تُذكر مع نطاق أجهزة الحاسب حين يشمل التجهيز محطات عمل، لا مخفية داخل سعر الكيبل.",
-          "الفحص آخر خطوة لا وعدًا. تستلم الورقة. بلاغات الأعطال لاحقًا إلى ‎+966 53 298 0149، وإذا لزم استبدال مسار نقول ذلك بدل إعادة تلحيم كيبل مهروس على أمل.",
+          "الفحص آخر خطوة لا وعدًا. تستلم الورقة. زيارة الإصلاح اللاحقة تُحجز مع مكتب الملز. تنبيهات الكاميرا والإنذار تبقى مع مدير المبنى. وإذا لزم استبدال مسار نقول ذلك بدل إعادة تلحيم كيبل مهروس على أمل.",
         ],
       },
     ],
@@ -853,7 +853,7 @@ const ar: Record<keyof typeof en, Guide> = {
       {
         heading: "حجز المعاينة",
         body: [
-          "أرسل نوع المبنى والحي إلى مكتب الملز. إذا كان عندك مخطط إنذار فأرسله. نقول ما الناقص وما الذي يحتاج تاريخ خدمة فقط. الصيانة بعد التركيب تبقى على ‎+966 53 298 0149.",
+          "أرسل نوع المبنى والحي إلى مكتب الملز. إذا كان عندك مخطط إنذار فأرسله. نقول ما الناقص وما الذي يحتاج تاريخ خدمة فقط. زيارة الخدمة اللاحقة تُحجز مع مكتب الملز. الإنذار نفسه يتصل بمدير المبنى لا بذلك الرقم.",
         ],
       },
     ],
@@ -900,7 +900,7 @@ const ar: Record<keyof typeof en, Guide> = {
       {
         heading: "كيف تبدأ",
         body: [
-          "أخبر المكتب بالحي، فيلا أو مكتب، وما الموجود. نعاين قبل أن يطلب أحد الأجهزة. التسليم خزانة مُلصقة وكلمات المرور وتجربة قصيرة وأنت حاضر. الرقم لا يتغير بعد ذلك: ‎+966 53 298 0149.",
+          "أخبر المكتب بالحي، فيلا أو مكتب، وما الموجود. نعاين قبل أن يطلب أحد الأجهزة. التسليم خزانة مُلصقة وكلمات المرور وتجربة قصيرة وأنت حاضر. ‎+966 53 298 0149 يبقى رقم المكتب لحجز زيارة. تنبيهات الكاميرا والإنذار تُضبط على مدير المبنى.",
         ],
       },
     ],
@@ -919,7 +919,7 @@ const ar: Record<keyof typeof en, Guide> = {
       },
       {
         q: "من يصون العمل لاحقًا؟",
-        a: "مكتب الملز. بلاغات الأعطال ترجع إلى الرقم المكتوب في ورقة التسليم.",
+        a: "زيارة الإصلاح تُحجز مع مكتب الملز. تنبيهات الكاميرا والإنذار تذهب إلى جوال مدير المبنى أو نظام إنذار ذلك الموقع، لا إلى رقمنا.",
       },
     ],
   },
@@ -1021,13 +1021,13 @@ const ar: Record<keyof typeof en, Guide> = {
     h1: "صيانة الكاميرات والإنذار في الرياض",
     seoTitle: "صيانة الكاميرات والإنذار في الرياض",
     seoDescription:
-      "التركيب ثم الصيانة من مكتب الملز نفسه. اتصل على ‎+966 53 298 0149 لعطل كاميرات أو إنذار أو كيابل في الرياض، واذكر الحي ونوع العطل في أول مكالمة.",
+      "احجز زيارة إصلاح في الرياض مع مكتب الملز على ‎+966 53 298 0149. تنبيهات الكاميرا والإنذار تذهب إلى مدير المبنى لا إلى هذا الرقم.",
     related: ["cctv", "fire-alarm", "cabling"],
     sections: [
       {
         heading: "ماذا تغطي الصيانة",
         body: [
-          "التركيب والصيانة وعد بأن الفريق الذي ركّب هو الذي تتصل به حين يتعطل. بلاغات الأعطال إلى ‎+966 53 298 0149. ننظر في كاميرات انطفأت وأجهزة تسجيل توقفت وقارئات تصفر ولا تفتح وكيبل هرسه عمل سقف لغيرنا. إذا لم نركّب النظام نستلمه حين نصل إلى جهاز التسجيل ونعرف الكيابل.",
+          "التركيب والصيانة تعني أن الفريق الذي ركّب يستطيع العودة حين تحجز زيارة. تنبيهات الكاميرا والإنذار تُضبط على جوال مدير المبنى أو على نظام إنذار ذلك الموقع. لا ترن على ‎+966 53 298 0149. هذا الرقم لمكتب الملز فقط. ننظر في كاميرات انطفأت وأجهزة تسجيل توقفت وقارئات تصفر ولا تفتح وكيبل هرسه عمل سقف لغيرنا. إذا لم نركّب النظام نستلمه حين نصل إلى جهاز التسجيل ونعرف الكيابل.",
           "لا نبيع عقدًا سنويًا مبهمًا من زيارات لا أحد جدولها. زيارة الصيانة لها عطل أو قائمة فحص. إذا لزم استبدال مسار، تقوله المعاينة. إعادة تلحيم كيبل ميّت وتسميته إصلاحًا تعيد المبنى إلى العطل نفسه مرة أخرى.",
         ],
       },
@@ -1035,7 +1035,7 @@ const ar: Record<keyof typeof en, Guide> = {
         heading: "أنظمة لم نركّبها",
         body: [
           "كثير من مباني الرياض فيها جهاز تسجيل في خزانة وبلا كلمات مرور. نحاول. إذا كانت الكيابل مجهولة واللوحة مقفلة بكلمة لا يملكها أحد، نقول ما لم نستطع رؤيته. لا نخترع تقرير سلامة. حين نستطيع استلام النظام، تسليم تلك الزيارة الأولى هو كلمة المرور الجديدة وقائمة القنوات والأعطال التي وجدناها.",
-          "إنذار الحريق والدخول والإنتركم والبيانات في طابور الهاتف نفسه. لا تحتاج شركة لكل ضوء يومض، إلا إذا أظهرت المعاينة قطعة متخصصة لا نحملها. سنقول ذلك.",
+          "إنذار الحريق والدخول والإنتركم والبيانات فريق واحد حين تحجز زيارة. لا تحتاج شركة لكل ضوء يومض، إلا إذا أظهرت المعاينة قطعة متخصصة لا نحملها. سنقول ذلك. نداء الإنذار الحي يبقى لمدير المبنى لا لمكتبنا.",
         ],
       },
       {
@@ -1051,8 +1051,8 @@ const ar: Record<keyof typeof en, Guide> = {
         a: "نعم، حين نصل إلى جهاز التسجيل ونعرف الكيابل. إذا لم نستطع، يقول تقرير الزيارة ما الناقص.",
       },
       {
-        q: "أي رقم لعطل؟",
-        a: "‎+966 53 298 0149. هذا مكتب الملز، من السبت إلى الخميس، 9:00 إلى 18:00.",
+        q: "إلى أين تذهب تنبيهات الكاميرا والإنذار؟",
+        a: "إلى جوال مدير المبنى، أو إلى نظام إنذار ذلك الموقع. لحجز زيارة إصلاح، اتصل بمكتب الملز على ‎+966 53 298 0149، من السبت إلى الخميس، 9:00 إلى 18:00.",
       },
       {
         q: "هل تستبدلون الكيبل أم تعيدون تشغيل الجهاز فقط؟",
@@ -1060,7 +1060,7 @@ const ar: Record<keyof typeof en, Guide> = {
       },
       {
         q: "هل صيانة إنذار الحريق على المكتب نفسه؟",
-        a: "نعم. الإنذار والدخول والإنتركم والكاميرات ترجع إلى الرقم نفسه.",
+        a: "نعم، كزيارة محجوزة مع مكتب الملز. نداء الإنذار نفسه يذهب إلى مدير المبنى لا إلى رقمنا.",
       },
     ],
   },

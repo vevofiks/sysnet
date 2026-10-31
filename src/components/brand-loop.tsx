@@ -1,6 +1,7 @@
 "use client";
 
-import { LogoLoop, type LogoItem } from "@/components/logo-loop";
+import { useEffect, useState, type ComponentType } from "react";
+import type { LogoItem, LogoLoopProps } from "@/components/logo-loop";
 
 const logos: LogoItem[] = [
   { src: "/logos/l1.webp", alt: "EZVIZ", width: 400, height: 115 },
@@ -12,8 +13,28 @@ const logos: LogoItem[] = [
 ];
 
 export function BrandLoop({ label, rtl }: { label: string; rtl: boolean }) {
+  const [Loop, setLoop] = useState<ComponentType<LogoLoopProps> | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    const load = () => {
+      void import("@/components/logo-loop").then((mod) => {
+        if (alive) setLoop(() => mod.LogoLoop);
+      });
+    };
+    const idle = window.requestIdleCallback?.(load, { timeout: 2000 });
+    const timer = idle == null ? window.setTimeout(load, 400) : undefined;
+    return () => {
+      alive = false;
+      if (idle != null) window.cancelIdleCallback?.(idle);
+      if (timer != null) window.clearTimeout(timer);
+    };
+  }, []);
+
+  if (!Loop) return <div className="h-12" aria-hidden="true" />;
+
   return (
-    <LogoLoop
+    <Loop
       logos={logos}
       speed={64}
       direction={rtl ? "right" : "left"}

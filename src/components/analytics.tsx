@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import { useEffect } from "react";
 
 type Gtag = (...args: unknown[]) => void;
@@ -25,18 +26,6 @@ export function Analytics() {
 
   useEffect(() => {
     if (!id) return;
-    window.dataLayer = window.dataLayer ?? [];
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer?.push(args);
-    };
-    window.gtag("js", new Date());
-    window.gtag("config", id);
-
-    const script = document.createElement("script");
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-    script.async = true;
-    document.head.appendChild(script);
-
     const onClick = (event: MouseEvent) => {
       const anchor = (event.target as Element | null)?.closest?.("a");
       const href = anchor?.getAttribute("href") ?? "";
@@ -46,11 +35,17 @@ export function Analytics() {
       }
     };
     document.addEventListener("click", onClick);
-    return () => {
-      document.removeEventListener("click", onClick);
-      script.remove();
-    };
+    return () => document.removeEventListener("click", onClick);
   }, [id]);
 
-  return null;
+  if (!id) return null;
+
+  return (
+    <>
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="lazyOnload" />
+      <Script id="ga-init" strategy="lazyOnload">
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config',${JSON.stringify(id)});`}
+      </Script>
+    </>
+  );
 }

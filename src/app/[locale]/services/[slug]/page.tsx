@@ -137,20 +137,32 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         </div>
       </article>
 
-      {guide.sections.map((section) => (
-        <section key={section.heading} className="border-t border-line">
-          <div className="mx-auto max-w-[1400px] px-4 py-14 md:px-10 md:py-20">
-            <h2 className="max-w-[24ch] text-3xl font-medium leading-[1.08] tracking-normal md:text-4xl">
-              {section.heading}
-            </h2>
-            <div className="mt-6 max-w-[68ch] space-y-4 text-base leading-relaxed text-muted">
-              {section.body.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+      <div className="border-t border-line">
+        <div className="mx-auto grid max-w-[1400px] md:grid-cols-2">
+          {guide.sections.map((section, index) => {
+            const lastRowStart = guide.sections.length - (guide.sections.length % 2 === 0 ? 2 : 1);
+            return (
+              <section
+                key={section.heading}
+                className={`border-line px-4 py-12 md:px-10 md:py-16 ${
+                  index % 2 === 0 ? "md:border-e" : ""
+                } ${index < guide.sections.length - 1 ? "border-b" : ""} ${
+                  index >= lastRowStart ? "md:border-b-0" : ""
+                }`}
+              >
+                <h2 className="text-2xl font-medium leading-[1.15] tracking-normal md:text-3xl">
+                  {section.heading}
+                </h2>
+                <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
+                  {section.body.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </div>
 
       <section className="border-t border-line">
         <div className="mx-auto grid max-w-[1400px] gap-10 px-4 py-14 md:grid-cols-[0.7fr_1.3fr] md:px-10 md:py-20">

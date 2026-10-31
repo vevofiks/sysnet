@@ -17,9 +17,10 @@ import "../globals.css";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   variable: "--font-outfit",
   display: "swap",
+  preload: false,
 });
 
 const plex = IBM_Plex_Mono({
@@ -27,6 +28,7 @@ const plex = IBM_Plex_Mono({
   weight: ["400", "500"],
   variable: "--font-plex",
   display: "swap",
+  preload: false,
 });
 
 const arabicSans = IBM_Plex_Sans_Arabic({
@@ -34,13 +36,15 @@ const arabicSans = IBM_Plex_Sans_Arabic({
   weight: ["400", "500", "600"],
   variable: "--font-arabic-sans",
   display: "swap",
+  preload: false,
 });
 
 const arabicDisplay = Noto_Naskh_Arabic({
   subsets: ["arabic"],
-  weight: ["500", "600", "700"],
+  weight: ["600"],
   variable: "--font-arabic-display",
   display: "swap",
+  preload: false,
 });
 
 export const viewport: Viewport = {

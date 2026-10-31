@@ -382,28 +382,42 @@ export function SiteHeader() {
         <nav className="ms-6 hidden items-center gap-1 lg:flex" aria-label={t.a11y.primary}>
           {links.map((item) =>
             item.href === "/services" ? (
-              <button
+              <span
                 key={item.href}
-                ref={servicesButtonRef}
-                type="button"
-                className={`inline-flex h-11 items-center gap-1.5 rounded-[5px] px-3 text-sm transition-colors duration-300 ease-out-expo ${
+                className={`inline-flex h-11 items-center rounded-[5px] text-sm transition-colors duration-300 ease-out-expo ${
+                  servicesOpen ? "bg-ice" : "hover:bg-ice"
+                } ${
                   isCurrent(pathname, item.href) || servicesOpen
                     ? "text-orange-deep"
-                    : "text-ink hover:bg-ice"
+                    : "text-ink"
                 }`}
-                aria-expanded={servicesOpen}
-                aria-controls="service-menu"
-                onClick={() => setServicesOpen((value) => !value)}
               >
-                {item.label}
-                <ChevronDown
-                  className={`size-4 transition-transform duration-300 ease-out-expo motion-reduce:transition-none ${
-                    servicesOpen ? "rotate-180" : ""
-                  }`}
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                />
-              </button>
+                <Link
+                  href={localePath(locale, item.href)}
+                  className="inline-flex h-11 items-center rounded-s-[5px] ps-3 pe-1"
+                  aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
+                  onClick={() => setServicesOpen(false)}
+                >
+                  {item.label}
+                </Link>
+                <button
+                  ref={servicesButtonRef}
+                  type="button"
+                  className="inline-flex h-11 items-center rounded-e-[5px] ps-1 pe-3"
+                  aria-expanded={servicesOpen}
+                  aria-controls="service-menu"
+                  aria-label={t.a11y.serviceLines}
+                  onClick={() => setServicesOpen((value) => !value)}
+                >
+                  <ChevronDown
+                    className={`size-4 transition-transform duration-300 ease-out-expo motion-reduce:transition-none ${
+                      servicesOpen ? "rotate-180" : ""
+                    }`}
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                </button>
+              </span>
             ) : (
               <Link
                 key={item.href}
