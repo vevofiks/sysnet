@@ -1,14 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
+import { notFound } from "next/navigation";
 import { IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Outfit } from "next/font/google";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
 import { HeaderFallback, SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Analytics } from "@/components/analytics";
+import { JsonLd } from "@/components/json-ld";
 import { DocumentLocale, LocaleProvider } from "@/components/locale";
 import { copy } from "@/lib/copy";
-import { getLocale } from "@/lib/locale.server";
+import type { Locale } from "@/lib/locale";
 import { company } from "@/lib/site";
-import "./globals.css";
+import { siteGraph } from "@/lib/schema";
+import "../globals.css";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -45,78 +50,85 @@ export const viewport: Viewport = {
   themeColor: "#f4f8fb",
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(company.url),
-  title: {
-    default: "Sysnet — CCTV, fire alarm, and cabling in Riyadh",
-    template: "%s · Sysnet",
-  },
-  description:
-    "Sysnet, Adam Al Arabia Company, surveys and installs CCTV, intercom, fire alarm, access control, and network cabling from a desk in Malaz, Riyadh.",
-  openGraph: {
-    title: "Sysnet — CCTV, fire alarm, and cabling in Riyadh",
-    description:
-      "Site surveys, parts lists, and installation for cameras, alarms, and structured cabling in Riyadh.",
-    url: company.url,
-    siteName: "Sysnet",
-    locale: "en_SA",
-    type: "website",
-    images: [{ url: "/images/pair.jpg", alt: "Bullet cameras mounted on a concrete wall" }],
-  },
-};
+export async function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ar" }];
+}
 
-const localBusiness = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Sysnet",
-  alternateName: company.legal,
-  url: company.url,
-  telephone: company.phoneTel,
-  email: company.email,
-  image: `${company.url}/images/pair.jpg`,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Malaz",
-    addressLocality: "Riyadh",
-    addressRegion: "Riyadh",
-    addressCountry: "SA",
-  },
-  areaServed: "Riyadh",
-  parentOrganization: {
-    "@type": "Organization",
-    name: company.legal,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const value = (await params).locale;
+  const locale: Locale = value === "ar" ? "ar" : "en";
+  const t = copy[locale];
+  return {
+    metadataBase: new URL(company.url),
+    title: {
+      default: t.meta.siteTitle,
+      template: `%s | ${t.meta.brand}`,
+    },
+    description: t.meta.siteDescription,
+    verification: process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : undefined,
+    openGraph: {
+      title: t.meta.ogTitle,
+      description: t.meta.ogDescription,
+      siteName: t.meta.brand,
+      locale: locale === "ar" ? "ar_SA" : "en_SA",
+      alternateLocale: locale === "ar" ? ["en_SA"] : ["ar_SA"],
+      type: "website",
+    },
+  };
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const value = (await params).locale;
+  if (value !== "en" && value !== "ar") notFound();
+  const locale: Locale = value;
+  const arabic = locale === "ar";
+
   return (
     <html
-      lang="en"
-      dir="ltr"
+      lang={locale}
+      dir={arabic ? "rtl" : "ltr"}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${outfit.variable} ${plex.variable} ${arabicSans.variable} ${arabicDisplay.variable} h-full antialiased`}
     >
       <body className="flex min-h-full w-full min-w-0 flex-col bg-paper font-sans text-ink">
-        <script
+        <Script
+          id="document-boot"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html:
-              '(function(){try{var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;var embedded=navigator.userAgent.indexOf("Cursor/")!==-1;if(!reduce||embedded)document.documentElement.dataset.motion="on";var m=document.cookie.match(/(?:^|; )lang=(ar)/);if(m){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}})();',
+              '(function(){try{var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(!reduce)document.documentElement.dataset.motion="on";var p=location.pathname;if(p==="/ar"||p.indexOf("/ar/")===0){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}})();',
           }}
         />
         <Suspense fallback={<HeaderFallback />}>
-          <LocalizedDocument>{children}</LocalizedDocument>
+          <LocalizedDocument locale={locale}>{children}</LocalizedDocument>
         </Suspense>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
-        />
+        <Analytics />
+        <JsonLd data={siteGraph()} />
       </body>
     </html>
   );
 }
 
-async function LocalizedDocument({ children }: { children: ReactNode }) {
-  const locale = await getLocale();
+async function LocalizedDocument({
+  children,
+  locale,
+}: {
+  children: ReactNode;
+  locale: Locale;
+}) {
   const t = copy[locale];
   const arabic = locale === "ar";
 
@@ -140,7 +152,7 @@ async function LocalizedDocument({ children }: { children: ReactNode }) {
         <main id="content" className="w-full min-w-0 flex-1">
           {children}
         </main>
-        <SiteFooter />
+        <SiteFooter locale={locale} />
       </div>
     </LocaleProvider>
   );

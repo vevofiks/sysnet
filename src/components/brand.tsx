@@ -70,13 +70,30 @@ export function Photo({
   className = "object-cover",
   priority = false,
   sizes = "(min-width: 768px) 50vw, 100vw",
+  fit = "cover",
 }: {
   src: string;
   alt: string;
   className?: string;
   priority?: boolean;
   sizes?: string;
+  fit?: "cover" | "contain";
 }) {
+  if (fit === "contain") {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        width={1600}
+        height={1067}
+        priority={priority}
+        sizes={sizes}
+        className="h-auto w-full object-contain"
+        style={{ width: "100%", height: "auto" }}
+      />
+    );
+  }
+
   return (
     <Image
       src={src}

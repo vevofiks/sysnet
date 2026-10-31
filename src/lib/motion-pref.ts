@@ -1,9 +1,6 @@
 /** True when entrance motion should run. */
 export function prefersMotion() {
   if (typeof window === "undefined") return false;
-  // Cursor's embedded browser reports prefers-reduced-motion: reduce even
-  // when the OS has animations enabled, which skipped every tween.
-  if (navigator.userAgent.includes("Cursor/")) return true;
   return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 

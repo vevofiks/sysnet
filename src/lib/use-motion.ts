@@ -1,13 +1,15 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { prefersMotion } from "@/lib/motion-pref";
 
-/** False during SSR so markup stays visible, then true before the first paint when motion should run. */
+function subscribe(onStoreChange: () => void) {
+  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+  media.addEventListener("change", onStoreChange);
+  return () => media.removeEventListener("change", onStoreChange);
+}
+
+/** False during SSR so markup stays visible, then the real preference after hydration. */
 export function useMotionReady() {
-  const [ready, setReady] = useState(false);
-  useLayoutEffect(() => {
-    setReady(true);
-  }, []);
-  return ready && prefersMotion();
+  return useSyncExternalStore(subscribe, prefersMotion, () => false);
 }

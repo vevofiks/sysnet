@@ -1,7 +1,9 @@
-import { cookies } from "next/headers";
-import { LOCALE_COOKIE, parseLocale, type Locale } from "@/lib/locale";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+import type { Locale } from "@/lib/locale";
 
 export async function getLocale(): Promise<Locale> {
-  const jar = await cookies();
-  return parseLocale(jar.get(LOCALE_COOKIE)?.value);
+  const value = (await headers()).get("x-locale");
+  if (value !== "en" && value !== "ar") notFound();
+  return value;
 }

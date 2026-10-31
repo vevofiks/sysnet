@@ -7,35 +7,22 @@ import { Hero } from "@/components/hero";
 import { Fade, Reveal, Stagger } from "@/components/motion";
 import { Stats } from "@/components/stats";
 import { content } from "@/lib/content";
-import { getLocale } from "@/lib/locale.server";
-import { partners } from "@/lib/site";
+import type { Locale } from "@/lib/locale";
+import { localePath } from "@/lib/paths";
+import { faqSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
+import { ServiceAreas } from "@/components/service-areas";
+import { BrandLoop } from "@/components/brand-loop";
 
-export async function Landing() {
-  const { t, services, industries, steps, projects, faqs } = content(await getLocale());
+export async function Landing({ locale }: { locale: Locale }) {
+  const { t, services, industries, steps, projects, faqs } = content(locale);
   const featured = services.filter((service) => service.featured);
   const rest = services.filter((service) => !service.featured);
 
   return (
     <>
+      <JsonLd data={faqSchema(faqs)} />
       <Hero />
-
-      <section className="border-b border-line bg-paper" aria-label={t.supply.label}>
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-4 py-8 md:flex-row md:items-center md:justify-between md:px-10">
-          <p className="max-w-[42ch] text-sm leading-relaxed text-muted">
-            {t.supply.text}
-          </p>
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            {partners.map((name) => (
-              <li
-                key={name}
-                className="font-mono text-sm uppercase tracking-[0.18em] text-navy"
-              >
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       <section className="mx-auto grid max-w-[1400px] items-center gap-12 px-4 py-16 md:grid-cols-[0.9fr_1.1fr] md:px-10 md:py-24">
         <Reveal>
@@ -49,7 +36,7 @@ export async function Landing() {
         </Reveal>
         <Fade className="relative min-h-[420px] overflow-hidden rounded-[18px]">
           <Photo
-            src="/images/grey-cams.jpg"
+            src="/images/bullet.jpg"
             alt={t.crew.alt}
             sizes="(min-width: 768px) 45vw, 100vw"
           />
@@ -87,6 +74,15 @@ export async function Landing() {
         </div>
       </section>
 
+      <section className="overflow-hidden border-b border-line bg-white" aria-label={t.supply.label}>
+        <div className="mx-auto max-w-[1400px] px-4 pt-12 text-center md:px-10 md:pt-16">
+          <p className="font-mono text-sm text-orange-deep">{t.supply.label}</p>
+        </div>
+        <div className="pb-12 pt-6 md:pb-16">
+          <BrandLoop label={t.supply.label} rtl={locale === "ar"} />
+        </div>
+      </section>
+
       <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-10 md:py-24">
         <div className="grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
@@ -113,7 +109,7 @@ export async function Landing() {
                 {service.summary}
               </p>
               <Link
-                href={`/services#${service.slug}`}
+                href={localePath(locale, `/services/${service.slug}`)}
                 className="mt-6 inline-flex h-11 items-center gap-2 text-sm font-medium uppercase tracking-normal text-navy transition-colors duration-300 ease-out-expo group-hover:text-white"
               >
                 {t.priced.seeScope}
@@ -124,13 +120,13 @@ export async function Landing() {
         </Stagger>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Link
-            href="/services"
+            href={localePath(locale, "/services")}
             className="inline-flex h-12 items-center justify-center rounded-[5px] bg-navy px-5 text-sm font-medium uppercase tracking-normal text-white hover:bg-navy-deep"
           >
             {t.priced.allLines}
           </Link>
           <Link
-            href="/contact"
+            href={localePath(locale, "/contact")}
             className="inline-flex h-12 items-center justify-center rounded-[5px] border border-line px-5 text-sm font-medium uppercase tracking-normal text-ink hover:border-navy"
           >
             {t.priced.parts}
@@ -140,7 +136,7 @@ export async function Landing() {
           {rest.map((service) => (
             <li key={service.slug} className="border-t border-line">
               <Link
-                href={`/services#${service.slug}`}
+                href={localePath(locale, `/services/${service.slug}`)}
                 className="flex items-baseline justify-between gap-6 py-4 hover:text-navy"
               >
                 <span className="font-medium">{service.title}</span>
@@ -190,6 +186,8 @@ export async function Landing() {
         </div>
       </section>
 
+      <ServiceAreas locale={locale} />
+
       <section className="border-t border-line">
         <div className="mx-auto grid max-w-[1400px] gap-10 px-4 py-16 md:grid-cols-[0.7fr_1.3fr] md:px-10 md:py-24">
           <Reveal>
@@ -218,7 +216,7 @@ export async function Landing() {
       <section className="relative overflow-hidden bg-navy text-ice">
         <div className="absolute inset-0">
           <Photo
-            src="/images/riyadh.jpg"
+            src="/images/workstations.jpg"
             alt=""
             className="object-cover opacity-30"
             sizes="100vw"
@@ -236,7 +234,7 @@ export async function Landing() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
             <Link
-              href="/contact"
+              href={localePath(locale, "/contact")}
               className="inline-flex h-12 items-center justify-center rounded-[5px] bg-paper px-5 text-sm font-medium uppercase tracking-normal text-navy hover:bg-ice"
             >
               {t.book.survey}

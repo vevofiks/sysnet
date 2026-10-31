@@ -1,19 +1,33 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/brand";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { JsonLd } from "@/components/json-ld";
 import { QuoteForm } from "@/components/quote-form";
 import { DocumentTitle } from "@/components/locale";
 import { copy } from "@/lib/copy";
-import { getLocale } from "@/lib/locale.server";
+import { parseLocale } from "@/lib/locale";
+import { breadcrumbSchema } from "@/lib/schema";
+import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Request a Sysnet site survey in Riyadh. Malaz desk, sales@sysnet-ksa.com, +966 53 298 0149.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = parseLocale((await params).locale);
+  const t = copy[locale];
+  return pageMeta({
+    locale,
+    path: "/contact",
+    title: t.meta.contactTitle,
+    description: t.meta.contactDescription,
+  });
+}
 
-export default async function ContactPage() {
-  const t = copy[await getLocale()];
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = parseLocale((await params).locale);
+  const t = copy[locale];
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapsQuery)}&z=14&output=embed`;
   const rows = [
     { label: t.contact.address, value: t.company.address },
@@ -24,7 +38,21 @@ export default async function ContactPage() {
 
   return (
     <>
-      <DocumentTitle title={`${t.meta.contactTitle} · ${t.meta.brand}`} />
+      <DocumentTitle title={documentTitle(t.meta.contactTitle, t.meta.brand)} />
+      <JsonLd
+        data={breadcrumbSchema(
+          [
+            { name: t.nav.home, path: "/" },
+            { name: t.nav.contact, path: "/contact" },
+          ],
+          locale,
+        )}
+      />
+      <Breadcrumbs
+        locale={locale}
+        label={t.a11y.breadcrumb}
+        items={[{ name: t.nav.home, path: "/" }, { name: t.nav.contact }]}
+      />
       <PageHero title={t.contact.title} lede={t.contact.lede} />
       <section className="mx-auto grid max-w-[1400px] gap-12 px-4 py-16 md:grid-cols-[0.8fr_1.2fr] md:px-10 md:py-20">
         <div>

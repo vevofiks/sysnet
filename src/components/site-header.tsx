@@ -3,20 +3,22 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Menu, Phone, X } from "lucide-react";
-import { useEffect, useLayoutEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
-import { setLocale } from "@/app/actions";
 import { Logo } from "@/components/brand";
 import { Flag } from "@/components/flags";
 import { useCopy, useLocale } from "@/components/locale";
 import { content } from "@/lib/content";
 import type { Locale } from "@/lib/locale";
+import { barePath, localePath } from "@/lib/paths";
 import { scrollByMotion } from "@/lib/motion-pref";
 import { company } from "@/lib/site";
 
 function isCurrent(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
+  const current = barePath(pathname);
+  const target = barePath(href);
+  if (target === "/") return current === "/";
+  return current === target || current.startsWith(`${target}/`);
 }
 
 const languages: { id: Locale; label: string }[] = [
@@ -29,14 +31,15 @@ function LanguageMenu({ onOpen }: { onOpen?: () => void }) {
   const pathname = usePathname();
   const t = useCopy();
   const router = useRouter();
-  const [pending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
+  const routeKey = `${pathname}\0${locale}`;
+  const [menuRoute, setMenuRoute] = useState(routeKey);
+  if (menuRoute !== routeKey) {
+    setMenuRoute(routeKey);
     setOpen(false);
-  }, [pathname, locale]);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -70,10 +73,7 @@ function LanguageMenu({ onOpen }: { onOpen?: () => void }) {
     setOpen(false);
     buttonRef.current?.focus();
     if (next === locale) return;
-    startTransition(async () => {
-      await setLocale(next);
-      router.refresh();
-    });
+    router.push(localePath(next, barePath(pathname)));
   }
 
   function onListKey(event: ReactKeyboardEvent<HTMLDivElement>) {
@@ -101,13 +101,12 @@ function LanguageMenu({ onOpen }: { onOpen?: () => void }) {
       <button
         ref={buttonRef}
         type="button"
-        disabled={pending}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls="language-menu"
         aria-label={t.a11y.language}
         onClick={toggle}
-        className="inline-flex h-11 items-center gap-1.5 rounded-[5px] px-2 text-ink hover:bg-ice disabled:opacity-60"
+        className="inline-flex h-11 items-center gap-1.5 rounded-[5px] px-2 text-ink hover:bg-ice"
       >
         <Flag locale={locale} />
         <ChevronDown
@@ -193,18 +192,11 @@ function ServiceRail({
   onPick: () => void;
 }) {
   const t = useCopy();
+  const locale = useLocale();
   const pathname = usePathname();
   const scroller = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
-  const [hash, setHash] = useState("");
-
-  useEffect(() => {
-    const read = () => setHash(window.location.hash.replace(/^#/, ""));
-    read();
-    window.addEventListener("hashchange", read);
-    return () => window.removeEventListener("hashchange", read);
-  }, [pathname]);
 
   useLayoutEffect(() => {
     const el = scroller.current;
@@ -215,6 +207,10 @@ function ServiceRail({
       setAtEnd(next.atEnd);
     };
     measure();
+    el.querySelector<HTMLElement>("[aria-current='page']")?.scrollIntoView({
+      inline: "nearest",
+      block: "nearest",
+    });
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     el.addEventListener("scroll", measure, { passive: true });
@@ -222,7 +218,7 @@ function ServiceRail({
       observer.disconnect();
       el.removeEventListener("scroll", measure);
     };
-  }, [lines]);
+  }, [lines, pathname]);
 
   function move(direction: number) {
     const el = scroller.current;
@@ -249,7 +245,7 @@ function ServiceRail({
     window.setTimeout(onPick, 0);
   }
 
-  const onServicesPage = isCurrent(pathname, "/services");
+  const onServicesIndex = barePath(pathname) === "/services";
 
   return (
     <div className="flex items-center gap-2" onKeyDown={onKeyDown}>
@@ -268,16 +264,14 @@ function ServiceRail({
           className="flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain py-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {lines.map((service, index) => {
-            const active = onServicesPage && hash === service.slug;
+            const href = localePath(locale, `/services/${service.slug}`);
+            const active = barePath(pathname) === `/services/${service.slug}`;
             return (
               <Link
                 key={service.slug}
-                href={`/services#${service.slug}`}
-                onClick={() => {
-                  setHash(service.slug);
-                  pick();
-                }}
-                aria-current={active ? "location" : undefined}
+                href={href}
+                onClick={pick}
+                aria-current={active ? "page" : undefined}
                 className={`inline-flex h-11 shrink-0 snap-start items-center gap-2 rounded-[5px] px-3 text-sm font-medium whitespace-nowrap ${
                   active ? "bg-ice text-navy" : "text-ink hover:bg-ice"
                 }`}
@@ -290,11 +284,11 @@ function ServiceRail({
             );
           })}
           <Link
-            href="/services"
+            href={localePath(locale, "/services")}
             onClick={pick}
-            aria-current={onServicesPage && hash === "" ? "page" : undefined}
+            aria-current={onServicesIndex ? "page" : undefined}
             className={`inline-flex h-11 shrink-0 snap-start items-center rounded-[5px] px-3 text-sm font-medium whitespace-nowrap text-navy hover:bg-ice ${
-              onServicesPage && hash === "" ? "bg-ice" : ""
+              onServicesIndex ? "bg-ice" : ""
             }`}
           >
             {t.hero.explore}
@@ -348,10 +342,13 @@ export function SiteHeader() {
     setServicesOpen(false);
   }
 
-  useEffect(() => {
+  const routeKey = `${pathname}\0${locale}`;
+  const [menuRoute, setMenuRoute] = useState(routeKey);
+  if (menuRoute !== routeKey) {
+    setMenuRoute(routeKey);
     setOpen(false);
     setServicesOpen(false);
-  }, [pathname, locale]);
+  }
 
   useEffect(() => {
     if (!open && !servicesOpen) return;
@@ -378,7 +375,7 @@ export function SiteHeader() {
       className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-md"
     >
       <div className="mx-auto flex w-full min-w-0 max-w-[1400px] items-center gap-2 px-3 py-3 sm:gap-4 sm:px-4 md:px-10">
-        <Link href="/" className="min-w-0 shrink rounded-sm" aria-label={t.a11y.home}>
+        <Link href={localePath(locale, "/")} className="min-w-0 shrink rounded-sm" aria-label={t.a11y.home}>
           <Logo />
         </Link>
 
@@ -410,7 +407,7 @@ export function SiteHeader() {
             ) : (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localePath(locale, item.href)}
                 className={`inline-flex h-11 items-center rounded-[5px] px-3 text-sm transition-colors duration-300 ease-out-expo ${
                   isCurrent(pathname, item.href)
                     ? "text-orange-deep"
@@ -434,7 +431,7 @@ export function SiteHeader() {
           </a>
           <LanguageMenu onOpen={() => setServicesOpen(false)} />
           <Link
-            href="/contact"
+            href={localePath(locale, "/contact")}
             className="inline-flex h-11 shrink-0 items-center whitespace-nowrap rounded-[5px] bg-navy px-3 text-sm font-medium uppercase tracking-normal text-white hover:bg-navy-deep sm:px-4"
           >
             <span className="sm:hidden">{t.nav.quoteShort}</span>
@@ -479,7 +476,7 @@ export function SiteHeader() {
           {links.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={localePath(locale, item.href)}
               className={`flex h-12 items-center border-b border-line text-base ${
                 isCurrent(pathname, item.href) ? "text-orange-deep" : "text-ink"
               }`}

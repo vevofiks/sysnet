@@ -68,8 +68,8 @@ body {
 }
 
 ::selection {
-  background: var(--orange-soft);
-  color: var(--ink);
+  background: Highlight;
+  color: HighlightText;
 }
 
 :focus-visible {

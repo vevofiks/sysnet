@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState, type FormEvent } from "react";
 import { submitQuote } from "@/app/actions";
+import { track } from "@/components/analytics";
 import { useCopy, useLocale } from "@/components/locale";
 import { content } from "@/lib/content";
-import { idleQuote } from "@/lib/quote";
+import { idleQuote, validateQuote, type QuoteResult } from "@/lib/quote";
 
 const fields = [
   { name: "name", type: "text", autoComplete: "name" },
@@ -14,24 +15,38 @@ const fields = [
 
 export function QuoteForm() {
   const t = useCopy();
-  const lines = content(useLocale()).services;
-  const [state, action, pending] = useActionState(submitQuote, idleQuote);
+  const locale = useLocale();
+  const lines = content(locale).services;
+  const [state, setState] = useState<QuoteResult>(idleQuote);
+  const [sending, setSending] = useState(false);
 
-  if (state.status === "ok") {
-    return (
-      <div role="status" className="rounded-[18px] border border-line bg-ice p-6">
-        <p className="max-w-[48ch] text-base leading-relaxed text-ink">
-          {state.message}
-        </p>
-      </div>
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const next = validateQuote(
+      data,
+      t.form,
+      lines.map((service) => ({ slug: service.slug, title: service.title })),
     );
+    if (next.status !== "ok" || !next.href) {
+      setState(next);
+      return;
+    }
+    setSending(true);
+    try {
+      await submitQuote(idleQuote, data);
+      track("generate_lead", { method: "whatsapp" });
+    } finally {
+      window.location.assign(next.href);
+    }
   }
 
   return (
-    <form action={action} className="relative grid gap-4" noValidate>
+    <form onSubmit={onSubmit} className="relative grid gap-4" noValidate>
       <div className="sr-only" aria-hidden="true">
         <label htmlFor="company_url">{t.form.honeypot}</label>
         <input id="company_url" name="company_url" tabIndex={-1} autoComplete="off" />
+        <input type="hidden" name="locale" value={locale} />
       </div>
 
       {state.status === "error" && state.message ? (
@@ -115,10 +130,10 @@ export function QuoteForm() {
 
       <button
         type="submit"
-        disabled={pending}
+        disabled={sending}
         className="inline-flex h-12 items-center justify-center rounded-[5px] bg-navy px-5 text-sm font-medium uppercase tracking-normal text-white hover:bg-navy-deep disabled:opacity-60"
       >
-        {pending ? t.form.sending : t.form.submit}
+        {sending ? t.form.sending : t.form.submit}
       </button>
     </form>
   );

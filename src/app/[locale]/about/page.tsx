@@ -1,22 +1,42 @@
 import type { Metadata } from "next";
 import { PageHero, Photo } from "@/components/brand";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { DocumentTitle } from "@/components/locale";
+import { JsonLd } from "@/components/json-ld";
 import { copy } from "@/lib/copy";
-import { getLocale } from "@/lib/locale.server";
+import { parseLocale } from "@/lib/locale";
+import { breadcrumbSchema } from "@/lib/schema";
+import { documentTitle, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Sysnet is Adam Al Arabia Company, affiliated with NetPro, installing CCTV, alarms, and cabling from Malaz, Riyadh.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = parseLocale((await params).locale);
+  const t = copy[locale];
+  return pageMeta({
+    locale,
+    path: "/about",
+    title: t.meta.aboutTitle,
+    description: t.meta.aboutDescription,
+  });
+}
 
-export default async function AboutPage() {
-  const page = copy[await getLocale()];
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = parseLocale((await params).locale);
+  const page = copy[locale];
   const t = page.about;
+  const crumbs = [
+    { name: page.nav.home, path: "/" },
+    { name: page.nav.about, path: "/about" },
+  ];
 
   return (
     <>
-      <DocumentTitle title={`${page.meta.aboutTitle} · ${page.meta.brand}`} />
+      <DocumentTitle title={documentTitle(page.meta.aboutTitle, page.meta.brand)} />
+      <JsonLd data={breadcrumbSchema(crumbs, locale)} />
+      <Breadcrumbs locale={locale} label={page.a11y.breadcrumb} items={[{ name: page.nav.home, path: "/" }, { name: page.nav.about }]} />
       <PageHero title={t.title} lede={t.lede} />
       <section className="mx-auto grid max-w-[1400px] items-center gap-12 px-4 py-16 md:grid-cols-2 md:px-10 md:py-24">
         <div className="relative min-h-[420px] overflow-hidden rounded-[18px]">

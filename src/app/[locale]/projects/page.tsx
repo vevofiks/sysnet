@@ -2,22 +2,52 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BulletList } from "@/components/bullet-list";
 import { PageHero, Photo } from "@/components/brand";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { DocumentTitle } from "@/components/locale";
+import { JsonLd } from "@/components/json-ld";
 import { content } from "@/lib/content";
-import { getLocale } from "@/lib/locale.server";
+import { copy } from "@/lib/copy";
+import { parseLocale } from "@/lib/locale";
+import { localePath } from "@/lib/paths";
+import { breadcrumbSchema } from "@/lib/schema";
+import { documentTitle, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Typical Sysnet scopes in Riyadh: warehouse CCTV, Olaya cabling, a Malaz villa gate, and a clinic fire panel.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = parseLocale((await params).locale);
+  const t = copy[locale].meta;
+  return pageMeta({
+    locale,
+    path: "/projects",
+    title: t.projectsTitle,
+    description: t.projectsDescription,
+  });
+}
 
-export default async function ProjectsPage() {
-  const { t, projects } = content(await getLocale());
+export default async function ProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = parseLocale((await params).locale);
+  const { t, projects } = content(locale);
 
   return (
     <>
-      <DocumentTitle title={`${t.meta.projectsTitle} · ${t.meta.brand}`} />
+      <DocumentTitle title={documentTitle(t.meta.projectsTitle, t.meta.brand)} />
+      <JsonLd
+        data={breadcrumbSchema(
+          [
+            { name: t.nav.home, path: "/" },
+            { name: t.nav.projects, path: "/projects" },
+          ],
+          locale,
+        )}
+      />
+      <Breadcrumbs
+        locale={locale}
+        label={t.a11y.breadcrumb}
+        items={[{ name: t.nav.home, path: "/" }, { name: t.nav.projects }]}
+      />
       <PageHero title={t.projectsPage.title} lede={t.projectsPage.lede} />
       <div className="mx-auto max-w-[1400px] px-4 py-8 md:px-10">
         {projects.map((project, index) => (
@@ -40,7 +70,7 @@ export default async function ProjectsPage() {
         ))}
         <p className="py-12 text-sm text-muted">
           {t.projectsPage.prompt}{" "}
-          <Link href="/contact" className="font-medium text-navy">
+          <Link href={localePath(locale, "/contact")} className="font-medium text-navy">
             {t.projectsPage.link}
           </Link>
         </p>

@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { Photo } from "@/components/brand";
 import { useCopy, useLocale } from "@/components/locale";
 import { content } from "@/lib/content";
+import { localePath } from "@/lib/paths";
 import { useMotionReady } from "@/lib/use-motion";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -30,26 +31,29 @@ export function Hero() {
       body: t.hero.lede,
       image: "/images/pair.jpg",
       alt: t.hero.photoAlt,
-      href: "/services",
+      href: localePath(locale, "/services"),
       cta: t.hero.explore,
-      secondaryHref: "/contact",
+      secondaryHref: localePath(locale, "/contact"),
       secondary: t.hero.contact,
     },
     ...projects.map((project) => ({
       key: project.slug,
       title: project.title,
       body: project.summary,
-      image: project.image,
-      alt: project.alt,
-      href: "/projects",
+      image: project.scene,
+      alt: project.sceneAlt,
+      href: localePath(locale, "/projects"),
       cta: t.priced.seeScope,
       secondaryHref: "",
       secondary: "",
     })),
   ];
   const [index, setIndex] = useState(0);
+  const [hasAdvanced, setHasAdvanced] = useState(false);
   const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const paused = userPaused || hoverPaused;
   const meter = useAnimation();
   const count = slides.length;
   const slide = slides[index];
@@ -58,6 +62,7 @@ export function Hero() {
     if (!on || paused) return;
     const id = window.setInterval(() => {
       setDirection(1);
+      setHasAdvanced(true);
       setIndex((current) => (current + 1) % count);
     }, SLIDE_MS);
     return () => window.clearInterval(id);
@@ -77,6 +82,7 @@ export function Hero() {
   }, [on, paused, index, meter]);
 
   function go(delta: number) {
+    setHasAdvanced(true);
     setDirection(delta);
     setIndex((current) => (current + delta + count) % count);
   }
@@ -84,11 +90,13 @@ export function Hero() {
   function goTo(next: number) {
     if (next === index) return;
     const forward = (next - index + count) % count;
+    setHasAdvanced(true);
     setDirection(forward <= count / 2 ? 1 : -1);
     setIndex(next);
   }
 
   const travel = (sign: number) => `${sign * (rtl ? -100 : 100)}%`;
+  const leadIn = slide.key === "company" && !hasAdvanced;
 
   return (
     <section className="relative w-full max-w-full overflow-hidden bg-navy text-ice">
@@ -97,11 +105,11 @@ export function Hero() {
         role="region"
         aria-roledescription="carousel"
         aria-label={t.a11y.heroSlides}
-        onFocus={() => setPaused(true)}
+        onFocus={() => setHoverPaused(true)}
         onBlur={(event) => {
           const next = event.relatedTarget;
           if (next instanceof Node && event.currentTarget.contains(next)) return;
-          setPaused(false);
+          setHoverPaused(false);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight") {
@@ -126,14 +134,14 @@ export function Hero() {
               center: { x: 0, zIndex: 1 },
               exit: (delta: number) => ({ x: on ? travel(-delta) : 0, zIndex: 0 }),
             }}
-            initial="enter"
+            initial={leadIn ? false : "enter"}
             animate="center"
             exit="exit"
             transition={{ duration: on ? 0.7 : 0, ease }}
           >
             <motion.div
               className="absolute inset-0"
-              initial={on ? { scale: 1.12 } : false}
+              initial={on && !leadIn ? { scale: 1.12 } : false}
               animate={{ scale: 1 }}
               transition={{ duration: on ? 7.2 : 0, ease }}
             >
@@ -149,17 +157,28 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/75 to-navy-deep/25 sm:from-navy-deep/80 sm:via-navy-deep/20 sm:to-transparent" />
             <div className="relative flex h-full items-end">
               <div className="mx-auto w-full max-w-[1400px] px-4 pb-24 pt-10 sm:pb-28 sm:pt-16 md:px-10 md:pb-32">
-                <motion.h1
-                  className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl"
-                  initial={on ? { opacity: 0, y: 28 } : false}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: on ? 0.75 : 0, delay: on ? 0.18 : 0, ease }}
-                >
-                  {slide.title}
-                </motion.h1>
+                {slide.key === "company" ? (
+                  <motion.h1
+                    className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl"
+                    initial={on && !leadIn ? { opacity: 0, y: 28 } : false}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: on ? 0.75 : 0, delay: on ? 0.18 : 0, ease }}
+                  >
+                    {slide.title}
+                  </motion.h1>
+                ) : (
+                  <motion.p
+                    className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl"
+                    initial={on && !leadIn ? { opacity: 0, y: 28 } : false}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: on ? 0.75 : 0, delay: on ? 0.18 : 0, ease }}
+                  >
+                    {slide.title}
+                  </motion.p>
+                )}
                 <motion.p
                   className="mt-3 line-clamp-4 max-w-[40ch] text-sm leading-relaxed text-ice/90 sm:mt-5 sm:line-clamp-none sm:max-w-[48ch] sm:text-base md:text-lg"
-                  initial={on ? { opacity: 0, y: 20 } : false}
+                  initial={on && !leadIn ? { opacity: 0, y: 20 } : false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: on ? 0.7 : 0, delay: on ? 0.32 : 0, ease }}
                 >
@@ -167,7 +186,7 @@ export function Hero() {
                 </motion.p>
                 <motion.div
                   className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3"
-                  initial={on ? { opacity: 0, y: 16 } : false}
+                  initial={on && !leadIn ? { opacity: 0, y: 16 } : false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: on ? 0.65 : 0, delay: on ? 0.46 : 0, ease }}
                 >
@@ -212,8 +231,8 @@ export function Hero() {
             ) : null}
             <div
               className="pointer-events-auto ms-auto flex items-center gap-2 sm:gap-3 md:ms-0"
-              onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
+              onMouseEnter={() => setHoverPaused(true)}
+              onMouseLeave={() => setHoverPaused(false)}
             >
               <div className="flex items-center">
                 {slides.map((item, itemIndex) => {
@@ -237,6 +256,19 @@ export function Hero() {
                 })}
               </div>
               <div className="inline-flex items-center rounded-full border border-ice/30 bg-navy-deep/45 p-1 backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={() => setUserPaused((value) => !value)}
+                  aria-pressed={userPaused}
+                  aria-label={userPaused ? t.a11y.play : t.a11y.pause}
+                  className="inline-flex size-11 items-center justify-center rounded-full text-ice transition-colors duration-300 ease-out-expo hover:bg-ice hover:text-navy"
+                >
+                  {userPaused ? (
+                    <Play className="size-5" strokeWidth={1.25} aria-hidden="true" />
+                  ) : (
+                    <Pause className="size-5" strokeWidth={1.25} aria-hidden="true" />
+                  )}
+                </button>
                 <button
                   type="button"
                   onClick={() => go(-1)}

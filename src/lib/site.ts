@@ -1,9 +1,9 @@
 export const company = {
   name: "Sysnet",
   legal: "Adam Al Arabia Company",
-  affiliate: "NetPro",
   phoneDisplay: "+966 53 298 0149",
   phoneTel: "+966532980149",
+  whatsapp: "966532980149",
   email: "sales@sysnet-ksa.com",
   address: "Malaz, Riyadh, Saudi Arabia",
   mapsQuery: "Malaz, Riyadh, Saudi Arabia",
@@ -74,8 +74,8 @@ export const services: Service[] = [
       "Desktops, monitors, and docks for office fit-outs, including j5create where a USB-C dock is the right part.",
     detail:
       "We specify the desk hardware with the cabling, so a new row of workstations is not waiting on a separate supplier for monitors and docks. j5create docks and adapters are used when the desk needs them.",
-    image: "/images/server.jpg",
-    alt: "Server cabinets with dense yellow and blue patch leads behind mesh doors",
+    image: "/images/workstations.jpg",
+    alt: "Laptop open on a long counter beside a window in a bright office",
   },
   {
     slug: "access",
@@ -224,6 +224,7 @@ export const projects = [
     summary:
       "A logistics store in Al Sulay: 22 bullet cameras, two recorders, and 30 days of retention on the aisles, the dispatch dock, and the yard gate.",
     image: "/images/grey-cams.jpg",
+    scene: "/images/warehouse.jpg",
     alt: "Two white bullet cameras mounted on a dark corrugated metal wall",
     facts: ["22 bullet cameras", "2 recorders", "Yard gate included"],
   },
@@ -234,6 +235,7 @@ export const projects = [
     summary:
       "Forty-six data points across two floors, two cabinets, and a test sheet. Meeting rooms share the same rack as the reception camera.",
     image: "/images/cabling.jpg",
+    scene: "/images/office.jpg",
     alt: "Numbered patch panel with blue and grey Ethernet leads",
     facts: ["46 data points", "2 cabinets", "Test sheet at handover"],
   },
@@ -244,6 +246,7 @@ export const projects = [
     summary:
       "A video station at the gate, a dome over the parking, and card readers on four doors. The monitor sits inside, not only on a phone.",
     image: "/images/intercom.jpg",
+    scene: "/images/villa.jpg",
     alt: "Stainless steel video door station with a camera, two call buttons, and a speaker grille",
     facts: ["Gate station", "4 card readers", "Parking dome"],
   },
@@ -254,6 +257,7 @@ export const projects = [
     summary:
       "Fourteen detectors, manual call points at the stairs, and sounders the nurses’ station can hear. Intrusion contacts on the store stay on a separate circuit.",
     image: "/images/tech.jpg",
+    scene: "/images/smoke-detector.jpg",
     alt: "Technician wearing a hard hat while wiring a wall panel",
     facts: ["14 detectors", "1 addressable panel", "Separate intrusion circuit"],
   },
@@ -283,5 +287,3 @@ export const stats = [
   { value: 46, suffix: "", label: "Data points on a recent Olaya fit-out" },
   { value: 22, suffix: "", label: "Cameras on a typical Al Sulay store scope" },
 ];
-
-export const partners = ["NetPro", "j5create"] as const;
