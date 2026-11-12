@@ -73,7 +73,7 @@ export const services: Service[] = [
     summary:
       "Desktops, monitors, and docks for office fit-outs, including j5create where a USB-C dock is the right part.",
     detail:
-      "We specify the desk hardware with the cabling, so a new row of workstations is not waiting on a separate supplier for monitors and docks. j5create docks and adapters are used when the desk needs them.",
+      "We specify desk hardware with the cabling, so a new row of workstations is not waiting on a separate supplier for monitors and docks. j5create docks and adapters are used when a seat needs them.",
     image: "/images/workstations.jpg",
     alt: "Laptop open on a long counter beside a window in a bright office",
   },
@@ -152,9 +152,9 @@ export const services: Service[] = [
     title: "Installation & Maintenance",
     icon: "maintenance",
     summary:
-      "A repair visit is booked with the Malaz desk. Camera and alarm alerts stay with the building.",
+      "A clear repair visit for cameras and alarms, including systems another company installed.",
     detail:
-      "Camera and alarm alerts are set to the building admin's phone, or to that site's alarm system. They do not ring +966 53 298 0149. That number is the Malaz desk, for a survey or a booked repair visit. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
+      "Tell us what stopped and we will inspect the cameras, recorder, readers, or alarm and restore what we can. If another company installed the system, we still take it on when we can open the recorder and follow the cabling. Any replacement is quoted before that work goes ahead.",
     image: "/images/maintenance2.jpg",
     alt: "Field systems technician using digital multimeter to test and verify control panel circuits",
   },
@@ -164,7 +164,7 @@ export const industries = [
   {
     index: "01",
     title: "Commercial offices",
-    text: "Olaya and King Fahd Road fit-outs: cameras at reception, data to the desks.",
+    text: "Olaya and King Fahd Road fit-outs: cameras at reception, data to desks.",
   },
   {
     index: "02",
@@ -266,11 +266,11 @@ export const projects = [
 export const faqs = [
   {
     q: "Do you only work in Malaz?",
-    a: "The desk is in Malaz. Survey crews cover Riyadh, including Olaya, Al Nakheel, Al Sulay, and the industrial yards on the south side. If the site is outside the city, say so on the form and we will tell you whether we can attend.",
+    a: "The office is in Malaz. Survey crews cover Riyadh, including Olaya, Al Nakheel, Al Sulay, and the industrial yards on the south side. If the site is outside the city, say so on the form and we will tell you whether we can attend.",
   },
   {
     q: "Can you take over a system another company installed?",
-    a: "Yes, when we can reach the recorder and the cables are identifiable. If a run has to be pulled again, that is written on the survey before any invoice.",
+    a: "Yes, when we can reach the recorder and the cables are identifiable. If a cable has to be pulled again, that is written on the survey before any invoice.",
   },
   {
     q: "Can I buy equipment without installation?",
@@ -278,12 +278,12 @@ export const faqs = [
   },
   {
     q: "Who reads the form?",
-    a: "The Malaz desk, on sales@sysnet-ksa.com. If the matter is urgent, call +966 53 298 0149. Saturday to Thursday, 9:00 to 18:00.",
+    a: "Our Malaz office, on sales@sysnet-ksa.com. If the matter is urgent, call +966 53 298 0149. Saturday to Thursday, 9:00 to 18:00.",
   },
 ];
 
 export const stats = [
-  { value: 11, suffix: "", label: "Service lines on the rate card" },
+  { value: 11, suffix: "", label: "Service lines on the list" },
   { value: 46, suffix: "", label: "Data points on a recent Olaya fit-out" },
   { value: 22, suffix: "", label: "Cameras on a typical Al Sulay store scope" },
 ];

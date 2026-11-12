@@ -3,21 +3,15 @@ import type { Guide } from "@/lib/guides";
 
 type Extra = Pick<Guide, "sections">;
 
-const desk =
-  "The desk that books the visit is in Malaz, Riyadh, Saudi Arabia. The phone number is +966 53 298 0149 and the mail is sales@sysnet-ksa.com. Hours are Saturday to Thursday, 9:00 to 18:00. Riyadh and Dammam are the cities we survey. Say which one, and the district, on the first call.";
-
-const arDesk =
-  "المكتب الذي يحجز الزيارة في الملز بالرياض في السعودية. الهاتف ‎+966 53 298 0149 والبريد sales@sysnet-ksa.com. الساعات من السبت إلى الخميس، 9:00 إلى 18:00. الرياض والدمام هما المدينتان اللتان نعاينهما. اذكر المدينة والحي في أول مكالمة.";
-
 export const guideExtras: Record<Locale, Record<string, Extra>> = {
   en: {
     cctv: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey cameras, and how to book",
           body: [
-            `Riyadh is where the crew is based: Malaz villas, Olaya and King Fahd Road offices, north Riyadh compounds, and stores in Al Sulay. ${desk}`,
-            "Before the visit, send the district, the building type, and whether you already have a recorder. A floor sketch is enough. We will not ask you to choose a megapixel number. We will ask which doors and yards you need to see, and for how many days a dispute or an incident has to remain on disk.",
+            "In Riyadh we cover compounds in Al Nakheel, offices on King Fahd Road, and yards in Al Sulay. Dammam and the Eastern Province are surveyed by the same team. Sites elsewhere in Saudi Arabia are arranged when you ask.",
+            "You leave the visit with a clear plan for the views that matter on your site. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -25,10 +19,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     intercom: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey door stations, and how to book",
           body: [
-            `Most video intercoms we fit are villa gates in Malaz and north Riyadh, or lobby stations on office floors in Olaya. ${desk}`,
-            "Photograph the gate and the place you want the monitor. Tell us if a lock already exists and whether two households share the entrance. We measure the cable run ourselves. A station that only calls a mobile number is not the scope we are pricing on this page.",
+            "Villa gates in Malaz and north Riyadh, and lobby stations for offices in Olaya, are the visits we make most often. Dammam and the Eastern Province are covered by the same team. Anywhere else in Saudi Arabia, tell us the city and we will arrange it.",
+            "A short visit shows you the cable route, the monitor position, and the lock. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -36,10 +30,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     cabling: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey cabling, and how to book",
           body: [
-            `Structured cabling is booked most often while an Olaya or King Fahd Road floor is still open, and for smaller offices that are adding a cabinet in Malaz. ${desk}`,
-            "Send the seat count, the number of floors, and whether a riser already exists. If cameras or door readers are part of the same fit-out, say so, because those cables should land in the panel we are labeling. We will not pull cable into a ceiling that is about to be closed over unlabeled coils.",
+            "Most cabling surveys in Riyadh are open floors in Olaya and along King Fahd Road, plus smaller offices in Al Nakheel that are adding a cabinet. Dammam and the Eastern Province are on the same list. Other Saudi cities are scheduled on request.",
+            "Send the seat count before the ceiling closes and the routes stay simple. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -47,10 +41,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     computers: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we fit out desks, and how to book",
           body: [
-            `Desk hardware follows the cabling jobs in Riyadh and Dammam offices. ${desk}`,
-            "Send the seat count and whether people bring laptops. Name the monitors if you already chose them. j5create docks are a line only when USB-C is the right adapter. We do not pad the quote with a dock on every seat, and we do not hide monitors inside a lump sum called workstations. A row of seats is priced as monitors, mounts, docks, and the labour to set them, with the labeled outlet number written beside the seat so Monday morning has a port that matches the cabling sheet.",
+            "Desk hardware follows office fit-outs in Riyadh, in Olaya, on King Fahd Road, and in Malaz, and the same offer stands for offices in Dammam and the Eastern Province. For a site elsewhere in Saudi Arabia, ask and we will set the visit.",
+            "Tell us how many seats should be ready to work. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -58,10 +52,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     access: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey readers, and how to book",
           body: [
-            `Readers go on staff doors and stores in Riyadh clinics, Olaya offices, and warehouses that need a record of the dock office. A compound in the north of the city often needs the gate and one internal door only. ${desk}`,
-            "Walk us through who must enter after hours. A fingerprint reader on a door people open with wet hands or gloves will be the wrong part, and the survey will say card instead. We leave the admin password with the facility manager. We do not keep the only copy. The first users are enrolled with you on site, and the door is tested from both sides, including the fire release if the leaf has one.",
+            "Readers in Riyadh go onto staff doors in Olaya offices, clinic stores around Salah Al-Din, and dock offices in Al Sulay. Dammam and the Eastern Province are surveyed the same way. Other cities in Saudi Arabia are arranged on request.",
+            "Walk us through who must enter after hours and the quotation will match those doors. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -69,10 +63,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "fire-alarm": {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey alarms, and how to book",
           body: [
-            `Fire and intrusion alarms are surveyed on Riyadh clinics, schools, offices, and warehouses. The panel has to sit where the person on duty can reach it. ${desk}`,
-            "If you have a drawing, send it. If you do not, we mark detectors, call points, and sounders before the ceiling closes. Intrusion contacts are priced as their own circuit. Tell us about any door that must release when the fire alarm sounds, so the access-control lock is not fighting the exit. Sounders are proved with the supervisor present, and the silence step is shown on the panel they will actually use.",
+            "Fire and intrusion surveys in Riyadh cover clinics off Salah Al-Din, schools and offices in Al Nakheel, and buildings in Olaya. Dammam and the Eastern Province are included. The rest of Saudi Arabia is arranged when you need a crew there.",
+            "If a drawing exists, send it with the district and we will mark what is still missing. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -80,10 +74,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "fire-safety": {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we place safety equipment, and how to book",
           body: [
-            `Extinguishers, hose reels, and emergency lights are placed in Riyadh buildings that already know the exit route, and in small Malaz offices that only need a short list. ${desk}`,
-            "Send photos of what is already on the walls. We will not replace a sounder panel that only needs a service, and we will not mount an extinguisher where a door hides it. The list you keep names each location and the service date. That list is the maintenance record, not a sticker nobody can read. Hose reels are checked for reach along the route people walk, and emergency fittings are dropped from their supply rather than admired while they are still lit by the room.",
+            "In Riyadh, extinguishers, hose reels, and emergency lights are placed for offices in Malaz, warehouses in Al Sulay, and buildings along King Fahd Road. Dammam and the Eastern Province are covered too. Other Saudi cities are booked on request.",
+            "Photos of what is already on the walls make the first visit faster. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -91,10 +85,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "home-office": {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey homes and small offices, and how to book",
           body: [
-            `The combined scope is written most often for Malaz villas and small Olaya offices. A north Riyadh compound gate is the same method with a longer cable run. ${desk}`,
-            "Say which of the four pieces you already have: gate station, cameras, data outlets, cabinet. We will not force the missing three if you only need one. When you do need them together, one drawing keeps the holes in the wall to a single visit. Bring the landlord's rule on cabinet location if the office is leased. The parts list still separates cameras, the gate station, cable, and labour, so a villa owner and an office manager can both see what they are approving before anyone drills.",
+            "Combined surveys are most often Malaz villas, small offices in Olaya, and compound gates in north Riyadh. Dammam and the Eastern Province follow the same drawing method. Sites in other Saudi cities are arranged on request.",
+            "Say which pieces you already have and the quotation covers only the rest. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -102,10 +96,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "smart-office": {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we survey smart offices, and how to book",
           body: [
-            `Meeting rooms and desk rows in Olaya are the usual smart-office survey. The cabinet is still the point: display, data, and door reader labeled in one place. ${desk}`,
-            "Count the rooms and the seats. Tell us if a screen is already purchased. We test the path to that screen instead of assuming a cable exists above the ceiling. A control app is not a substitute for a port map. If you want a controller, it has to be a named line, not a word on a slide. We play the display, badge the door, and confirm the table outlet before we call the room finished, and the port map stays on the cabinet door.",
+            "Meeting rooms and desk rows in Riyadh, in Olaya, on King Fahd Road, and in Al Nakheel, are the usual brief. Dammam and the Eastern Province are surveyed by the same team. Elsewhere in Saudi Arabia, we arrange the visit when you ask.",
+            "Count the rooms and the seats, and we will price the cabinet around them. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -113,10 +107,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     products: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where equipment is supplied, and how to order",
           body: [
-            `Parts are quoted from the Malaz desk for Riyadh and Dammam sites. Delivery inside Saudi Arabia is agreed on the quote. ${desk}`,
-            "Send any list you already have, including disk size and lens if someone else proposed them. We answer with model lines you can compare. Labour stays off the quote until you add it. If a Hikvision, Dahua, EZVIZ, IDIS, IMOU, or Samsung line is not the right part for the view, we say which line we would change and why before you approve the order. Disk size, lens, and reader type stay visible. A single line called a package is not a quote we will send.",
+            "Parts are quoted for sites in Riyadh, including Olaya offices and Al Sulay warehouses, and for Dammam and the Eastern Province. Supply to other cities in Saudi Arabia is agreed on the quotation.",
+            "Send any list you already have and you will get model lines you can compare. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -124,10 +118,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     maintenance: {
       sections: [
         {
-          heading: "Cities and what to have ready",
+          heading: "Where we attend repairs, and how to book",
           body: [
-            `Fault visits are staffed from Malaz for Riyadh and Dammam: offices, villas, clinics, and yards. ${desk}`,
-            "Tell us what stopped: a dark camera, a recorder that no longer records, a reader that beeps, a sounder that will not silence, or a cable cut by other work. If you have the password, have it ready. If you do not, say that too. We will not invent a health report for a panel we could not open.",
+            "Repair visits in Riyadh cover offices, villas, clinics, and yards in Malaz, Olaya, and Al Sulay, plus Dammam and the Eastern Province. For a site elsewhere in Saudi Arabia, say so when you book and we will confirm the visit.",
+            "Describe what stopped, and have the passwords ready if you have them. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
           ],
         },
       ],
@@ -137,10 +131,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     cctv: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز معاينة الكاميرات",
           body: [
-            `الرياض هي مكان الفريق: فلل الملز، ومكاتب العليا وطريق الملك فهد، ومجمعات شمال الرياض، ومحلات السلي. ${arDesk}`,
-            "قبل الزيارة أرسل الحي ونوع المبنى وهل عندك جهاز تسجيل. مخطط تقريبي يكفي. لن نطلب منك اختيار رقم الميغابكسل. سنسأل أي أبواب وساحات تحتاج رؤيتها، وكم يومًا يجب أن يبقى الخلاف أو الحادث على القرص.",
+            "في الرياض نغطي المجمعات السكنية في النخيل، ومكاتب طريق الملك فهد، وساحات السلي. الدمام والمنطقة الشرقية ضمن النطاق نفسه. وفي بقية مدن السعودية نرتب الزيارة عندما تطلبها.",
+            "تخرج من المعاينة بخطة واضحة للمشاهد التي تهم موقعك. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -148,10 +142,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     intercom: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز معاينة الإنتركم",
           body: [
-            `أكثر الإنتركم المرئي الذي نركّبه بوابات فلل في الملز وشمال الرياض، أو محطات بهو في أدوار مكاتب العليا. ${arDesk}`,
-            "صوّر البوابة والمكان الذي تريد الشاشة فيه. أخبرنا إن كان هناك قفل وهل يتشارك مدخل واحد أسرتين. نقيس التمديد نحن. المحطة التي تتصل بجوال فقط ليست النطاق الذي نسعّره في هذه الصفحة.",
+            "بوابات الفلل في الملز وشمال الرياض، ومحطات البهو لمكاتب العليا، هي الزيارات الأكثر. الدمام والمنطقة الشرقية يغطيهما الفريق نفسه. ولأي مدينة أخرى في السعودية اذكر اسمها لنرتب الحضور.",
+            "زيارة قصيرة توضح مسار الكابل وموضع الشاشة والقفل. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -159,10 +153,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     cabling: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز معاينة التمديد",
           body: [
-            `الكيابل المنظمة تُحجز غالبًا ودور العليا أو طريق الملك فهد ما يزال مفتوحًا، ولمكاتب أصغر تضيف خزانة في الملز. ${arDesk}`,
-            "أرسل عدد المقاعد وعدد الأدوار وهل يوجد صاعد. إذا كانت الكاميرات أو قارئات الأبواب في التجهيز نفسه فقل ذلك، لأن تلك الكيابل يجب أن تنزل في اللوحة التي نرقّمها. لا نسحب كيبلًا في سقف سيُغلق على لفّات بلا أرقام.",
+            "أكثر معاينات التمديد تكون لأدوار ما زالت مفتوحة في العليا وعلى طريق الملك فهد، ولمكاتب أصغر في النخيل تضيف خزانة. الدمام والمنطقة الشرقية على القائمة نفسها. ومدن السعودية الأخرى تُجدول عند الطلب.",
+            "أرسل عدد المقاعد قبل إغلاق السقف ليبقى المسار واضحًا. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -170,10 +164,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     computers: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز تجهيز المكاتب",
           body: [
-            `عتاد المكتب يتبع أعمال التمديد في مكاتب الرياض والدمام. ${arDesk}`,
-            "أرسل عدد المقاعد وهل يحضر الناس حواسيبهم. سمِّ الشاشات إذا اخترتها. قواعد j5create سطر فقط حين يكون USB-C المحوّل المناسب. لا نزيد قاعدة على كل مقعد، ولا نخفي الشاشات داخل مبلغ اسمه محطات عمل. المقعد يُسعَّر شاشة وحاملًا وقاعدة وعملاً لضبطها، ويُكتب رقم المخرج المرقّم بجانب المقعد حتى يطابق صباح الاثنين ورقة التمديد. هذا يكفي.",
+            "أجهزة المكاتب تتبع تجهيز المكاتب في العليا وطريق الملك فهد والملز، والعرض نفسه لمكاتب الدمام والمنطقة الشرقية. وإذا كان الموقع في مدينة أخرى بالسعودية فاطلب الزيارة ونحدد موعدها.",
+            "أخبرنا بعدد المقاعد التي يجب أن تكون جاهزة للعمل. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -181,10 +175,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     access: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز معاينة أجهزة الدخول",
           body: [
-            `القارئات على أبواب الموظفين والمخازن في عيادات الرياض ومكاتب العليا والمستودعات التي تحتاج سجلًا لمكتب الرصيف. مجمع في شمال المدينة غالبًا يحتاج البوابة وبابًا داخليًا فقط. ${arDesk}`,
-            "اشرح من يجب أن يدخل بعد الدوام. قارئ بصمة على باب يُفتح بأيدٍ مبللة أو بقفازات سيكون القطعة الخطأ، وسنقول بطاقة بدل ذلك. نترك كلمة إدارة النظام عند مدير المنشأة. لا نحتفظ بالنسخة الوحيدة.",
+            "القارئات تُركَّب على أبواب الموظفين في مكاتب العليا، ومخازن العيادات قرب صلاح الدين، ومكاتب الأرصفة في السلي. الدمام والمنطقة الشرقية بالمعاينة نفسها. ومدن السعودية الأخرى تُرتَّب عند الطلب.",
+            "اشرح من يحتاج الدخول بعد الدوام ليطابق عرض السعر هذه الأبواب. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -192,10 +186,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "fire-alarm": {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز معاينة الإنذار",
           body: [
-            `إنذار الحريق والاقتحام يُعاين في عيادات الرياض ومدارسها ومكاتبها ومستودعاتها. اللوحة يجب أن تكون حيث يصلها المناوب. ${arDesk}`,
-            "إذا كان عندك مخطط فأرسله. إذا لم يكن، نعلّم الكواشف ونقاط النداء والأجراس قبل إغلاق السقف. تماسات الاقتحام تُسعَّر دائرة مستقلة. أخبرنا عن أي باب يجب أن يُفتح مع إنذار الحريق حتى لا يعاند قفل الدخول مسار الخروج. تُجرَّب الأجراس بحضور المشرف، وتُعرض خطوة الإسكات على اللوحة التي سيستخدمها فعلًا، ثم نغادر بعد أن نسمع الجرس معًا.",
+            "معاينات إنذار الحريق والسرقة تشمل عيادات صلاح الدين، والمدارس والمكاتب في النخيل، ومباني العليا. الدمام والمنطقة الشرقية داخل النطاق. وبقية السعودية نرتب لها فريقًا عندما تحتاج ذلك.",
+            "إن وُجد مخطط فأرسله مع الحي لنحدد ما زال ناقصًا. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -203,10 +197,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "fire-safety": {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز توريد معدات السلامة",
           body: [
-            `الطفايات وبكرات الخراطيم وإنارة الطوارئ توضع في مباني الرياض التي يعرف مسار خروجها، وفي مكاتب الملز الصغيرة التي تحتاج قائمة قصيرة. ${arDesk}`,
-            "أرسل صور ما هو موجود على الجدران. لا نستبدل لوحة تحتاج خدمة فقط، ولا نركّب طفاية حيث يخفيها باب. القائمة التي تبقى تسمّي كل مكان وتاريخ الخدمة. تلك القائمة هي سجل الصيانة لا ملصق لا يُقرأ. نعلّم مكان كل طفاية وبكرة وإنارة على المخطط قبل الثقب، ونترك تاريخ الخدمة حيث يراه المناوب. إذا كان الممر ضيقًا نغيّر المكان قبل التثبيت لا بعده، ولا نترك الجهاز في الممر بعد انتهاء التركيب في مكانها الصحيح على الجدار نفسه.",
+            "الطفايات وبكرات الخراطيم وإضاءة الطوارئ توضع لمكاتب الملز ومستودعات السلي ومباني طريق الملك فهد. الدمام والمنطقة الشرقية مشمولتان أيضًا. ومدن السعودية الأخرى تُحجز عند الطلب.",
+            "صور ما هو موجود على الجدران تجعل الزيارة الأولى أسرع. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -214,10 +208,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "home-office": {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز مشروع المنزل أو المكتب",
           body: [
-            `النطاق المجموع يُكتب غالبًا لفلل الملز ومكاتب العليا الصغيرة. بوابة مجمع في شمال الرياض الطريقة نفسها مع تمديد أطول. ${arDesk}`,
-            "قل أي القطع الأربع عندك: محطة بوابة، كاميرات، مخارج بيانات، خزانة. لن نفرض الثلاثة الناقصة إذا احتجت واحدة. حين تحتاجها معًا، مخطط واحد يُبقي الثقوب في زيارة واحدة. أحضر شرط المؤجّر عن مكان الخزانة إذا كان المكتب مستأجرًا. الزيارة واحدة حتى لو تغيّر ترتيب القطع بعد المعاينة، والسعر يُعاد على الأسطر لا على كلمة حزمة.",
+            "المعاينة المجمّعة تكون غالبًا لفلل الملز ومكاتب العليا الصغيرة وبوابات المجمعات في شمال الرياض. الدمام والمنطقة الشرقية بالطريقة نفسها. ومواقع المدن السعودية الأخرى تُرتَّب عند الطلب.",
+            "اذكر ما هو موجود عندك ليغطي عرض السعر الباقي فقط. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -225,10 +219,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     "smart-office": {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز معاينة المكتب الذكي",
           body: [
-            `غرف الاجتماع وصفوف المكاتب في العليا هي معاينة المكتب الذكي المعتادة. الخزانة ما تزال هي المقصد: شاشة وبيانات وقارئ باب مُلصقة في مكان واحد. ${arDesk}`,
-            "عدّ الغرف والمقاعد. أخبرنا إذا كانت الشاشة مشتراة. نختبر المسار إلى تلك الشاشة بدل افتراض كيبل فوق السقف. تطبيق التحكم لا يغني عن خريطة منافذ. إذا أردت متحكمًا فيجب أن يكون سطرًا مسمّى لا كلمة في عرض. نكتب رقم المنفذ بجانب كل مقعد وكل شاشة، ونختبر الصورة والصوت في غرفة الاجتماع قبل إغلاق السقف. القارئ إن وُجد يُركَّب في الزيارة نفسها ويُختبر من الجهتين، ويبقى اسم المسؤول عن البطاقات في ورقة التسليم التي نتركها مع المسؤول قبل أن نغادر الموقع ونغلق باب الخزانة.",
+            "غرف الاجتماع وصفوف المكاتب في العليا وطريق الملك فهد والنخيل هي الطلب المعتاد. الدمام والمنطقة الشرقية يعاينهما الفريق نفسه. وفي بقية السعودية نرتب الزيارة عندما تطلبها.",
+            "عدّ الغرف والمقاعد لنسعّر الخزانة على أساسها. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -236,10 +230,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     products: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق التوريد وكيف تطلب الأجهزة",
           body: [
-            `القطع تُسعَّر من مكتب الملز لمواقع الرياض والدمام. التوصيل داخل السعودية يُتفق عليه في العرض. ${arDesk}`,
-            "أرسل أي قائمة عندك، بما فيها حجم القرص والعدسة إذا اقترحها غيرنا. نرد بأسطر موديلات تستطيع مقارنتها. العمل يبقى خارج العرض حتى تضيفه. إذا لم يكن سطر Hikvision أو Dahua أو EZVIZ أو IDIS أو IMOU أو Samsung مناسبًا للمشهد، نقول أي سطر نغيّره ولماذا قبل الاعتماد. العرض يذكر الموديل والعدد والسعر وسطر العمل إن طلبته. لا نجمع الكاميرا والقرص والكيبل في رقم واحد ثم نسميه باقة. إذا تغيّر المشهد بعد المعاينة نبدّل السطر ونبيّن السبب قبل الشراء ثم نعتمد القائمة معك قبل الشراء.",
+            "القطع تُسعَّر لمواقع الرياض، ومنها مكاتب العليا ومستودعات السلي، وللدمام والمنطقة الشرقية. والتوريد إلى مدن السعودية الأخرى يُتفق عليه في عرض السعر.",
+            "أرسل أي قائمة لديك وتصلك بنود الموديلات لتقارنها. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
@@ -247,10 +241,10 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
     maintenance: {
       sections: [
         {
-          heading: "المدن وما يُجهَّز قبل الزيارة",
+          heading: "مناطق الخدمة وكيف تحجز زيارة الإصلاح",
           body: [
-            `زيارات الأعطال تخرج من الملز إلى الرياض والدمام: مكاتب وفلل وعيادات وساحات. ${arDesk}`,
-            "قل ما الذي توقف: كاميرا انطفأت، جهاز لم يعد يسجّل، قارئ يصفر، جرس لا يُسكت، أو كيبل قطعه عمل آخر. إذا كانت كلمة المرور عندك فجهّزها. إذا لم تكن، فقل ذلك أيضًا. لن نخترع تقرير سلامة للوحة لم نستطع فتحها.",
+            "زيارات الإصلاح تشمل المكاتب والفلل والعيادات والساحات في الملز والعليا والسلي، إضافة إلى الدمام والمنطقة الشرقية. وإذا كان الموقع في مدينة أخرى بالسعودية فاذكر ذلك عند الحجز لنؤكد الزيارة.",
+            "صف ما الذي توقف، وجهّز كلمات المرور إن كانت لديك. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],
