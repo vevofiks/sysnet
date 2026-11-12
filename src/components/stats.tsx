@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import { useCopy } from "@/components/locale";
 import { prefersMotion } from "@/lib/motion-pref";
 import { stats } from "@/lib/site";
+
+const icons = [ShieldCheck, CheckCircle2, Zap];
 
 export function Stats() {
   const ref = useRef<HTMLDListElement>(null);
@@ -47,18 +50,31 @@ export function Stats() {
   return (
     <dl
       ref={ref}
-      className="grid grid-cols-1 divide-y divide-line border-y border-line md:grid-cols-3 md:divide-x md:divide-y-0"
+      className="grid grid-cols-1 gap-6 sm:grid-cols-3"
     >
-      {stats.map((stat, index) => (
-        <div key={stat.value} className="px-2 py-8 md:px-8">
-          <dt className="font-mono text-5xl font-medium tracking-normal text-navy">
-            <span data-count={stat.value}>{stat.value}</span>
-          </dt>
-          <dd className="mt-3 max-w-[24ch] text-sm leading-relaxed text-muted">
-            {labels[index]}
-          </dd>
-        </div>
-      ))}
+      {stats.map((stat, index) => {
+        const Icon = icons[index] ?? ShieldCheck;
+        return (
+          <div
+            key={stat.value}
+            className="group relative overflow-hidden rounded-[20px] border border-line bg-white p-8 shadow-sm transition-all duration-300 hover:border-navy hover:shadow-lift"
+          >
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-xs uppercase tracking-wider text-orange-deep font-semibold">
+                Metric 0{index + 1}
+              </span>
+              <Icon className="size-5 text-navy/70 group-hover:text-navy transition-colors" />
+            </div>
+            <dt className="mt-4 font-mono text-5xl font-medium tracking-normal text-navy">
+              <span data-count={stat.value}>{stat.value}</span>
+              <span className="text-orange-deep text-4xl">+</span>
+            </dt>
+            <dd className="mt-3 text-sm leading-relaxed text-muted">
+              {labels[index]}
+            </dd>
+          </div>
+        );
+      })}
     </dl>
   );
 }

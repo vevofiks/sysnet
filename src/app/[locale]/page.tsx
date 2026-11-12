@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Landing } from "@/components/landing";
 import { DocumentTitle } from "@/components/locale";
+import { JsonLd } from "@/components/json-ld";
 import { copy } from "@/lib/copy";
 import { parseLocale } from "@/lib/locale";
+import { homePageGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -29,6 +31,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <>
       <DocumentTitle title={documentTitle(t.meta.homeTitle, t.meta.brand)} />
+      <JsonLd data={homePageGraph(locale)} />
       <Landing locale={locale} />
     </>
   );

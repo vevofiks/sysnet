@@ -84,6 +84,33 @@ export async function generateMetadata({
       alternateLocale: locale === "ar" ? ["en_SA"] : ["ar_SA"],
       type: "website",
     },
+    authors: [{ name: "Sysnet - Adam Al Arabia Company", url: company.url }],
+    creator: "Sysnet Technology",
+    publisher: "Sysnet - Adam Al Arabia Company",
+    category: "Low Current & Security Systems",
+    manifest: "/manifest.webmanifest",
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/logo-mark.png",
+      shortcut: "/favicon.ico",
+    },
+    formatDetection: {
+      telephone: true,
+      email: true,
+      address: true,
+    },
+    referrer: "origin-when-cross-origin",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
@@ -120,7 +147,7 @@ export default async function RootLayout({
           <LocalizedDocument locale={locale}>{children}</LocalizedDocument>
         </Suspense>
         <Analytics />
-        <JsonLd data={siteGraph()} />
+        <JsonLd data={siteGraph(locale)} />
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { Logo } from "@/components/brand";
@@ -12,7 +12,6 @@ import { content } from "@/lib/content";
 import type { Locale } from "@/lib/locale";
 import { barePath, localePath } from "@/lib/paths";
 import { scrollByMotion } from "@/lib/motion-pref";
-import { company } from "@/lib/site";
 
 function isCurrent(pathname: string, href: string) {
   const current = barePath(pathname);
@@ -106,7 +105,7 @@ function LanguageMenu({ onOpen }: { onOpen?: () => void }) {
         aria-controls="language-menu"
         aria-label={t.a11y.language}
         onClick={toggle}
-        className="inline-flex h-11 items-center gap-1.5 rounded-[5px] px-2 text-ink hover:bg-ice"
+        className="inline-flex h-9 sm:h-11 items-center gap-1 sm:gap-1.5 rounded-[5px] px-2 text-ink hover:bg-ice transition-colors"
       >
         <Flag locale={locale} />
         <ChevronDown
@@ -436,24 +435,17 @@ export function SiteHeader() {
         </nav>
 
         <div className="ms-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <a
-            href={`tel:${company.phoneTel}`}
-            className="hidden h-11 items-center gap-2 px-2 text-sm text-navy xl:inline-flex"
-          >
-            <Phone className="size-4" strokeWidth={1.5} aria-hidden="true" />
-            <span dir="ltr">{company.phoneDisplay}</span>
-          </a>
-          <LanguageMenu onOpen={() => setServicesOpen(false)} />
           <Link
             href={localePath(locale, "/contact")}
-            className="inline-flex h-11 shrink-0 items-center whitespace-nowrap rounded-[5px] bg-navy px-3 text-sm font-medium uppercase tracking-normal text-white hover:bg-navy-deep sm:px-4"
+            className="inline-flex h-9 sm:h-11 shrink-0 items-center whitespace-nowrap rounded-[5px] bg-navy px-2.5 sm:px-4 text-xs sm:text-sm font-medium uppercase tracking-normal text-white hover:bg-navy-deep transition-colors"
           >
             <span className="sm:hidden">{t.nav.quoteShort}</span>
             <span className="hidden sm:inline">{t.nav.quote}</span>
           </Link>
+          <LanguageMenu onOpen={() => setServicesOpen(false)} />
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-[5px] border border-line lg:hidden"
+            className="inline-flex size-9 sm:size-11 items-center justify-center rounded-[5px] border border-line lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
@@ -503,13 +495,6 @@ export function SiteHeader() {
           <div className="mt-2">
             <ServiceRail lines={lines} onPick={closeMenus} />
           </div>
-          <a
-            href={`tel:${company.phoneTel}`}
-            className="mt-3 flex h-12 items-center font-medium text-navy"
-            dir="ltr"
-          >
-            {company.phoneDisplay}
-          </a>
         </nav>
       ) : null}
     </header>

@@ -1,0 +1,26 @@
+{
+  "name": "Sysnet Technology - Low Current & Security Systems Riyadh",
+  "short_name": "Sysnet",
+  "description": "Certified CCTV, fire alarm, biometric access control, and Cat6 structured cabling in Riyadh and Dammam.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a2244",
+  "theme_color": "#1356ba",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/logo-mark.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

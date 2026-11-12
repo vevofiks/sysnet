@@ -14,6 +14,8 @@ export function pageMeta({
   description,
   image,
   alt,
+  keywords,
+  category = "Low Current & Security Systems",
 }: {
   locale: Locale;
   path: string;
@@ -21,17 +23,37 @@ export function pageMeta({
   description: string;
   image?: string;
   alt?: string;
+  keywords?: string[];
+  category?: string;
 }): Metadata {
   const canonical = absoluteUrl(locale, path);
   const en = absoluteUrl("en", path);
   const ar = absoluteUrl("ar", path);
   const ogLocale = locale === "ar" ? "ar_SA" : "en_SA";
-  const imageUrl = image ?? `/og?locale=${locale}&title=${encodeURIComponent(title)}`;
+  const altOgLocale = locale === "ar" ? "en_SA" : "ar_SA";
+  const imageUrl = image ?? `${company.url}/og?locale=${locale}&title=${encodeURIComponent(title)}`;
   const imageAlt = alt ?? title;
 
   return {
+    metadataBase: new URL(company.url),
     title,
     description,
+    ...(keywords && keywords.length > 0 ? { keywords } : {}),
+    authors: [{ name: "Sysnet - Adam Al Arabia Company", url: company.url }],
+    creator: "Sysnet Technology",
+    publisher: "Sysnet - Adam Al Arabia Company",
+    category,
+    manifest: "/manifest.webmanifest",
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/logo-mark.png",
+      shortcut: "/favicon.ico",
+    },
+    formatDetection: {
+      telephone: true,
+      email: true,
+      address: true,
+    },
     alternates: {
       canonical,
       languages: {
@@ -46,11 +68,18 @@ export function pageMeta({
       title,
       description,
       url: canonical,
-      siteName: "Sysnet",
+      siteName: "Sysnet Technology",
       locale: ogLocale,
-      alternateLocale: locale === "ar" ? ["en_SA"] : ["ar_SA"],
+      alternateLocale: [altOgLocale],
       type: "website",
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: imageAlt,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -58,6 +87,16 @@ export function pageMeta({
       description,
       images: [imageUrl],
     },
-    metadataBase: new URL(company.url),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }

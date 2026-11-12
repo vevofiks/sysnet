@@ -41,8 +41,8 @@ export const services: Service[] = [
       "Dome and bullet cameras, with the recorder sized to the rooms you actually need to keep.",
     detail:
       "We walk the site and mark each view on the floor plan before a bracket is drilled. A warehouse dock, a villa gate, and a clinic corridor do not get the same lens. Retention is set on the recorder — often 30 days — and the cabinet is labeled so the next person can find the right channel.",
-    image: "/images/pair.jpg",
-    alt: "Two bullet cameras with conduit and junction boxes on a concrete wall",
+    image: "/images/cctv-featured.jpg",
+    alt: "Hikvision bullet and dome surveillance cameras mounted with stainless-steel conduit on limestone corporate facade",
   },
   {
     slug: "intercom",
@@ -52,8 +52,8 @@ export const services: Service[] = [
       "Video door stations for villa gates and building lobbies, wired to a monitor inside.",
     detail:
       "A gate station that only rings a phone will fail the day the phone is in another room. We run cable from the gate or lobby to a monitor at reception or in the majlis, and we test the lock release before we leave.",
-    image: "/images/intercom.jpg",
-    alt: "Stainless steel video door station with a camera, two call buttons, and a speaker grille",
+    image: "/images/intercom-modern.jpg",
+    alt: "Sleek modern smart video intercom door station with illuminated keypad mounted on an entrance wall",
   },
   {
     slug: "cabling",
@@ -63,8 +63,8 @@ export const services: Service[] = [
       "Cat6 and fiber between the main cabinet and each floor, tested and labeled.",
     detail:
       "Every run is numbered at both ends. After termination we hand over a test sheet, not a bundle of unlabeled blue cable. Floor cabinets are dressed so a later camera or access reader can land in the same rack.",
-    image: "/images/cabling.jpg",
-    alt: "Close view of blue and grey network cables plugged into a numbered patch panel",
+    image: "/images/network-switchers.jpg",
+    alt: "Enterprise rack switches with cleanly terminated high-density blue Cat6 patch cables",
   },
   {
     slug: "computers",
@@ -86,8 +86,8 @@ export const services: Service[] = [
       "Card and fingerprint readers on staff doors, server rooms, and clinic stores.",
     detail:
       "The controller records who passed and when. We put readers only on the doors that need them — a pharmacy store and a server room, not every corridor — and we leave the admin password with the facility manager, written on the handover sheet.",
-    image: "/images/smart-lock.jpg",
-    alt: "Hand holding a phone beside a silver smart lock mounted on a white door",
+    image: "/images/biometric-scan.jpg",
+    alt: "Commercial biometric fingerprint reader and RFID card access control terminal in corporate office",
   },
   {
     slug: "fire-alarm",
@@ -99,8 +99,8 @@ export const services: Service[] = [
       "Addressable fire panels, detectors, call points, and door contacts on the same visit plan.",
     detail:
       "Smoke and heat detectors, manual call points, and sounders are placed against the drawing. Intrusion contacts on doors and glass sit on a separate circuit, so a night alarm does not look like a fire alarm. We test both before handover.",
-    image: "/images/smoke-detector.jpg",
-    alt: "White smoke detector mounted on a pale ceiling",
+    image: "/images/fire-alarm-pro.jpg",
+    alt: "Commercial addressable fire alarm control panel and emergency voice evacuation station with certified conduit",
   },
   {
     slug: "fire-safety",
@@ -110,8 +110,8 @@ export const services: Service[] = [
       "Extinguishers, hose reels, and emergency lights placed where the drawing puts them.",
     detail:
       "Hardware is mounted to the schedule, not where there happens to be a free screw. We note the service date on each extinguisher location and leave that list with the building supervisor.",
-    image: "/images/fire-extinguisher.jpg",
-    alt: "Red fire extinguisher mounted on a painted wooden wall",
+    image: "/images/fire-protection.jpg",
+    alt: "Commercial fire protection setup with fire extinguisher, hose reel cabinet, and safety signage",
   },
   {
     slug: "home-office",
@@ -122,8 +122,8 @@ export const services: Service[] = [
       "A villa or a small office on one drawing: cameras, intercom, data points, and the rack.",
     detail:
       "Homeowners in Malaz and office managers in Olaya usually need the same four things: a gate or door view, a recorder, a few data points, and a cabinet that is not a tangle. We price that as one scope.",
-    image: "/images/box-cam.jpg",
-    alt: "White bullet camera on a bracket against a concrete wall",
+    image: "/images/home-office-pro.jpg",
+    alt: "Modern smart villa gate video intercom station and dome security camera on private compound entrance",
   },
   {
     slug: "smart-office",
@@ -133,8 +133,8 @@ export const services: Service[] = [
       "Meeting-room displays, desk connectivity, and door access landing in one cabinet.",
     detail:
       "The display, the camera, and the door reader should not be three vendors blaming the cable. We terminate them in the same rack and leave a port map on the cabinet door.",
-    image: "/images/server.jpg",
-    alt: "Server cabinets with dense yellow and blue patch leads behind mesh doors",
+    image: "/images/data-center.jpg",
+    alt: "State-of-the-art server data center with blue illumination, cable management trays, and server racks",
   },
   {
     slug: "products",
@@ -144,7 +144,7 @@ export const services: Service[] = [
       "Cameras, recorders, readers, cable, and racks, quoted as a parts list you can check.",
     detail:
       "You can buy the hardware without the labour. The quote separates parts from installation, with model lines written out so your procurement team can compare them.",
-    image: "/images/post-cam.jpg",
+    image: "/images/product-sales-pro.jpg",
     alt: "White PTZ dome camera on a bracket beside a pole and a junction box",
   },
   {
@@ -155,8 +155,8 @@ export const services: Service[] = [
       "A repair visit is booked with the Malaz desk. Camera and alarm alerts stay with the building.",
     detail:
       "Camera and alarm alerts are set to the building admin's phone, or to that site's alarm system. They do not ring +966 53 298 0149. That number is the Malaz desk, for a survey or a booked repair visit. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
-    image: "/images/tech.jpg",
-    alt: "A technician in a yellow hard hat terminating wires at a wall-mounted panel",
+    image: "/images/maintenance2.jpg",
+    alt: "Field systems technician using digital multimeter to test and verify control panel circuits",
   },
 ];
 
@@ -223,9 +223,9 @@ export const projects = [
     title: "Aisle and dock cameras for a south Riyadh store",
     summary:
       "A logistics store in Al Sulay: 22 bullet cameras, two recorders, and 30 days of retention on the aisles, the dispatch dock, and the yard gate.",
-    image: "/images/grey-cams.jpg",
+    image: "/images/united-security-cameras.jpg",
     scene: "/images/warehouse.jpg",
-    alt: "Two white bullet cameras mounted on a dark corrugated metal wall",
+    alt: "Commercial high-pole security camera cluster with multi-angle bullet and PTZ cameras for logistics yard coverage",
     facts: ["22 bullet cameras", "2 recorders", "Yard gate included"],
   },
   {
@@ -234,9 +234,9 @@ export const projects = [
     title: "Labeled Cat6 for an Olaya office fit-out",
     summary:
       "Forty-six data points across two floors, two cabinets, and a test sheet. Meeting rooms share the same rack as the reception camera.",
-    image: "/images/cabling.jpg",
+    image: "/images/network-switchers.jpg",
     scene: "/images/office.jpg",
-    alt: "Numbered patch panel with blue and grey Ethernet leads",
+    alt: "Enterprise network switch racks with high-density Cat6 patch cabling and port termination",
     facts: ["46 data points", "2 cabinets", "Test sheet at handover"],
   },
   {
@@ -245,9 +245,9 @@ export const projects = [
     title: "Gate camera and four readers for a Malaz villa",
     summary:
       "A video station at the gate, a dome over the parking, and card readers on four doors. The monitor sits inside, not only on a phone.",
-    image: "/images/intercom.jpg",
+    image: "/images/intercom-modern.jpg",
     scene: "/images/villa.jpg",
-    alt: "Stainless steel video door station with a camera, two call buttons, and a speaker grille",
+    alt: "Modern smart video door station with illuminated keypad at a villa entrance",
     facts: ["Gate station", "4 card readers", "Parking dome"],
   },
   {
@@ -256,9 +256,9 @@ export const projects = [
     title: "Addressable panel for a clinic off Salah Al-Din",
     summary:
       "Fourteen detectors, manual call points at the stairs, and sounders the nurses’ station can hear. Intrusion contacts on the store stay on a separate circuit.",
-    image: "/images/tech.jpg",
+    image: "/images/fire-alarm.jpg",
     scene: "/images/smoke-detector.jpg",
-    alt: "Technician wearing a hard hat while wiring a wall panel",
+    alt: "Illuminated commercial emergency strobe alarm and sounder on clinic corridor wall",
     facts: ["14 detectors", "1 addressable panel", "Separate intrusion circuit"],
   },
 ];

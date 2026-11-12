@@ -1,24 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0b3c5d;
-  --navy-deep: #07283d;
-  --ice: #ebf5fb;
-  --paper: #f4f8fb;
-  --ink: #12293a;
-  --muted: #3d5668;
-  --line: #d3e2ec;
+  --navy: #1356ba;
+  --navy-deep: #0a2244;
+  --blue-bright: #1d72fe;
+  --ice: #e8f3fc;
+  --paper: #f6f9fc;
+  --ink: #0a1c33;
+  --muted: #415974;
+  --line: #d0e1f3;
   --orange: #ff5722;
   --orange-deep: #c2410c;
   --orange-soft: #ffd7cc;
   --card: #f7fbfd;
   --danger: #8e2f2f;
-  --shadow: 0 28px 60px -32px rgb(7 40 61 / 0.45);
+  --shadow: 0 28px 60px -32px rgb(10 34 68 / 0.45);
+  --shadow-card: 0 4px 20px -4px rgb(10 34 68 / 0.08), 0 2px 6px -2px rgb(10 34 68 / 0.04);
+  --shadow-hover: 0 22px 45px -18px rgb(10 34 68 / 0.18);
 }
 
 @theme inline {
   --color-navy: var(--navy);
   --color-navy-deep: var(--navy-deep);
+  --color-blue-bright: var(--blue-bright);
   --color-ice: var(--ice);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
@@ -34,6 +38,8 @@
   --font-naskh: var(--font-arabic-display);
   --font-mono: var(--font-plex);
   --shadow-lift: var(--shadow);
+  --shadow-card: var(--shadow-card);
+  --shadow-hover: var(--shadow-hover);
 }
 
 html {

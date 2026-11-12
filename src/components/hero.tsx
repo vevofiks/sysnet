@@ -2,19 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useCopy, useLocale } from "@/components/locale";
 import { content } from "@/lib/content";
 import { localePath } from "@/lib/paths";
 import { useMotionReady } from "@/lib/use-motion";
 
-const frame = "min-h-[34rem] sm:min-h-[calc(100svh-4rem)]";
+const frame = "min-h-[calc(100svh-4rem)]";
 const SLIDE_MS = 5600;
 
-function pad(value: number) {
-  return String(value).padStart(2, "0");
-}
+const heroSlideImages = [
+  "/images/hero-cctv-commercial.jpg",
+  "/images/hero-logistics.jpg",
+  "/images/hero-datacenter.jpg",
+  "/images/hero-villa.jpg",
+  "/images/hero-safety.jpg",
+];
 
 export function Hero({ children }: { children: ReactNode }) {
   const locale = useLocale();
@@ -27,18 +31,18 @@ export function Hero({ children }: { children: ReactNode }) {
       key: "company",
       title: t.hero.title,
       body: t.hero.lede,
-      image: "/images/pair.jpg",
+      image: heroSlideImages[0],
       alt: t.hero.photoAlt,
       href: localePath(locale, "/services"),
       cta: t.hero.explore,
       secondaryHref: localePath(locale, "/contact"),
       secondary: t.hero.contact,
     },
-    ...projects.map((project) => ({
+    ...projects.map((project, idx) => ({
       key: project.slug,
       title: project.title,
       body: project.summary,
-      image: project.scene,
+      image: heroSlideImages[idx + 1] ?? project.scene,
       alt: project.sceneAlt,
       href: localePath(locale, "/projects"),
       cta: t.priced.seeScope,
@@ -48,9 +52,8 @@ export function Hero({ children }: { children: ReactNode }) {
   ];
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [userPaused, setUserPaused] = useState(false);
   const [hoverPaused, setHoverPaused] = useState(false);
-  const paused = userPaused || hoverPaused;
+  const paused = hoverPaused;
   const count = slides.length;
   const slide = slides[index];
 
@@ -112,6 +115,7 @@ export function Hero({ children }: { children: ReactNode }) {
                 fill
                 sizes="100vw"
                 quality={70}
+                loading="eager"
                 className="object-cover object-[center_35%]"
               />
             </div>
@@ -148,19 +152,9 @@ export function Hero({ children }: { children: ReactNode }) {
         )}
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">
-          <div className="mx-auto flex w-full min-w-0 max-w-[1400px] items-center gap-3 px-4 pb-6 sm:gap-4 md:justify-center md:px-10 md:pb-8">
-            <p className="font-mono text-sm tabular-nums text-ice" dir="ltr">
-              {pad(index + 1)}
-              <span className="text-ice/45"> / {pad(count)}</span>
-            </p>
-            <span className="hidden h-px w-16 overflow-hidden bg-ice/25 sm:block" aria-hidden="true">
-              <span
-                key={index}
-                className={`hero-meter block h-full origin-left bg-orange-deep rtl:origin-right ${paused ? "is-paused" : ""}`}
-              />
-            </span>
+          <div className="mx-auto flex w-full min-w-0 max-w-[1400px] items-center justify-center gap-3 px-4 pb-6 sm:gap-4 md:px-10 md:pb-8">
             <div
-              className="pointer-events-auto ms-auto flex items-center gap-2 sm:gap-3 md:ms-0"
+              className="pointer-events-auto flex items-center gap-2 sm:gap-3"
               onMouseEnter={() => setHoverPaused(true)}
               onMouseLeave={() => setHoverPaused(false)}
             >
@@ -174,40 +168,27 @@ export function Hero({ children }: { children: ReactNode }) {
                       aria-label={item.title}
                       aria-current={active ? "true" : undefined}
                       onClick={() => goTo(itemIndex)}
-                      className="inline-flex h-11 w-5 items-center justify-center sm:w-6"
+                      className="inline-flex h-8 w-4 items-center justify-center sm:w-5"
                     >
                       <span
                         className={`block h-1 rounded-full transition-[width,background-color] duration-500 ease-out-expo motion-reduce:transition-none sm:h-1.5 ${
-                          active ? "w-5 bg-ice sm:w-8" : "w-1.5 bg-ice/40"
+                          active ? "w-4 bg-ice sm:w-7" : "w-1.5 bg-ice/40"
                         }`}
                       />
                     </button>
                   );
                 })}
               </div>
-              <div className="inline-flex items-center rounded-full border border-ice/30 bg-navy-deep/45 p-1 backdrop-blur-md">
-                <button
-                  type="button"
-                  onClick={() => setUserPaused((value) => !value)}
-                  aria-pressed={userPaused}
-                  aria-label={userPaused ? t.a11y.play : t.a11y.pause}
-                  className="inline-flex size-11 items-center justify-center rounded-full text-ice transition-colors duration-300 ease-out-expo hover:bg-ice hover:text-navy"
-                >
-                  {userPaused ? (
-                    <Play className="size-5" strokeWidth={1.25} aria-hidden="true" />
-                  ) : (
-                    <Pause className="size-5" strokeWidth={1.25} aria-hidden="true" />
-                  )}
-                </button>
+              <div className="inline-flex items-center rounded-full border border-ice/25 bg-navy-deep/40 p-0.5 backdrop-blur-md">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label={t.a11y.prevSlide}
-                  className="inline-flex size-11 items-center justify-center rounded-full text-ice transition-colors duration-300 ease-out-expo hover:bg-ice hover:text-navy"
+                  className="inline-flex size-7 sm:size-8 items-center justify-center rounded-full text-ice transition-colors duration-200 hover:bg-ice hover:text-navy"
                 >
                   <ChevronLeft
-                    className="size-5 rtl:rotate-180"
-                    strokeWidth={1.25}
+                    className="size-4 rtl:rotate-180"
+                    strokeWidth={1.5}
                     aria-hidden="true"
                   />
                 </button>
@@ -215,11 +196,11 @@ export function Hero({ children }: { children: ReactNode }) {
                   type="button"
                   onClick={() => go(1)}
                   aria-label={t.a11y.nextSlide}
-                  className="inline-flex size-11 items-center justify-center rounded-full text-ice transition-colors duration-300 ease-out-expo hover:bg-ice hover:text-navy"
+                  className="inline-flex size-7 sm:size-8 items-center justify-center rounded-full text-ice transition-colors duration-200 hover:bg-ice hover:text-navy"
                 >
                   <ChevronRight
-                    className="size-5 rtl:rotate-180"
-                    strokeWidth={1.25}
+                    className="size-4 rtl:rotate-180"
+                    strokeWidth={1.5}
                     aria-hidden="true"
                   />
                 </button>

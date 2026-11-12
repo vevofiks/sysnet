@@ -32,13 +32,14 @@ Banned in this project: Inter, Roboto, Arial, system-ui. Outfit is the geometric
 
 ```css
 :root {
-  --navy: #0b3c5d;
-  --navy-deep: #07283d;
-  --ice: #ebf5fb;
-  --paper: #f4f8fb;
-  --ink: #12293a;
-  --muted: #3d5668;
-  --line: #d3e2ec;
+  --navy: #1356ba;       /* vibrant luminous corporate tech royal blue (AA compliant, contrast 6.7:1 with white) */
+  --navy-deep: #0a2244;  /* rich royal sapphire midnight (replaces dull murky slate) */
+  --blue-bright: #1d72fe;/* electric tech blue accent for glows and active states */
+  --ice: #e8f3fc;        /* luminous ice tint */
+  --paper: #f6f9fc;      /* crisp tech paper */
+  --ink: #0a1c33;        /* crisp midnight navy text */
+  --muted: #415974;      /* slate secondary text */
+  --line: #d0e1f3;       /* clean border tone */
   --orange: #ff5722;       /* large marks only */
   --orange-deep: #c2410c;  /* highlight tiles and small accent text; white label passes AA */
   --orange-soft: #ffd7cc;
@@ -47,15 +48,15 @@ Banned in this project: Inter, Roboto, Arial, system-ui. Outfit is the geometric
 }
 ```
 
-Page, ice bands, and navy photo sections use this earlier palette. Highlighted tiles (the active sector, the featured service card) are `--orange-deep`. Quote buttons stay navy.
+Page, ice bands, and navy photo sections use this upgraded bright royal corporate palette. Highlighted tiles (the active sector, the featured service card) are `--orange-deep`. Quote buttons stay navy.
 
 ## Shadows
 
 ```css
---shadow-lift: 0 28px 60px -32px rgb(14 40 67 / 0.4);
+--shadow-lift: 0 28px 60px -32px rgb(10 34 68 / 0.45);
 ```
 
-Tinted toward navy. No pure-black drops.
+Tinted toward royal sapphire navy. No pure-black drops.
 
 ## Motion
 
@@ -119,3 +120,5 @@ Tinted toward navy. No pure-black drops.
 2026-10-25 — Hero carousel of four company scopes. Scroll entrances moved from GSAP to Framer Motion.
 2026-10-26 — Hero is a full-bleed carousel: skyline, then the four scopes. The panel slides; the counter and arrows stay.
 2026-10-26 — Hero arrows are a frosted chevron pill. Slide photos are cameras, conduit, and patch leads. Phone hero is a shorter stack with full-width buttons.
+2026-11-11 — Full website visual overhaul: brightened color system with crisp surfaces (#ffffff, #f8fbfe, #edf5fa), activated 20+ installation and site photography assets across all pages, dual-image project case studies (hardware detail + site environment), 4-photo field operations gallery on About, 11-scope visual catalog with photography, 4-step installation execution journey on Service Detail, comprehensive Malaz operations hub on Contact, and eliminated excessive empty white spaces while maintaining brand identity and full bilingual RTL support.
+2026-11-11 — Eliminated excessive empty white spaces across the entire site: reduced oversized section paddings from 192px combined down to balanced 80px-110px (`py-12 md:py-16`), upgraded the 5-step workflow with dedicated step icons, hover gradient accents, subtle surface contrast, and a trust indicator band. Balanced margins on About, Services, Projects, and Contact pages to eliminate barren voids.

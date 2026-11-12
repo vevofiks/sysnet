@@ -113,10 +113,10 @@ const en = {
     ],
   },
   cabling: {
-    h1: "Network cabling installation in Riyadh",
-    seoTitle: "Structured Network Cabling for Riyadh Offices",
+    h1: "Structured Network Cabling Installation in Riyadh",
+    seoTitle: "Cat6 Structured Network Cabling Installation in Riyadh | Sysnet",
     seoDescription:
-      "Cat6 and fiber for Riyadh offices, tested and labeled at both ends. Ask the Malaz desk for a site survey before the ceiling closes. Call now.",
+      "Certified Cat6, Cat6a, and fiber optic network cabling installation for offices and warehouses in Riyadh and Dammam. Tested, labeled, and certified. Call +966 53 298 0149.",
     related: ["cctv", "smart-office", "computers"],
     sections: [
       {
@@ -490,10 +490,10 @@ const en = {
     ],
   },
   maintenance: {
-    h1: "CCTV and alarm maintenance in Riyadh",
-    seoTitle: "CCTV and Alarm Maintenance Visits in Riyadh",
+    h1: "Low Current & Security Systems Installation and Maintenance in Riyadh",
+    seoTitle: "Security Systems & CCTV Installation and Maintenance in Riyadh | Sysnet",
     seoDescription:
-      "Book a Riyadh repair visit with the Malaz desk on +966 53 298 0149. Camera and alarm alerts go to the building admin, not to this number.",
+      "Certified installation, repair, and preventive maintenance visits for CCTV cameras, access control, fire alarms, and network cabling in Riyadh. Call +966 53 298 0149.",
     related: ["cctv", "fire-alarm", "cabling"],
     sections: [
       {
@@ -641,10 +641,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   cabling: {
-    h1: "تمديد الشبكات في الرياض",
-    seoTitle: "تمديد الكيابل المنظمة في الرياض",
+    h1: "تمديد كابلات وشبكات الكمبيوتر في الرياض",
+    seoTitle: "تمديد شبكات Cat6 وألياف بصرية لمكاتب ومباني الرياض | سيسنت",
     seoDescription:
-      "Cat6 وألياف لمكاتب الرياض، مختبرة ومرقّمة من الطرفين. اطلب معاينة من مكتب الملز قبل إغلاق السقف. اتصل على ‎+966 53 298 0149 اليوم واذكر الحي.",
+      "تمديد كابلات شبكة Cat6 وفايبر معتمدة للمكاتب والمستودعات في الرياض والدمام. فحص فلوك وترقيم دقيق للمنافذ. احجز معاينة من مكتب الملز اليوم.",
     related: ["cctv", "smart-office", "computers"],
     sections: [
       {
@@ -1018,10 +1018,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   maintenance: {
-    h1: "صيانة الكاميرات والإنذار في الرياض",
-    seoTitle: "صيانة الكاميرات والإنذار في الرياض",
+    h1: "تركيب وصيانة الأنظمة الأمنية وشبكات المراقبة في الرياض",
+    seoTitle: "صيانة وتركيب كاميرات المراقبة والأنظمة الأمنية بالرياض | سيسنت",
     seoDescription:
-      "احجز زيارة إصلاح في الرياض مع مكتب الملز على ‎+966 53 298 0149. تنبيهات الكاميرا والإنذار تذهب إلى مدير المبنى لا إلى هذا الرقم.",
+      "خدمات تركيب وصيانة وفحص فني دوري لكاميرات المراقبة والإنذار وأجهزة البصمة وشبكات الكابلات في الرياض والدمام من مكتب الملز. اتصل الآن على 0532980149.",
     related: ["cctv", "fire-alarm", "cabling"],
     sections: [
       {

@@ -14,8 +14,8 @@ export function GET(request: Request) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#07283d",
-          color: "#f4f8fb",
+          background: "#0a2244",
+          color: "#f6f9fc",
           padding: "72px",
         }}
       >

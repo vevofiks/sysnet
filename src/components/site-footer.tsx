@@ -16,28 +16,31 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
 
   return (
     <footer className="bg-navy-deep text-ice">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-4 py-16 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] md:px-10">
+      <div className="mx-auto grid max-w-[1400px] gap-10 px-4 py-16 md:grid-cols-[1.1fr_1.7fr_0.7fr_1fr] md:gap-12 md:px-10">
         <div>
           <Link href={localePath(locale, "/")} aria-label={t.a11y.home} className="inline-flex rounded-sm">
             <Logo tone="ice" />
           </Link>
-          <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-ice/75">{t.footer.blurb}</p>
+          <p className="mt-5 max-w-[34ch] text-sm leading-relaxed text-ice/75">{t.footer.blurb}</p>
         </div>
         <div>
           <p className="text-sm font-medium text-white">{t.nav.servicesHeading}</p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
             {services.map((service) => (
               <li key={service.slug}>
                 <Link
                   href={localePath(locale, `/services/${service.slug}`)}
-                  className="text-sm text-ice/80 hover:text-white"
+                  className="text-sm text-ice/80 transition-colors hover:text-white"
                 >
                   {service.title}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href={localePath(locale, "/services")} className="text-sm font-medium text-white hover:text-ice">
+              <Link
+                href={localePath(locale, "/services")}
+                className="text-sm font-medium text-white transition-colors hover:text-orange-soft"
+              >
                 {t.nav.allServices}
               </Link>
             </li>

@@ -9,27 +9,27 @@ type Widen<T> = T extends string
 export const en = {
   meta: {
     brand: "Sysnet",
-    siteTitle: "CCTV Installation for Buildings in Riyadh | Sysnet",
+    siteTitle: "CCTV Installation & Low Current Systems in Riyadh | Sysnet",
     siteDescription:
-      "Book a Malaz site survey for CCTV, fire alarm, access control, and network cabling in Riyadh and Dammam. Call +966 53 298 0149 or send this form today.",
-    ogTitle: "CCTV Installation for Buildings in Riyadh",
+      "Certified low current contractor in Riyadh & Dammam. We install CCTV, Cat6 structured cabling, biometric access control, and fire alarms with same-day Malaz survey dispatch. Call +966 53 298 0149.",
+    ogTitle: "CCTV Installation & Low Current Security Systems in Riyadh | Sysnet",
     ogDescription:
-      "Site surveys and installation for cameras, alarms, access control, and structured cabling from the Malaz desk in Riyadh. Book a visit today.",
-    homeTitle: "CCTV Installation for Buildings in Riyadh",
+      "Certified CCTV, Cat6 structured cabling, access control, and fire alarm installations for buildings and warehouses across Riyadh and Dammam.",
+    homeTitle: "CCTV Installation & Low Current Security Systems in Riyadh",
     homeDescription:
-      "Book a Malaz site survey for CCTV, fire alarm, access control, and network cabling in Riyadh and Dammam. Call +966 53 298 0149 or send this form today.",
-    aboutTitle: "About Our CCTV Installation Desk in Riyadh",
+      "Certified low current contractor in Riyadh & Dammam. We install CCTV, Cat6 structured cabling, biometric access control, and fire alarms with same-day Malaz survey dispatch. Call +966 53 298 0149.",
+    aboutTitle: "About Sysnet | Low Current & Security Systems Contractor Riyadh",
     aboutDescription:
-      "Sysnet is Adam Al Arabia Company. See how the Malaz desk surveys and installs CCTV, alarms, and cabling in Riyadh, then book a site visit today.",
-    servicesTitle: "CCTV, Alarm and Cabling Services in Riyadh",
+      "Sysnet is Adam Al Arabia Company. Engineering crews deploy from Malaz to survey and install CCTV, fire alarm, and structured cabling across Riyadh & Dammam.",
+    servicesTitle: "Low Current & Security Systems Services in Riyadh | Sysnet",
     servicesDescription:
-      "Compare CCTV, intercom, cabling, access control, fire alarm, and maintenance in Riyadh. Open a service, then request a Malaz site survey today.",
-    projectsTitle: "Recent CCTV and Cabling Projects in Riyadh",
+      "Explore 11 certified services: commercial CCTV cameras, Cat6 network cabling, biometric access control, video intercoms, fire alarms, and maintenance contracts in Riyadh.",
+    projectsTitle: "Verified CCTV & Structured Cabling Projects in Riyadh | Sysnet",
     projectsDescription:
-      "See typical Riyadh scopes: warehouse cameras, Olaya cabling, a Malaz villa gate, and a clinic fire panel. Ask the desk for a similar survey.",
-    contactTitle: "Contact the Malaz Desk for a Riyadh Survey",
+      "Review verified low current installations across Riyadh: warehouse CCTV in Al Sulay, Cat6 cabling in Olaya, villa intercoms in Malaz, and clinic fire alarm panels.",
+    contactTitle: "Contact Sysnet Malaz Desk | Request Site Survey & Quote in Riyadh",
     contactDescription:
-      "Request a Sysnet site survey in Riyadh. The desk is in Malaz. Call +966 53 298 0149 or send the form on this page and we reply the same day.",
+      "Book an on-site survey for CCTV, network cabling, or fire safety in Riyadh and Dammam. Malaz desk responds the same day. Call +966 53 298 0149.",
     privacyTitle: "How Sysnet Handles Survey Requests in Riyadh",
     privacyDescription:
       "Read how Sysnet uses a survey request from this site: the name, phone, and message that open WhatsApp. We do not sell that form. Ask us for a copy.",
@@ -74,7 +74,7 @@ export const en = {
     company: "Company",
     desk: "Desk",
     servicesHeading: "Services",
-    allServices: "View all services",
+    allServices: "All services",
   },
   company: {
     legal: "Adam Al Arabia Company",
@@ -219,7 +219,7 @@ export const en = {
       summary: "Video door stations for villa gates and building lobbies, wired to a monitor inside.",
       detail:
         "A gate station that only rings a phone will fail the day the phone is in another room. We run cable from the gate or lobby to a monitor at reception or in the majlis, and we test the lock release before we leave.",
-      alt: "Stainless steel video door station with a camera, two call buttons, and a speaker grille",
+      alt: "Sleek modern smart video intercom door station with illuminated keypad mounted on an entrance wall",
       includes: [
         "A video station at the gate or in the lobby, not a bell that only rings a phone",
         "Cable to a monitor in the majlis or at reception",
@@ -356,7 +356,7 @@ export const en = {
       summary: "A repair visit is booked with the Malaz desk. Camera and alarm alerts stay with the building.",
       detail:
         "Camera and alarm alerts are set to the building admin's phone, or to that site's alarm system. They do not ring +966 53 298 0149. That number is the Malaz desk, for a survey or a booked repair visit. If we did not install the system, we still take it on when we can reach the recorder and identify the cables. If a run has to be replaced, we say that on the survey.",
-      alt: "A technician in a yellow hard hat terminating wires at a wall-mounted panel",
+      alt: "Professional systems technician in uniform servicing a modern network cabinet in a bright commercial office",
       includes: [
         "Camera and alarm alerts to the building admin's phone, or to that site's alarm",
         "A system we did not install, taken on when the recorder is reachable",
@@ -372,7 +372,7 @@ export const en = {
       title: "Aisle and dock cameras for a south Riyadh store",
       summary:
         "A logistics store in Al Sulay: 22 bullet cameras, two recorders, and 30 days of retention on the aisles, the dispatch dock, and the yard gate.",
-      alt: "Two white bullet cameras mounted on a dark corrugated metal wall",
+      alt: "Commercial high-pole security camera cluster with multi-angle bullet and PTZ cameras for logistics yard coverage",
       sceneAlt: "Warehouse aisles lined with yellow bins and tall pallet racking",
       facts: ["22 bullet cameras", "2 recorders", "Yard gate included"],
     },
@@ -380,7 +380,7 @@ export const en = {
       title: "Labeled Cat6 for an Olaya office fit-out",
       summary:
         "Forty-six data points across two floors, two cabinets, and a test sheet. Meeting rooms share the same rack as the reception camera.",
-      alt: "Numbered patch panel with blue and grey Ethernet leads",
+      alt: "Enterprise network switch racks with high-density Cat6 patch cabling and port termination",
       sceneAlt: "Long office corridor with glass meeting rooms",
       facts: ["46 data points", "2 cabinets", "Test sheet at handover"],
     },
@@ -388,7 +388,7 @@ export const en = {
       title: "Gate camera and four readers for a Malaz villa",
       summary:
         "A video station at the gate, a dome over the parking, and card readers on four doors. The monitor sits inside, not only on a phone.",
-      alt: "Stainless steel video door station with a camera, two call buttons, and a speaker grille",
+      alt: "Sleek modern smart video intercom door station with illuminated keypad mounted on an entrance wall",
       sceneAlt: "Modern house at dusk with a lit dining room and a garden",
       facts: ["Gate station", "4 card readers", "Parking dome"],
     },
@@ -396,7 +396,7 @@ export const en = {
       title: "Addressable panel for a clinic off Salah Al-Din",
       summary:
         "Fourteen detectors, manual call points at the stairs, and sounders the nurses’ station can hear. Intrusion contacts on the store stay on a separate circuit.",
-      alt: "Technician wearing a hard hat while wiring a wall panel",
+      alt: "Illuminated commercial emergency strobe alarm and sounder on clinic corridor wall",
       sceneAlt: "White smoke detector mounted on a pale ceiling",
       facts: ["14 detectors", "1 addressable panel", "Separate intrusion circuit"],
     },
@@ -423,7 +423,7 @@ export const en = {
       "A repair visit is booked with the Malaz desk. Camera and alarm alerts are set to the building admin's phone or that site's alarm system. If another company left the system, we take it when the recorder is reachable and the cables can be identified.",
     ],
     skylineAlt: "Riyadh skyline with the Kingdom Centre tower under a clear sky",
-    techAlt: "A technician in a yellow hard hat wiring a wall-mounted panel",
+    techAlt: "Professional systems technician in uniform servicing a modern network cabinet in a bright commercial office",
   },
   servicesPage: {
     title: "CCTV and cabling services in Riyadh.",
