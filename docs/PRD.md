@@ -4,7 +4,7 @@
 
 **Project Name:** Sysnet Corporate Website  
 
-**Company:** Sysnet (Adam Al Arabia Company / NetPro affiliated)  
+**Company:** Sysnet Technologies (NetPro affiliated)  
 
 **Location:** Malaz, Riyadh, Saudi Arabia  
 

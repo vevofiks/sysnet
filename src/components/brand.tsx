@@ -1,12 +1,16 @@
 import Image from "next/image";
 import {
+  AppWindow,
   Cable,
   Cctv,
+  Database,
   DoorOpen,
   FingerprintPattern,
   FireExtinguisher,
+  Hospital,
   Monitor,
   Package,
+  Pill,
   Presentation,
   Siren,
   Speaker,
@@ -26,6 +30,10 @@ const icons: Record<string, LucideIcon> = {
   "smart-office": Presentation,
   products: Package,
   maintenance: Wrench,
+  "software-sales": AppWindow,
+  "pharmacy-software": Pill,
+  erp: Database,
+  "pharmacy-hms": Hospital,
 };
 
 export function Logo({

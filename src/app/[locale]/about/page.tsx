@@ -117,7 +117,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <PageHero
         title={t.title}
         lede={t.lede}
-        badge={rtl ? "نبذة عن سيسنت · شركة آدم العربية" : "Company Profile · Adam Al Arabia Company"}
+        badge={rtl ? "نبذة عن سيسنت تكنولوجيز" : "Company Profile · Sysnet Technologies"}
         image="/images/riyadh.jpg"
         stats={[
           { label: rtl ? "المقر الرئيسي" : "Headquarters", value: rtl ? "الملز، الرياض" : "Malaz, Riyadh" },
@@ -152,7 +152,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-orange-deep/20 bg-orange-soft/40 px-3 py-1 text-xs font-medium uppercase tracking-wider text-orange-deep">
             <Building2 className="size-3.5" />
-            {rtl ? "شركة آدم العربية" : "Adam Al Arabia Company"}
+            {rtl ? "سيسنت تكنولوجيز" : "Sysnet Technologies"}
           </div>
           <h2 className="mt-4 text-3xl font-medium tracking-normal text-ink md:text-4xl">
             {t.heading}

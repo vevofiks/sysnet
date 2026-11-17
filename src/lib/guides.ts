@@ -792,6 +792,278 @@ const en = {
       },
     ],
   },
+  "software-sales": {
+    h1: "Software sales in Riyadh",
+    seoTitle: "Software sales in Riyadh for your business",
+    seoDescription:
+      "Buy licensed business software with a clear line-by-line quote for offices and stores in Riyadh. Request a free site survey.",
+    related: ["erp", "pharmacy-software", "computers"],
+    sections: [
+      {
+        heading: "Software sales in Riyadh start with the tools you actually need",
+        body: [
+          "An office or a store runs better when the software matches the work, not a bundle of unused features. Software sales in Riyadh give you a written list of products and licences you can approve before anything is ordered.",
+          "Setup and training stay on separate lines until you ask for them, so procurement sees the full picture and can compare each item.",
+        ],
+      },
+      {
+        heading: "What a clear software quote gives you",
+        body: [
+          "Each product and licence is its own line, so you can keep, drop, or swap an item.",
+          "A short demo shows the screens your team will use before you commit.",
+          "Setup and training appear only when you add them, with their own cost.",
+          "One team answers questions about the list, the demo, and the go-live steps.",
+        ],
+      },
+      {
+        heading: "Businesses that buy software this way",
+        body: [
+          "Office managers need accounting, inventory, or office suites with licences that match the seat count.",
+          "Retail and warehouse teams need stock and sales tools that follow the way goods move on site.",
+          "Pharmacy and clinic owners often start here when they want a clear software list before a specialist module.",
+          "Procurement teams need model and licence lines they can compare with another offer.",
+        ],
+      },
+      {
+        heading: "From the first call to everyday use",
+        body: [
+          "The survey asks what you already use, how many people need a seat, and which reports matter every day.",
+          "Design and an itemised quotation list each product and licence, separate from setup and training.",
+          "Supply delivers the approved licences and install media or accounts as agreed on the quote.",
+          "Testing opens the main screens with you, so the product matches what you saw in the demo.",
+          "Training covers the tasks your team will use in the first week.",
+          "Ongoing support is a booked session when you add seats, modules, or a new site.",
+          "We supply proven, widely supported software chosen for your site, named on the list you approve.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Can I buy software without installation or training?",
+        a: "Yes. The quotation lists products and licences on their own. Setup and training stay off the list until you add them. You can use your own IT team or ask us to return for go-live later.",
+      },
+      {
+        q: "How is the price decided?",
+        a: "Price follows the products, the number of licences or seats, and any setup or training you add. Each line is written out so you approve only what this office or store needs. A single package figure is not how we quote.",
+      },
+      {
+        q: "Can you demo the software before we buy?",
+        a: "Yes. We walk through the screens that match your workflow, such as sales, stock, or accounts. You see the product with your questions answered before the order is placed. The quotation then names the exact lines you approved.",
+      },
+      {
+        q: "Do you supply software for Dammam as well as Riyadh?",
+        a: "Yes. Software is quoted for sites in the capital and in Dammam and the Eastern Province. Supply to other cities in Saudi Arabia is agreed on the quotation. Tell us the city and whether you need licences only or licences plus setup.",
+      },
+      {
+        q: "What if we already have a software shortlist?",
+        a: "Send it, including seat counts and any modules another vendor proposed. We answer with clear lines and note any change we would make for your workflow, with the reason beside it. You approve the list before an order is placed.",
+      },
+    ],
+  },
+  "pharmacy-software": {
+    h1: "Pharmacy software in Riyadh",
+    seoTitle: "Pharmacy software in Riyadh for your store",
+    seoDescription:
+      "Run stock, sales and counter work on pharmacy software surveyed for your Riyadh store. Request a free site survey.",
+    related: ["pharmacy-hms", "erp", "software-sales"],
+    sections: [
+      {
+        heading: "Pharmacy software in Riyadh built around the counter and the store",
+        body: [
+          "A busy pharmacy needs stock that matches the shelf, sales that close cleanly, and reports the pharmacist can open without a struggle. Pharmacy software in Riyadh is surveyed against those daily tasks, then quoted as modules you can approve.",
+          "Your team receives accounts, a short walkthrough, and a system that follows how medicines move from the store to the counter.",
+        ],
+      },
+      {
+        heading: "What the right pharmacy system returns",
+        body: [
+          "Stock levels follow sales, so the store and the counter stay in step.",
+          "Sales and returns are recorded in a way your accountant can follow.",
+          "Reports for daily and monthly work open on the screens your staff already use.",
+          "User accounts match who may sell, who may adjust stock, and who may see costs.",
+        ],
+      },
+      {
+        heading: "Pharmacies and sites that need this",
+        body: [
+          "Neighbourhood pharmacies need a clear counter and store workflow for one or two tills.",
+          "Larger pharmacy stores need stock across shelves and a sales floor that stays accurate at peak hours.",
+          "Clinic-linked pharmacies need sales and stock that can sit beside related healthcare records later.",
+          "Procurement and owners need a written module list before any licence is paid for.",
+        ],
+      },
+      {
+        heading: "From the pharmacy walk to go-live",
+        body: [
+          "The survey watches how prescriptions, over-the-counter sales, and stock checks run today.",
+          "Design and an itemised quotation name each module and seat, separate from training.",
+          "Installation sets up the software on the PCs or servers you approve for the pharmacy.",
+          "Testing walks through a sale, a return, and a stock adjustment with your staff present.",
+          "Training covers the counter tasks and the reports the pharmacist opens most often.",
+          "Ongoing support is a booked session when you add a till, a branch, or a new module.",
+          "We supply proven, widely supported pharmacy software chosen for your site, named on the quotation.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Will this replace the way we already sell and count stock?",
+        a: "The survey starts from how you work today. Modules are chosen to match the counter and the store, then shown in a short demo before you approve. Training focuses on the tasks your team will use in the first week, so the change is planned rather than sudden.",
+      },
+      {
+        q: "What changes the cost of pharmacy software?",
+        a: "Cost follows the modules you need, the number of users or tills, and any training or data setup you add. Each item is a line on the quotation. You approve only the scope this pharmacy needs.",
+      },
+      {
+        q: "Can more than one pharmacist use the system?",
+        a: "Yes. User accounts are created for the people who sell, who manage stock, and who view reports. Roles are set during setup and explained in the walkthrough. Extra seats are quoted when you need them.",
+      },
+      {
+        q: "Do you cover pharmacies in Dammam?",
+        a: "Yes. Pharmacy software is surveyed and quoted for Riyadh and for Dammam and the Eastern Province. Sites in other Saudi cities are arranged on request. Tell us the district and how many tills you run.",
+      },
+      {
+        q: "Can this connect later to a wider healthcare system?",
+        a: "Yes. Many pharmacies start with stock and sales, then add linked healthcare modules when the site is ready. Say if you expect that path and the quotation can leave room for it. Pharmacy and HMS is the related line when both sides are needed together.",
+      },
+    ],
+  },
+  erp: {
+    h1: "ERP systems in Riyadh",
+    seoTitle: "ERP systems in Riyadh for growing businesses",
+    seoDescription:
+      "Link stock, sales, purchasing and accounts in one ERP surveyed for your Riyadh business. Request a free site survey.",
+    related: ["software-sales", "pharmacy-software", "computers"],
+    sections: [
+      {
+        heading: "ERP systems in Riyadh that follow how you already work",
+        body: [
+          "Stock in one file, sales in another, and accounts that never quite match cost time every month. ERP systems in Riyadh put those steps into one shared database, surveyed against the processes you already run.",
+          "Modules are quoted as separate lines, so managers approve stock, sales, purchasing, and accounts with a clear scope before go-live.",
+        ],
+      },
+      {
+        heading: "What a joined-up ERP gives your teams",
+        body: [
+          "Sales update stock in the same system your warehouse and accounts teams open.",
+          "Purchasing and suppliers sit beside the inventory they feed, with a clear order trail.",
+          "Managers see reports without waiting for three people to merge spreadsheets.",
+          "User roles keep daily operators on their tasks and managers on the figures they need.",
+        ],
+      },
+      {
+        heading: "Businesses that book an ERP survey",
+        body: [
+          "Trading companies need stock, sales, and accounts that stay aligned across the week.",
+          "Warehouses and distributors need purchasing and inventory that match what left the dock.",
+          "Multi-branch retailers need one database and clear roles for each store.",
+          "Growing offices need to leave scattered spreadsheets once the seat count and the volume rise.",
+        ],
+      },
+      {
+        heading: "From process map to live modules",
+        body: [
+          "The survey maps how orders, stock moves, purchases, and month-end accounts run today.",
+          "Design and an itemised quotation list each module and user role you approve.",
+          "Installation sets up the database and the client access on the equipment you provide or buy with us.",
+          "Testing walks through a sale, a stock move, and a simple accounts check with your managers.",
+          "Training is given by team, so operators and managers each see their own screens.",
+          "Ongoing support is a booked session when you add a branch, a module, or more users.",
+          "We supply proven, widely supported ERP software chosen for your site, named on the quotation.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "How long does an ERP project take?",
+        a: "A small trading office with a few users is a shorter path once the modules are agreed. A multi-branch or warehouse rollout takes longer because data and training follow the survey. The quotation includes a practical schedule before go-live work starts.",
+      },
+      {
+        q: "What changes the cost of an ERP?",
+        a: "Cost follows the modules, the number of users, and any data setup or training you add. Each item is written as its own line. You approve only the processes this business needs now, and later modules can be added as a new quote.",
+      },
+      {
+        q: "Can we start with stock and sales only?",
+        a: "Yes. Many sites begin with the modules that hurt most today, then add purchasing or accounts when the first teams are settled. The quotation shows what is in the first phase and what can wait. You keep one database as you grow.",
+      },
+      {
+        q: "Do you implement ERP in Dammam?",
+        a: "Yes. ERP surveys and go-live support cover Riyadh and Dammam and the Eastern Province. Other Saudi cities are arranged on request. Tell us where the head office and the branches sit on the first call.",
+      },
+      {
+        q: "Will our existing computers work with the ERP?",
+        a: "Often they will, after we check the PCs and the network during the survey. If a desk or a server needs an upgrade, that appears as a separate line, or you can use our computers and cabling scopes. The ERP quote stays focused on the software and the setup you approve.",
+      },
+    ],
+  },
+  "pharmacy-hms": {
+    h1: "Pharmacy and HMS software in Riyadh",
+    seoTitle: "Pharmacy and HMS software in Riyadh",
+    seoDescription:
+      "Pharmacy software plus Hospital Management System (HMS) for clinics in Riyadh, surveyed and quoted clearly. Request a free site survey.",
+    related: ["pharmacy-software", "erp", "software-sales"],
+    sections: [
+      {
+        heading: "Pharmacy and HMS software in Riyadh for clinics and hospitals",
+        body: [
+          "HMS means Hospital Management System: patient records, appointments, and clinical desks in one place. Pharmacy and HMS software in Riyadh joins that with the pharmacy counter and store when a clinic or hospital also dispenses medicines.",
+          "Staff who sell, who manage stock, and who handle patient records each receive the accounts and training they need.",
+        ],
+      },
+      {
+        heading: "What Pharmacy and HMS together deliver",
+        body: [
+          "Counter sales and stock stay accurate for the pharmacy floor.",
+          "Hospital patient records sit beside the pharmacy modules when the site needs both.",
+          "Reports cover the pharmacy day and the clinical side your managers review.",
+          "One quotation names every module, so you see the full scope before go-live.",
+        ],
+      },
+      {
+        heading: "Sites that need Pharmacy and HMS together",
+        body: [
+          "Pharmacies attached to clinics need stock and sales tied to related patient workflows.",
+          "Standalone pharmacies planning a healthcare link need a path that can grow into HMS modules.",
+          "Small healthcare centres with a dispensing counter need both sides on one visit plan.",
+          "Owners and procurement need a written module list before licences and training are booked.",
+        ],
+      },
+      {
+        heading: "From the joint survey to trained teams",
+        body: [
+          "The survey walks the pharmacy counter, the store, and the healthcare desks that must share data.",
+          "Design and an itemised quotation list pharmacy modules and HMS modules as separate lines.",
+          "Installation sets up the approved software on the PCs or servers named for the site.",
+          "Testing runs a pharmacy sale and a linked record step with the people who own each task.",
+          "Training is split by role, so pharmacy staff and clinical users each see their screens.",
+          "Ongoing support is a booked session when you add a till, a clinic desk, or a new module.",
+          "We supply proven, widely supported Pharmacy and HMS software chosen for your site, named on the quotation.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Is this the same as pharmacy software alone?",
+        a: "Pharmacy software focuses on stock and sales at the counter. Pharmacy and HMS adds the linked healthcare modules when the site needs both. You can start with pharmacy only and add HMS later, or quote both together after the survey. The related pharmacy software page covers the counter-first path.",
+      },
+      {
+        q: "What changes the cost of Pharmacy and HMS?",
+        a: "Cost follows which Pharmacy and HMS modules you approve, how many users sit on each side, and any training or data setup you add. Lines are written separately. You pay for the scope this pharmacy or clinic actually needs.",
+      },
+      {
+        q: "Can pharmacy and clinical staff share one system?",
+        a: "Yes. User accounts and roles are set so each person sees the screens that match their work. Training is given by team. The survey notes who sells, who adjusts stock, and who handles linked records before go-live.",
+      },
+      {
+        q: "Do you cover Dammam pharmacies and clinics?",
+        a: "Yes. Pharmacy and HMS surveys cover Riyadh and Dammam and the Eastern Province. Other Saudi cities are arranged on request. Tell us whether the site is a pharmacy, a clinic with a counter, or both on the same premises.",
+      },
+      {
+        q: "What should we prepare for the survey?",
+        a: "Describe how prescriptions and over-the-counter sales run, how stock is counted, and which healthcare records must link. A simple sketch of the counter and the clinic desks helps. Seat counts for pharmacy and clinical users make the quotation accurate on the first pass.",
+      },
+    ],
+  },
 } satisfies Record<string, Guide>;
 const ar: Record<keyof typeof en, Guide> = {
   cctv: {
@@ -1572,6 +1844,278 @@ const ar: Record<keyof typeof en, Guide> = {
       {
         q: "هل تغطي زيارة واحدة الكاميرات وإنذار الحريق؟",
         a: "نعم. الكاميرات والدخول والإنتركم وإنذار الحريق يمكن حجزها معًا. اذكر الأنظمة التي تتعطل لنرتب الزيارة حولها. والدمام والمنطقة الشرقية ضمن النطاق مع العاصمة، ومدن السعودية الأخرى تُرتَّب عند الطلب بعد أن نؤكد موعد الزيارة معكم.",
+      },
+    ],
+  },
+  "software-sales": {
+    h1: "بيع البرمجيات في الرياض",
+    seoTitle: "بيع البرمجيات في الرياض لأعمالك",
+    seoDescription:
+      "اشترِ برمجيات أعمال مرخّصة بعرض سعر واضح بندًا بندًا لمكاتب ومتاجر الرياض. اطلب معاينة مجانية للموقع.",
+    related: ["erp", "pharmacy-software", "computers"],
+    sections: [
+      {
+        heading: "بيع البرمجيات في الرياض يبدأ من الأدوات التي تحتاجها فعلًا",
+        body: [
+          "المكتب أو المتجر يعمل بشكل أفضل عندما يطابق البرنامج العمل، لا حزمة ميزات لا تُستخدم. بيع البرمجيات في الرياض يمنحك قائمة مكتوبة بالمنتجات والتراخيص تعتمدها قبل أي طلب.",
+          "ويبقى الإعداد والتدريب بنودًا مستقلة حتى تطلبهما، فترى المشتريات الصورة كاملة وتقارن كل بند.",
+        ],
+      },
+      {
+        heading: "ماذا يعطيك عرض برمجيات واضح",
+        body: [
+          "كل منتج وترخيص في سطر مستقل، فتبقي أو تحذف أو تبدّل بندًا.",
+          "عرض قصير يُظهر الشاشات التي سيستخدمها فريقك قبل الالتزام.",
+          "الإعداد والتدريب يظهران فقط عندما تضيفهما، بتكلفتهما الخاصة.",
+          "فريق واحد يجيب عن القائمة والعرض وخطوات التشغيل.",
+        ],
+      },
+      {
+        heading: "جهات تشتري البرمجيات بهذه الطريقة",
+        body: [
+          "مديرو المكاتب يحتاجون محاسبة أو مخزونًا أو حزم مكتبية بتراخيص تطابق عدد المقاعد.",
+          "فرق التجزئة والمستودعات تحتاج أدوات مخزون ومبيعات تتبع حركة البضاعة في الموقع.",
+          "أصحاب الصيدليات والعيادات يبدأون هنا غالبًا عندما يريدون قائمة برمجيات واضحة قبل وحدة متخصصة.",
+          "فرق المشتريات تحتاج بنود موديل وترخيص تستطيع مقارنتها بعرض آخر.",
+        ],
+      },
+      {
+        heading: "من أول اتصال إلى الاستخدام اليومي",
+        body: [
+          "المعاينة تسأل عما تستخدمه اليوم، وكم شخصًا يحتاج مقعدًا، وأي تقارير تهم كل يوم.",
+          "التصميم وعرض السعر المفصّل يسردان كل منتج وترخيص، منفصلين عن الإعداد والتدريب.",
+          "التوريد يسلّم التراخيص المعتمدة ووسائط التثبيت أو الحسابات كما اتُفق في العرض.",
+          "الاختبار يفتح الشاشات الرئيسية معك، ليطابق المنتج ما رأيته في العرض.",
+          "التدريب يغطي المهام التي سيستخدمها فريقك في الأسبوع الأول.",
+          "الدعم المستمر جلسة محجوزة عندما تضيف مقاعد أو وحدات أو موقعًا جديدًا.",
+          "نورّد برمجيات مثبتة ومدعومة على نطاق واسع تُختار لموقعك، وتُسمَّى في القائمة التي تعتمدها.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "هل أشتري البرمجيات من غير تركيب أو تدريب؟",
+        a: "نعم. عرض السعر يسرد المنتجات والتراخيص وحدها. ويبقى الإعداد والتدريب خارج القائمة حتى تضيفهما. ويمكنك الاعتماد على فريق تقنية لديك أو تطلب منا العودة للتشغيل لاحقًا.",
+      },
+      {
+        q: "كيف يُحدَّد السعر؟",
+        a: "السعر يتبع المنتجات وعدد التراخيص أو المقاعد وأي إعداد أو تدريب تضيفه. وكل بند مكتوب لتعتمد فقط ما يحتاجه هذا المكتب أو المتجر. ولا نسعّر برقم حزمة واحد.",
+      },
+      {
+        q: "هل تعرضون البرنامج قبل الشراء؟",
+        a: "نعم. نمر على الشاشات التي تطابق عملك، مثل المبيعات أو المخزون أو الحسابات. وترى المنتج مع إجابات أسئلتك قبل إصدار الطلب. ثم يسمي عرض السعر البنود التي اعتمدتها تمامًا.",
+      },
+      {
+        q: "هل تورّدون البرمجيات للدمام كما للرياض؟",
+        a: "نعم. البرمجيات تُسعَّر لمواقع العاصمة والدمام والمنطقة الشرقية. والتوريد إلى مدن سعودية أخرى يُتفق عليه في العرض. واذكر المدينة وهل تحتاج تراخيص فقط أو تراخيص مع إعداد.",
+      },
+      {
+        q: "ماذا لو كانت لدينا قائمة برمجيات مبدئية؟",
+        a: "أرسلها مع أعداد المقاعد وأي وحدات اقترحها مورّد آخر. ونرد ببنود واضحة ونبيّن أي تغيير نراه لسير عملك مع السبب بجانبه. وتعتمد القائمة قبل إصدار أي طلب.",
+      },
+    ],
+  },
+  "pharmacy-software": {
+    h1: "برمجيات الصيدليات في الرياض",
+    seoTitle: "برمجيات الصيدليات في الرياض لمتجرك",
+    seoDescription:
+      "شغّل المخزون والمبيعات والكاونتر ببرمجيات صيدلية تُعاين لصيدليتك في الرياض. اطلب معاينة مجانية للموقع.",
+    related: ["pharmacy-hms", "erp", "software-sales"],
+    sections: [
+      {
+        heading: "برمجيات الصيدليات في الرياض حول الكاونتر والمخزن",
+        body: [
+          "الصيدلية المشغولة تحتاج مخزونًا يطابق الرف، ومبيعات تُغلق بوضوح، وتقارير يفتحها الصيدلي بلا عناء. برمجيات الصيدليات في الرياض تُعاين على هذه المهام اليومية ثم تُسعَّر وحدات تعتمدها.",
+          "ويحصل فريقك على حسابات وجولة قصيرة ونظام يتبع حركة الدواء من المخزن إلى الكاونتر.",
+        ],
+      },
+      {
+        heading: "ماذا يعيد النظام المناسب للصيدلية",
+        body: [
+          "مستويات المخزون تتبع المبيعات، فيبقى المخزن والكاونتر متوافقين.",
+          "المبيعات والمرتجعات تُسجَّل بطريقة يستطيع محاسبك متابعتها.",
+          "تقارير العمل اليومي والشهري تُفتح على الشاشات التي يستخدمها الموظفون.",
+          "حسابات المستخدمين تطابق من يبيع ومن يعدّل المخزون ومن يرى التكاليف.",
+        ],
+      },
+      {
+        heading: "صيدليات ومواقع تحتاج هذا",
+        body: [
+          "صيدليات الأحياء تحتاج سير عمل واضحًا للكاونتر والمخزن لواحدة أو اثنتين من نقاط البيع.",
+          "الصيدليات الأكبر تحتاج مخزونًا عبر الأرفف ومبيعاتًا تبقى دقيقة في ساعات الذروة.",
+          "صيدليات العيادات تحتاج مبيعات ومخزونًا يمكن أن يجلسا لاحقًا بجانب سجلات صحية مرتبطة.",
+          "المشتريات والملاك يحتاجون قائمة وحدات مكتوبة قبل دفع أي ترخيص.",
+        ],
+      },
+      {
+        heading: "من معاينة الصيدلية إلى التشغيل",
+        body: [
+          "المعاينة تراقب كيف تسير الوصفات ومبيعات العداد وجرد المخزون اليوم.",
+          "التصميم وعرض السعر المفصّل يسمّيان كل وحدة ومقعد، منفصلين عن التدريب.",
+          "التركيب يضبط البرنامج على الحواسيب أو الخوادم التي تعتمدها للصيدلية.",
+          "الاختبار يمر على بيع ومرتجع وتعديل مخزون بحضور موظفيك.",
+          "التدريب يغطي مهام الكاونتر والتقارير التي يفتحها الصيدلي أكثر.",
+          "الدعم المستمر جلسة محجوزة عندما تضيف نقطة بيع أو فرعًا أو وحدة جديدة.",
+          "نورّد برمجيات صيدلية مثبتة ومدعومة تُختار لموقعك وتُسمَّى في عرض السعر.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "هل يستبدل هذا طريقة البيع والجرد الحالية؟",
+        a: "المعاينة تبدأ من طريقة عملكم اليوم. وتُختار الوحدات لتطابق الكاونتر والمخزن، ثم تُعرض في عرض قصير قبل الاعتماد. ويركّز التدريب على المهام التي سيستخدمها فريقك في الأسبوع الأول، فيكون التغيير مخططًا لا مفاجئًا.",
+      },
+      {
+        q: "ما الذي يغيّر تكلفة برمجيات الصيدلية؟",
+        a: "التكلفة تتبع الوحدات التي تحتاجها وعدد المستخدمين أو نقاط البيع وأي تدريب أو إعداد بيانات تضيفه. وكل بند سطر في عرض السعر. وتعتمد فقط النطاق الذي تحتاجه هذه الصيدلية.",
+      },
+      {
+        q: "هل يستخدم النظام أكثر من صيدلي؟",
+        a: "نعم. تُنشأ حسابات لمن يبيع ومن يدير المخزون ومن يرى التقارير. وتُضبط الصلاحيات أثناء الإعداد وتُشرح في الجولة. وتُسعَّر المقاعد الإضافية عند الحاجة.",
+      },
+      {
+        q: "هل تغطون صيدليات الدمام؟",
+        a: "نعم. برمجيات الصيدليات تُعاين وتُسعَّر للرياض والدمام والمنطقة الشرقية. ومواقع مدن سعودية أخرى تُرتَّب عند الطلب. واذكر الحي وكم نقطة بيع لديكم.",
+      },
+      {
+        q: "هل يمكن الربط لاحقًا بنظام صحي أوسع؟",
+        a: "نعم. كثير من الصيدليات تبدأ بالمخزون والمبيعات ثم تضيف وحدات صحية مرتبطة عندما يكون الموقع جاهزًا. وإن توقعت هذا المسار يمكن أن يترك عرض السعر مجالًا له. وصفحة الصيدلية وHMS هي الخط المرتبط عندما يُحتاج الجانبان معًا.",
+      },
+    ],
+  },
+  erp: {
+    h1: "أنظمة تخطيط الموارد ERP في الرياض",
+    seoTitle: "أنظمة ERP في الرياض للشركات النامية",
+    seoDescription:
+      "اربط المخزون والمبيعات والمشتريات والحسابات في نظام ERP يُعاين لأعمالك في الرياض. اطلب معاينة مجانية للموقع.",
+    related: ["software-sales", "pharmacy-software", "computers"],
+    sections: [
+      {
+        heading: "أنظمة ERP في الرياض تتبع طريقة عملك الحالية",
+        body: [
+          "مخزون في ملف ومبيعات في آخر وحسابات لا تتطابق تكلف وقتًا كل شهر. أنظمة ERP في الرياض تضع هذه الخطوات في قاعدة بيانات واحدة تُعاين على العمليات التي تديرها اليوم.",
+          "والوحدات تُسعَّر بنودًا مستقلة، فيعتمد المديرون المخزون والمبيعات والمشتريات والحسابات بنطاق واضح قبل التشغيل.",
+        ],
+      },
+      {
+        heading: "ماذا يعطي ERP المترابط فرقك",
+        body: [
+          "المبيعات تحدّث المخزون في النظام نفسه الذي تفتحه فرق المستودع والحسابات.",
+          "المشتريات والمورّدون يجلسان بجانب المخزون الذي يغذيانه، بمسار طلب واضح.",
+          "المديرون يرون التقارير من غير انتظار ثلاثة أشخاص لدمج جداول.",
+          "صلاحيات المستخدمين تبقي المشغّلين على مهامهم والمديرين على الأرقام التي يحتاجونها.",
+        ],
+      },
+      {
+        heading: "أعمال تحجز معاينة ERP",
+        body: [
+          "شركات التجارة تحتاج مخزونًا ومبيعات وحسابات تبقى متوافقة عبر الأسبوع.",
+          "المستودعات والموزعون يحتاجون مشتريات ومخزونًا يطابقان ما خرج من الرصيف.",
+          "تجار التجزئة متعددو الفروع يحتاجون قاعدة واحدة وصلاحيات واضحة لكل فرع.",
+          "المكاتب النامية تحتاج ترك الجداول المتفرقة عندما يرتفع عدد المقاعد والحجم.",
+        ],
+      },
+      {
+        heading: "من خريطة العمليات إلى الوحدات الحية",
+        body: [
+          "المعاينة ترسم كيف تسير الطلبات وحركة المخزون والمشتريات وإقفال الحسابات اليوم.",
+          "التصميم وعرض السعر المفصّل يسردان كل وحدة وصلاحية مستخدم تعتمدها.",
+          "التركيب يضبط قاعدة البيانات وصلاحية الدخول على الأجهزة التي توفّرها أو تشتريها معنا.",
+          "الاختبار يمر على بيع وحركة مخزون وفحص حسابات بسيط مع مديرك.",
+          "التدريب يُقدَّم حسب الفريق، فيرى المشغّلون والمديرون شاشاتهم.",
+          "الدعم المستمر جلسة محجوزة عندما تضيف فرعًا أو وحدة أو مستخدمين.",
+          "نورّد برمجيات ERP مثبتة ومدعومة تُختار لموقعك وتُسمَّى في عرض السعر.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "كم يستغرق مشروع ERP؟",
+        a: "مكتب تجاري صغير بعدد مستخدمين قليل مسار أقصر بعد الاتفاق على الوحدات. وتجهيز متعدد الفروع أو المستودعات يأخذ وقتًا أطول لأن البيانات والتدريب يتبعان المعاينة. ويتضمن عرض السعر جدولة عملية قبل بدء التشغيل.",
+      },
+      {
+        q: "ما الذي يغيّر تكلفة نظام ERP؟",
+        a: "التكلفة تتبع الوحدات وعدد المستخدمين وأي إعداد بيانات أو تدريب تضيفه. وكل بند مكتوب في سطره. وتعتمد فقط العمليات التي يحتاجها العمل الآن، ويمكن إضافة وحدات لاحقًا بعرض جديد.",
+      },
+      {
+        q: "هل نبدأ بالمخزون والمبيعات فقط؟",
+        a: "نعم. كثير من المواقع تبدأ بالوحدات التي تؤلم أكثر اليوم، ثم تضيف المشتريات أو الحسابات عندما تستقر الفرق الأولى. ويُظهر عرض السعر ما في المرحلة الأولى وما يمكن تأجيله. وتبقى قاعدة البيانات واحدة مع نموكم.",
+      },
+      {
+        q: "هل تطبقون ERP في الدمام؟",
+        a: "نعم. معاينات ERP ودعم التشغيل يغطيان الرياض والدمام والمنطقة الشرقية. ومدن سعودية أخرى تُرتَّب عند الطلب. واذكر أين يقع المقر والفروع في أول اتصال.",
+      },
+      {
+        q: "هل تعمل أجهزة الحاسب الحالية مع ERP؟",
+        a: "غالبًا نعم، بعد فحص الحواسيب والشبكة أثناء المعاينة. وإذا احتاج مكتب أو خادم ترقية ظهرت كبند مستقل، أو تستخدم نطاق أجهزة الحاسب والتمديد لدينا. ويبقى عرض ERP مركّزًا على البرمجيات والإعداد الذي تعتمده.",
+      },
+    ],
+  },
+  "pharmacy-hms": {
+    h1: "برمجيات الصيدلية وHMS في الرياض",
+    seoTitle: "برمجيات الصيدلية وHMS في الرياض",
+    seoDescription:
+      "برمجيات صيدلية مع نظام إدارة المستشفيات HMS للعيادات في الرياض، بمعاينة وعرض سعر واضح. اطلب معاينة مجانية للموقع.",
+    related: ["pharmacy-software", "erp", "software-sales"],
+    sections: [
+      {
+        heading: "برمجيات الصيدلية وHMS في الرياض للعيادات والمستشفيات",
+        body: [
+          "HMS يعني نظام إدارة المستشفيات: سجلات المرضى والمواعيد ومكاتب العيادة في مكان واحد. وبرمجيات الصيدلية وHMS في الرياض تربط ذلك بكاونتر الصيدلية والمخزن عندما يصرف الموقع الأدوية أيضًا.",
+          "والموظفون الذين يبيعون ويديرون المخزون ويتعاملون مع سجلات المرضى يحصل كل منهم على الحسابات والتدريب الذي يحتاجه.",
+        ],
+      },
+      {
+        heading: "ماذا تقدّم الصيدلية وHMS معًا",
+        body: [
+          "مبيعات الكاونتر والمخزون تبقيان دقيقين لأرضية الصيدلية.",
+          "سجلات المرضى في المستشفى تجلس بجانب وحدات الصيدلية عندما يحتاج الموقع الجانبين.",
+          "التقارير تغطي يوم الصيدلية والجانب السريري الذي يراجعه المديرون.",
+          "عرض سعر واحد يسمي كل وحدة، فترى النطاق كاملًا قبل التشغيل.",
+        ],
+      },
+      {
+        heading: "مواقع تحتاج الصيدلية وHMS معًا",
+        body: [
+          "الصيدليات الملحقة بالعيادات تحتاج مخزونًا ومبيعات مربوطة بمسارات المرضى المرتبطة.",
+          "الصيدليات المستقلة التي تخطط لربط صحي تحتاج مسارًا يمكن أن ينمو إلى وحدات HMS.",
+          "المراكز الصحية الصغيرة ذات كاونتر صرف تحتاج الجانبين في خطة زيارة واحدة.",
+          "الملاك والمشتريات يحتاجون قائمة وحدات مكتوبة قبل حجز التراخيص والتدريب.",
+        ],
+      },
+      {
+        heading: "من المعاينة المشتركة إلى الفرق المدرَّبة",
+        body: [
+          "المعاينة تمشي على كاونتر الصيدلية والمخزن ومكاتب الرعاية التي يجب أن تشارك البيانات.",
+          "التصميم وعرض السعر المفصّل يسردان وحدات الصيدلية ووحدات HMS بنودًا مستقلة.",
+          "التركيب يضبط البرمجيات المعتمدة على الحواسيب أو الخوادم المسماة للموقع.",
+          "الاختبار يشغّل بيع صيدلية وخطوة سجل مرتبط مع أصحاب كل مهمة.",
+          "التدريب يُقسَّم حسب الدور، فيرى موظفو الصيدلية والمستخدمون السريريون شاشاتهم.",
+          "الدعم المستمر جلسة محجوزة عندما تضيف نقطة بيع أو مكتب عيادة أو وحدة جديدة.",
+          "نورّد برمجيات صيدلية وHMS مثبتة ومدعومة تُختار لموقعك وتُسمَّى في عرض السعر.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "هل هذا مثل برمجيات الصيدلية وحدها؟",
+        a: "برمجيات الصيدلية تركّز على المخزون والمبيعات عند الكاونتر. والصيدلية وHMS تضيف الوحدات الصحية المرتبطة عندما يحتاج الموقع الجانبين. ويمكنك البدء بالصيدلية فقط ثم إضافة HMS لاحقًا، أو تسعير الاثنين معًا بعد المعاينة. وصفحة برمجيات الصيدليات تغطي مسار الكاونتر أولًا.",
+      },
+      {
+        q: "ما الذي يغيّر تكلفة الصيدلية وHMS؟",
+        a: "التكلفة تتبع وحدات الصيدلية وHMS التي تعتمدها وعدد المستخدمين في كل جانب وأي تدريب أو إعداد بيانات تضيفه. والبنود مكتوبة منفصلة. وتدفع مقابل النطاق الذي تحتاجه هذه الصيدلية أو العيادة فعلًا.",
+      },
+      {
+        q: "هل يشارك موظفو الصيدلية والطاقم السريري نظامًا واحدًا؟",
+        a: "نعم. تُضبط الحسابات والصلاحيات ليرى كل شخص الشاشات التي تطابق عمله. ويُقدَّم التدريب حسب الفريق. وتسجّل المعاينة من يبيع ومن يعدّل المخزون ومن يتعامل مع السجلات المرتبطة قبل التشغيل.",
+      },
+      {
+        q: "هل تغطون صيدليات وعيادات الدمام؟",
+        a: "نعم. معاينات الصيدلية وHMS تغطي الرياض والدمام والمنطقة الشرقية. ومدن سعودية أخرى تُرتَّب عند الطلب. واذكر إن كان الموقع صيدلية أو عيادة بكاونتر أو الاثنين في المبنى نفسه.",
+      },
+      {
+        q: "ماذا نجهّز للمعاينة؟",
+        a: "صف كيف تسير الوصفات ومبيعات العداد، وكيف يُجرد المخزون، وأي سجلات صحية يجب ربطها. ورسم بسيط للكاونتر ومكاتب العيادة يساعد. وأعداد مقاعد الصيدلية والمستخدمين السريريين تجعل عرض السعر دقيقًا من أول مرة.",
       },
     ],
   },

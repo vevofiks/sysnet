@@ -48,12 +48,12 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       <PageHero
         title={t.servicesPage.title}
         lede={t.servicesPage.lede}
-        badge={rtl ? "١١ نطاقاً هندسياً معتمداً" : "11 Certified Installation Lines"}
+        badge={rtl ? "١٥ خط خدمة" : "15 Service Lines"}
         image="/images/network-switchers.jpg"
         stats={[
-          { label: rtl ? "نطاقات العمل" : "Installation Lines", value: rtl ? "١١ تخصصاً متكاملاً" : "11 Complete Scopes" },
+          { label: rtl ? "نطاقات العمل" : "Service Lines", value: rtl ? "١٥ نطاقًا متكاملًا" : "15 Complete Scopes" },
           { label: rtl ? "نموذج التعاقد" : "Contractor Model", value: rtl ? "فريق عمل موحد" : "Single Unified Crew" },
-          { label: rtl ? "الضمان والتسليم" : "Handover Quality", value: rtl ? "ورقة فحص وكلمات مرور" : "Tested & Documented" },
+          { label: rtl ? "التسليم" : "Handover Quality", value: rtl ? "توثيق وتدريب الفريق" : "Documented & Trained" },
         ]}
       />
 
@@ -62,7 +62,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         services={services}
         locale={locale}
         seeScopeText={t.priced.seeScope}
-        heading={rtl ? "جميع خطوط الخدمة المنفذة في الرياض" : "All 11 Installation & Maintenance Scopes"}
+        heading={rtl ? "جميع خطوط الخدمة في الرياض" : "All 15 Service Scopes"}
         catalogSubtitle={
           rtl
             ? "اختر النطاق الذي يناسب مبناك للحصول على تفاصيل المواصفات وما تشمله المعاينة وما يتم تسليمه لإدارة المبنى."

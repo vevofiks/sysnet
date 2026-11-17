@@ -25,7 +25,7 @@ export function GET(request: Request) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div style={{ fontSize: 64, lineHeight: 1.1, maxWidth: 980 }}>{title}</div>
-          <div style={{ fontSize: 28, color: "#ffd7cc" }}>Adam Al Arabia Company · Riyadh</div>
+          <div style={{ fontSize: 28, color: "#ffd7cc" }}>Sysnet Technologies · Riyadh</div>
         </div>
       </div>
     ),

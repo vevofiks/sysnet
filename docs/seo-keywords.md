@@ -17,7 +17,7 @@ English pages live at `/en/...`. Arabic pages live at `/ar/...`. Unprefixed path
 | | English | Arabic |
 | --- | --- | --- |
 | Primary | CCTV installation company in Riyadh | شركة تركيب كاميرات مراقبة في الرياض |
-| Secondary | Adam Al Arabia Company; Malaz security installer; ELV contractor Riyadh; Sysnet Technology | شركة آدم العربية; مقاول تيار خفيف الرياض; سيسنت |
+| Secondary | Sysnet Technologies; Malaz security installer; ELV contractor Riyadh; Sysnet Technology | سيسنت تكنولوجيز; مقاول تيار خفيف الرياض; سيسنت |
 | Questions | Who owns Sysnet? Where is the desk? Which phone number is the real one? | من هي سيسنت؟ أين المكتب؟ ما رقم الهاتف؟ |
 
 ## Services index

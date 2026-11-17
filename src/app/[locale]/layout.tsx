@@ -84,9 +84,9 @@ export async function generateMetadata({
       alternateLocale: locale === "ar" ? ["en_SA"] : ["ar_SA"],
       type: "website",
     },
-    authors: [{ name: "Sysnet - Adam Al Arabia Company", url: company.url }],
+    authors: [{ name: "Sysnet Technologies", url: company.url }],
     creator: "Sysnet Technology",
-    publisher: "Sysnet - Adam Al Arabia Company",
+    publisher: "Sysnet Technologies",
     category: "Low Current & Security Systems",
     manifest: "/manifest.webmanifest",
     icons: {

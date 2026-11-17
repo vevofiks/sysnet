@@ -5,7 +5,7 @@ Do this after the site is on https://www.sysnet-ksa.com. The markets are Saudi A
 ## Google Business Profile
 
 - Create or claim one profile for the Malaz office, with Riyadh and Dammam as the service area.
-- Name: Sysnet. Legal name in the description: Adam Al Arabia Company.
+- Name: Sysnet. Legal name in the description: Sysnet Technologies.
 - Category: start with Security system supplier, then add relevant secondaries such as Fire alarm supplier and Low voltage contractor if Google offers them.
 - Address: the real street and building, not only "Malaz". The site still does not have a street number. Add the pin on the exact door.
 - Phone: +966 53 298 0149. Hours: Saturday–Thursday 09:00–18:00. Friday closed.

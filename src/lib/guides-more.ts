@@ -126,6 +126,50 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
         },
       ],
     },
+    "software-sales": {
+      sections: [
+        {
+          heading: "Where we supply software, and how to book",
+          body: [
+            "Software quotes in Riyadh cover offices in Olaya and along King Fahd Road, and stores across the city. Dammam and the Eastern Province are on the same list. Other Saudi cities are arranged on the quotation.",
+            "A clear software list saves a round of wrong licences. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    "pharmacy-software": {
+      sections: [
+        {
+          heading: "Where we survey pharmacy software, and how to book",
+          body: [
+            "Pharmacy software surveys in Riyadh cover neighbourhood pharmacies and clinic counters across Malaz, Olaya, and nearby districts. Dammam and the Eastern Province are included. Other Saudi cities are booked on request.",
+            "Tell us how many tills you run and the quotation will match the counter. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    erp: {
+      sections: [
+        {
+          heading: "Where we survey ERP projects, and how to book",
+          body: [
+            "ERP surveys in Riyadh are most often trading offices in Olaya, warehouses in Al Sulay, and multi-branch retailers across the city. Dammam and the Eastern Province follow the same method. Elsewhere in Saudi Arabia, ask and we will set the visit.",
+            "Map the processes that slow you down and the modules will match those steps. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    "pharmacy-hms": {
+      sections: [
+        {
+          heading: "Where we survey Pharmacy and HMS, and how to book",
+          body: [
+            "Pharmacy and Hospital Management System (HMS) surveys in Riyadh cover pharmacies beside clinics, and small healthcare centres with a dispensing counter, including Malaz and Olaya. Dammam and the Eastern Province are covered too. Other Saudi cities are arranged on request.",
+            "Say whether you need pharmacy only, HMS only, or both on one visit. Call or WhatsApp +966 53 298 0149, or email sales@sysnet-ksa.com, Saturday–Thursday, 9:00–18:00.",
+          ],
+        },
+      ],
+    },
   },
   ar: {
     cctv: {
@@ -245,6 +289,50 @@ export const guideExtras: Record<Locale, Record<string, Extra>> = {
           body: [
             "زيارات الإصلاح تشمل المكاتب والفلل والعيادات والساحات في الملز والعليا والسلي، إضافة إلى الدمام والمنطقة الشرقية. وإذا كان الموقع في مدينة أخرى بالسعودية فاذكر ذلك عند الحجز لنؤكد الزيارة.",
             "صف ما الذي توقف، وجهّز كلمات المرور إن كانت لديك. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    "software-sales": {
+      sections: [
+        {
+          heading: "مناطق توريد البرمجيات وكيف تحجز",
+          body: [
+            "عروض البرمجيات في الرياض تغطي مكاتب العليا وطريق الملك فهد ومتاجر المدينة. الدمام والمنطقة الشرقية على القائمة نفسها. ومدن السعودية الأخرى تُرتَّب في عرض السعر.",
+            "قائمة برمجيات واضحة تختصر دورة تراخيص خاطئة. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    "pharmacy-software": {
+      sections: [
+        {
+          heading: "مناطق معاينة برمجيات الصيدليات وكيف تحجز",
+          body: [
+            "معاينات برمجيات الصيدليات في الرياض تغطي صيدليات الأحياء وكاونترات العيادات في الملز والعليا والأحياء القريبة. الدمام والمنطقة الشرقية مشمولتان. ومدن سعودية أخرى تُحجز عند الطلب.",
+            "أخبرنا بعدد نقاط البيع ليطابق عرض السعر الكاونتر. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    erp: {
+      sections: [
+        {
+          heading: "مناطق معاينة مشاريع ERP وكيف تحجز",
+          body: [
+            "معاينات ERP في الرياض تكون غالبًا لمكاتب تجارية في العليا ومستودعات في السلي وتجار تجزئة متعددي الفروع عبر المدينة. الدمام والمنطقة الشرقية بالطريقة نفسها. وفي بقية السعودية اطلب الزيارة ونحددها.",
+            "ارسم العمليات التي تبطئكم لتطابق الوحدات هذه الخطوات. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
+          ],
+        },
+      ],
+    },
+    "pharmacy-hms": {
+      sections: [
+        {
+          heading: "مناطق معاينة الصيدلية وHMS وكيف تحجز",
+          body: [
+            "معاينات الصيدلية ونظام إدارة المستشفيات HMS في الرياض تغطي الصيدليات المجاورة للعيادات والمراكز الصحية الصغيرة ذات كاونتر صرف، ومنها الملز والعليا. الدمام والمنطقة الشرقية مشمولتان أيضًا. ومدن سعودية أخرى تُرتَّب عند الطلب.",
+            "اذكر إن كنت تحتاج الصيدلية فقط أو HMS فقط أو الاثنين في زيارة واحدة. اتصل أو راسلنا على واتساب \u200e+966 53 298 0149، أو عبر البريد sales@sysnet-ksa.com، من السبت إلى الخميس، 9:00–18:00.",
           ],
         },
       ],

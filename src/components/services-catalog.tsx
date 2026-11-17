@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Layers, Search, Shield, Wrench, X, Phone } from "lucide-react";
+import { AppWindow, ArrowRight, CheckCircle2, Layers, Search, Shield, Wrench, X, Phone } from "lucide-react";
 import { Photo, ServiceIcon } from "@/components/brand";
 import type { Locale } from "@/lib/locale";
 import { localePath } from "@/lib/paths";
@@ -21,7 +21,9 @@ export type ServiceItem = {
   highlight?: boolean;
 };
 
-const categoryMap: Record<string, "surveillance" | "infrastructure" | "safety"> = {
+type ServiceCategory = "surveillance" | "infrastructure" | "safety" | "software";
+
+const categoryMap: Record<string, ServiceCategory> = {
   cctv: "surveillance",
   intercom: "surveillance",
   access: "surveillance",
@@ -33,6 +35,10 @@ const categoryMap: Record<string, "surveillance" | "infrastructure" | "safety"> 
   "fire-alarm": "safety",
   "fire-safety": "safety",
   maintenance: "safety",
+  "software-sales": "software",
+  "pharmacy-software": "software",
+  erp: "software",
+  "pharmacy-hms": "software",
 };
 
 export function ServicesCatalog({
@@ -60,7 +66,7 @@ export function ServicesCatalog({
   cctvSubtitle: string;
   cablingSubtitle: string;
 }) {
-  const [activeCategory, setActiveCategory] = useState<"all" | "surveillance" | "infrastructure" | "safety">("all");
+  const [activeCategory, setActiveCategory] = useState<"all" | ServiceCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputId = useId();
   const rtl = locale === "ar";
@@ -69,8 +75,8 @@ export function ServicesCatalog({
     { label: rtl ? "تمديد شبكات" : "Network Cabling", query: rtl ? "شبكات" : "cabling" },
     { label: rtl ? "التركيب والصيانة" : "Installation & Maintenance", query: rtl ? "صيانة" : "maintenance" },
     { label: rtl ? "كاميرات مراقبة" : "CCTV Cameras", query: rtl ? "كاميرات" : "cctv" },
-    { label: rtl ? "تحكم بالدخول" : "Access Control", query: rtl ? "بصمة" : "access" },
-    { label: rtl ? "إنذار حريق" : "Fire Alarms", query: rtl ? "حريق" : "fire" },
+    { label: rtl ? "برمجيات ERP" : "ERP Software", query: rtl ? "erp" : "erp" },
+    { label: rtl ? "برمجيات الصيدليات" : "Pharmacy Software", query: rtl ? "صيدل" : "pharmacy" },
   ];
 
   const query = searchQuery.trim().toLowerCase();
@@ -94,6 +100,7 @@ export function ServicesCatalog({
     surveillance: services.filter((s) => categoryMap[s.slug] === "surveillance").length,
     infrastructure: services.filter((s) => categoryMap[s.slug] === "infrastructure").length,
     safety: services.filter((s) => categoryMap[s.slug] === "safety").length,
+    software: services.filter((s) => categoryMap[s.slug] === "software").length,
   };
 
   const categories = [
@@ -121,12 +128,18 @@ export function ServicesCatalog({
       icon: CheckCircle2,
       count: counts.safety,
     },
+    {
+      id: "software" as const,
+      label: rtl ? `البرمجيات والأنظمة (${counts.software})` : `Software & Systems (${counts.software})`,
+      icon: AppWindow,
+      count: counts.software,
+    },
   ];
 
   const cctvService = services.find((s) => s.slug === "cctv");
   const cablingService = services.find((s) => s.slug === "cabling");
 
-  function handleCategoryClick(categoryId: "all" | "surveillance" | "infrastructure" | "safety") {
+  function handleCategoryClick(categoryId: "all" | ServiceCategory) {
     setActiveCategory(categoryId);
     if (categoryId !== "all") {
       const element = document.getElementById("scopes-catalog");
@@ -459,7 +472,7 @@ export function ServicesCatalog({
                     <h3 className="text-xl font-medium tracking-normal text-ink group-hover:text-navy">
                       {service.title}
                     </h3>
-                    <p className="mt-2 text-xs font-mono uppercase tracking-wider text-orange-deep">
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
                       {service.detail}
                     </p>
                     <p className="mt-3 flex-1 text-sm leading-relaxed text-muted line-clamp-3">

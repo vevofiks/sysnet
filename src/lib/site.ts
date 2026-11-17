@@ -1,6 +1,6 @@
 export const company = {
   name: "Sysnet",
-  legal: "Adam Al Arabia Company",
+  legal: "Sysnet Technologies",
   phoneDisplay: "+966 53 298 0149",
   phoneTel: "+966532980149",
   whatsapp: "966532980149",
@@ -158,6 +158,46 @@ export const services: Service[] = [
     image: "/images/maintenance2.jpg",
     alt: "Field systems technician using digital multimeter to test and verify control panel circuits",
   },
+  {
+    slug: "software-sales",
+    title: "Software Sales",
+    icon: "software-sales",
+    summary: "Licensed business software quoted as clear lines you can approve before purchase.",
+    detail:
+      "You receive a written list of the software lines for your office or store, with each product and licence as its own item. Training and setup stay separate until you add them, so procurement can compare and approve before anything is ordered.",
+    image: "/images/software-sales.jpg",
+    alt: "Laptop on an office desk showing a business software dashboard",
+  },
+  {
+    slug: "pharmacy-software",
+    title: "Pharmacy Software",
+    icon: "pharmacy-software",
+    summary: "Pharmacy software for stock, sales, and daily counter work in Riyadh pharmacies.",
+    detail:
+      "We survey how your pharmacy sells and stores medicines, then quote software that matches those workflows. Stock, sales, and the reports you need sit in one system your team can use after a short walkthrough.",
+    image: "/images/pharmacy-software.jpg",
+    alt: "Pharmacist at a pharmacy counter using pharmacy management software",
+  },
+  {
+    slug: "erp",
+    title: "ERP",
+    icon: "erp",
+    summary: "ERP software that links stock, sales, and accounts for your Riyadh business.",
+    detail:
+      "An ERP survey maps the processes you already run, then quotes modules that match those steps. Stock, sales, purchasing, and accounts share one database, with a written scope your managers can approve before go-live.",
+    image: "/images/erp-software.png",
+    alt: "Hands typing on a laptop with an ERP software dashboard overlay",
+  },
+  {
+    slug: "pharmacy-hms",
+    title: "Pharmacy & HMS",
+    icon: "pharmacy-hms",
+    summary: "Pharmacy software plus hospital management (HMS) for clinics and healthcare sites.",
+    detail:
+      "Pharmacy & HMS means pharmacy counter software together with a Hospital Management System for clinics and hospitals. We survey the pharmacy or healthcare site, quote both sides in clear lines, and train the teams who will use it every day.",
+    image: "/images/pharmacy-hms.png",
+    alt: "Healthcare staff using hospital management software on dual monitors",
+  },
 ];
 
 export const industries = [
@@ -283,7 +323,7 @@ export const faqs = [
 ];
 
 export const stats = [
-  { value: 11, suffix: "", label: "Service lines on the list" },
+  { value: 15, suffix: "", label: "Service lines on the list" },
   { value: 46, suffix: "", label: "Data points on a recent Olaya fit-out" },
   { value: 22, suffix: "", label: "Cameras on a typical Al Sulay store scope" },
 ];

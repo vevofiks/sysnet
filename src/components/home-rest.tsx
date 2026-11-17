@@ -64,7 +64,7 @@ export function HomeRest({ locale }: { locale: Locale }) {
         <div className="relative">
           <Fade className="group relative min-h-[440px] overflow-hidden rounded-[24px] border border-line bg-navy-deep shadow-lift">
             <Photo
-              src="/images/cctv.jpg"
+              src="/images/crew-cctv-pole.png"
               alt={t.crew.alt}
               sizes="(min-width: 768px) 45vw, 100vw"
               className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"

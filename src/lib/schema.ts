@@ -45,9 +45,9 @@ export function localBusinessNode(locale: Locale) {
     "@type": ["LocalBusiness", "SecurityService", "ProfessionalService"],
     "@id": BUSINESS_ID,
     name: isAr ? "سيسنت للتكنولوجيا" : "Sysnet Technology",
-    legalName: isAr ? "سيسنت - شركة آدم العربية" : "Sysnet - Adam Al Arabia Company",
+    legalName: isAr ? "سيسنت تكنولوجيز" : "Sysnet Technologies",
     alternateName: isAr
-      ? ["سيسنت", "سيسنت الرياض", "شركة آدم العربية"]
+      ? ["سيسنت", "سيسنت الرياض", "سيسنت تكنولوجيز"]
       : ["Sysnet", "Sysnet KSA", "Sysnet Riyadh", company.legal],
     url: company.url,
     telephone: company.phoneTel,

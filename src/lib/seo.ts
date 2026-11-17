@@ -39,9 +39,9 @@ export function pageMeta({
     title,
     description,
     ...(keywords && keywords.length > 0 ? { keywords } : {}),
-    authors: [{ name: "Sysnet - Adam Al Arabia Company", url: company.url }],
+    authors: [{ name: "Sysnet Technologies", url: company.url }],
     creator: "Sysnet Technology",
-    publisher: "Sysnet - Adam Al Arabia Company",
+    publisher: "Sysnet Technologies",
     category,
     manifest: "/manifest.webmanifest",
     icons: {

@@ -20,10 +20,10 @@ export const en = {
       "Certified low current contractor in Riyadh & Dammam. We install CCTV, Cat6 structured cabling, biometric access control, and fire alarms with same-day Malaz survey dispatch. Call +966 53 298 0149.",
     aboutTitle: "About Sysnet | Low Current & Security Systems Contractor Riyadh",
     aboutDescription:
-      "Sysnet is Adam Al Arabia Company. Engineering crews deploy from Malaz to survey and install CCTV, fire alarm, and structured cabling across Riyadh & Dammam.",
+      "Sysnet Technologies. Engineering crews deploy from Malaz to survey and install CCTV, fire alarm, and structured cabling across Riyadh & Dammam.",
     servicesTitle: "Low Current & Security Systems Services in Riyadh | Sysnet",
     servicesDescription:
-      "Explore 11 certified services: commercial CCTV cameras, Cat6 network cabling, biometric access control, video intercoms, fire alarms, and maintenance contracts in Riyadh.",
+      "Explore 15 services: CCTV, cabling, access control, fire alarms, maintenance, ERP, pharmacy software, and more in Riyadh.",
     projectsTitle: "Verified CCTV & Structured Cabling Projects in Riyadh | Sysnet",
     projectsDescription:
       "Review verified low current installations across Riyadh: warehouse CCTV in Al Sulay, Cat6 cabling in Olaya, villa intercoms in Malaz, and clinic fire alarm panels.",
@@ -77,14 +77,14 @@ export const en = {
     allServices: "All services",
   },
   company: {
-    legal: "Adam Al Arabia Company",
+    legal: "Sysnet Technologies",
     address: "Malaz, Riyadh, Saudi Arabia",
     hours: "Saturday–Thursday, 9:00–18:00",
-    copyright: "© 2026 Sysnet. Adam Al Arabia Company.",
+    copyright: "© 2026 Sysnet Technologies.",
   },
   hero: {
     title: "CCTV installation for Riyadh buildings.",
-    lede: "Sysnet, of Adam Al Arabia, surveys the site, writes the parts list, and installs CCTV, intercom, fire alarm, and network cable. The office is in Malaz.",
+    lede: "Sysnet Technologies surveys the site, writes the parts list, and installs CCTV, intercom, fire alarm, and network cable. The office is in Malaz.",
     explore: "Explore services",
     contact: "Contact us",
     photoAlt: "Two bullet cameras with conduit and junction boxes on a concrete wall",
@@ -99,14 +99,14 @@ export const en = {
   },
   crew: {
     title: "One crew for the camera, the alarm, and the cable.",
-    body: "Facility managers and villa owners in Riyadh often end up with three contractors who will not share a cabinet. Sysnet puts CCTV, intrusion, fire alarm, access control, and structured cabling on one drawing and one visit plan. Adam Al Arabia Company. Desk in Malaz, Riyadh, Saudi Arabia.",
+    body: "Facility managers and villa owners in Riyadh often end up with three contractors who will not share a cabinet. Sysnet puts CCTV, intrusion, fire alarm, access control, and structured cabling on one drawing and one visit plan. Sysnet Technologies. Desk in Malaz, Riyadh, Saudi Arabia.",
     points: [
       "Floor plan marked before hardware is ordered",
       "Recorders, readers, and patch panels in one cabinet",
       "Handover with labels, passwords, and a test sheet",
       "Camera and alarm alerts go to the building admin",
     ],
-    alt: "White dome camera with two antennas mounted on an exterior wall",
+    alt: "Two white outdoor CCTV cameras mounted on a pole with conduit",
   },
   sectorsTitle: "Booked across offices, yards, and villas.",
   industries: [
@@ -135,7 +135,7 @@ export const en = {
     title: "Priced as a scope, not a shelf of boxes.",
     lede: "Pick the line that matches the building. If the job needs cameras, a fire panel, and cable, the survey covers all three in one visit.",
     seeScope: "See this scope",
-    allLines: "All 11 service lines",
+    allLines: "All 15 service lines",
     parts: "Ask for a parts list",
   },
   stepsTitle: "Five steps from the phone call to the test report.",
@@ -410,6 +410,82 @@ export const en = {
         "A test alert on the phones you named",
       ],
     },
+    "software-sales": {
+      title: "Software Sales",
+      summary: "Licensed business software quoted as clear lines you can approve before purchase.",
+      detail:
+        "You receive a written list of the software lines for your office or store, with each product and licence as its own item. Training and setup stay separate until you add them, so procurement can compare and approve before anything is ordered.",
+      alt: "Laptop on an office desk showing a business software dashboard",
+      includes: [
+        "A written list of software products and licences",
+        "Each line priced so procurement can compare",
+        "Setup and training listed separately when needed",
+        "A short demo of the software you are considering",
+        "Supply for offices and stores in Riyadh and Dammam",
+      ],
+      leaves: [
+        "The approved software list",
+        "Licence details for each product",
+        "A short walkthrough for your team",
+      ],
+    },
+    "pharmacy-software": {
+      title: "Pharmacy Software",
+      summary: "Pharmacy software for stock, sales, and daily counter work in Riyadh pharmacies.",
+      detail:
+        "We survey how your pharmacy sells and stores medicines, then quote software that matches those workflows. Stock, sales, and the reports you need sit in one system your team can use after a short walkthrough.",
+      alt: "Pharmacist at a pharmacy counter using pharmacy management software",
+      includes: [
+        "A survey of counter, store, and sales workflows",
+        "Stock and sales modules matched to your pharmacy",
+        "Reports your pharmacist can open every day",
+        "User accounts for the people who run the counter",
+        "Training on the tasks your team uses most",
+      ],
+      leaves: [
+        "Admin passwords and user accounts",
+        "A short walkthrough for pharmacy staff",
+        "A written note of the modules you approved",
+      ],
+    },
+    erp: {
+      title: "ERP",
+      summary: "ERP software that links stock, sales, and accounts for your Riyadh business.",
+      detail:
+        "An ERP survey maps the processes you already run, then quotes modules that match those steps. Stock, sales, purchasing, and accounts share one database, with a written scope your managers can approve before go-live.",
+      alt: "Hands typing on a laptop with an ERP software dashboard overlay",
+      includes: [
+        "A survey of stock, sales, purchasing, and accounts",
+        "Modules quoted as separate lines you can approve",
+        "One shared database for the teams that need it",
+        "User roles for managers and daily operators",
+        "Training before the system goes live",
+      ],
+      leaves: [
+        "Admin access and user roles",
+        "A written module list you approved",
+        "A short walkthrough for each team",
+      ],
+    },
+    "pharmacy-hms": {
+      title: "Pharmacy & HMS",
+      summary: "Pharmacy software plus hospital management (HMS) for clinics and healthcare sites.",
+      detail:
+        "Pharmacy & HMS means pharmacy counter software together with a Hospital Management System for clinics and hospitals. We survey the pharmacy or healthcare site, quote both sides in clear lines, and train the teams who will use it every day.",
+      alt: "Healthcare staff using hospital management software on dual monitors",
+      includes: [
+        "Pharmacy and HMS modules on one quotation",
+        "A survey of the pharmacy or clinic workflows",
+        "Stock, sales, and hospital patient records",
+        "User accounts for pharmacy and clinical staff",
+        "Training for the teams who work the system",
+      ],
+      leaves: [
+        "Admin passwords and user accounts",
+        "A module list matched to your site",
+        "A short walkthrough for your teams",
+      ],
+    },
   },
 
   projects: {
@@ -453,12 +529,12 @@ export const en = {
   ],
   about: {
     title: "CCTV installation from a Malaz office.",
-    lede: "Sysnet is the name on the van and the invoice. The company is Adam Al Arabia. The work is cameras, alarms, access control, and the cable that joins them.",
+    lede: "Sysnet Technologies is the name on the van and the invoice. The work is cameras, alarms, access control, and the cable that joins them.",
     heading: "Based in Riyadh, not a catalogue with a PO box.",
     p1: "The office is in Malaz. Calls go to +966 53 298 0149. Mail goes to sales@sysnet-ksa.com. Survey crews cover the city: Olaya towers, villas in the north, and stores in Al Sulay.",
     p2: "Procurement teams get a parts list they can read. Facility managers get one cabinet instead of three vendors pointing at each other. Homeowners get a gate station that rings a monitor inside the house.",
     rows: [
-      ["Company", "Adam Al Arabia Company"],
+      ["Company", "Sysnet Technologies"],
       ["Desk", "Malaz, Riyadh, Saudi Arabia"],
       ["Hours", "Saturday–Thursday, 9:00–18:00"],
     ],
