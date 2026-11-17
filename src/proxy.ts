@@ -10,7 +10,12 @@ function pass(request: NextRequest, locale: "en" | "ar") {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (pathname.startsWith("/_next") || pathname.startsWith("/api") || hasFileExtension.test(pathname)) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/studio") ||
+    hasFileExtension.test(pathname)
+  ) {
     return NextResponse.next();
   }
   if (pathname === "/ar" || pathname.startsWith("/ar/")) return pass(request, "ar");

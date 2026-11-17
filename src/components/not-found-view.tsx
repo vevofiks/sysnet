@@ -5,16 +5,37 @@ import Link from "next/link";
 import { Home, LayoutGrid, Wrench } from "lucide-react";
 import type { Locale } from "@/lib/locale";
 import { localePath } from "@/lib/paths";
+import type { SanityNotFoundData } from "@/sanity/queries";
 
 interface NotFoundViewProps {
   locale?: Locale;
+  sanityData?: SanityNotFoundData | null;
 }
 
-export function NotFoundView({ locale = "en" }: NotFoundViewProps) {
+export function NotFoundView({ locale = "en", sanityData }: NotFoundViewProps) {
   const isArabic = locale === "ar";
 
   const homeHref = locale ? localePath(locale, "/") : "/";
   const productsHref = locale ? localePath(locale, "/services") : "/services";
+
+  // Dynamic values with clean fallbacks
+  const bgImageSrc = sanityData?.backgroundImageUrl || "/404-img.png";
+
+  const titleText = isArabic
+    ? (sanityData?.titleAr || "الصفحة غير موجودة")
+    : (sanityData?.titleEn || "Page Not Found");
+
+  const subtitleText = isArabic
+    ? (sanityData?.subtitleAr || "الصفحة التي تبحث عنها غير موجودة أو ربما تم نقلها.")
+    : (sanityData?.subtitleEn || "The page you're looking for doesn't seem to exist or may have been moved.");
+
+  const homeBtnText = isArabic
+    ? (sanityData?.homeButtonTextAr || "العودة إلى الرئيسية")
+    : (sanityData?.homeButtonTextEn || "Back to Home");
+
+  const productsBtnText = isArabic
+    ? (sanityData?.productsButtonTextAr || "تصفح المنتجات")
+    : (sanityData?.productsButtonTextEn || "Browse Products");
 
   return (
     <div
@@ -54,8 +75,8 @@ export function NotFoundView({ locale = "en" }: NotFoundViewProps) {
         }}
       >
         <Image
-          src="/404-img.png"
-          alt="404 Page Not Found"
+          src={bgImageSrc}
+          alt={titleText}
           fill
           priority
           sizes="100vw"
@@ -144,12 +165,18 @@ export function NotFoundView({ locale = "en" }: NotFoundViewProps) {
           {isArabic ? (
             <>
               <span style={{ color: "#ffffff" }}>الصفحة </span>
-              <span style={{ color: "#FF5722" }}>غير موجودة</span>
+              <span style={{ color: "#FF5722" }}>
+                {titleText.replace(/^الصفحة\s*/, "") || "غير موجودة"}
+              </span>
             </>
           ) : (
             <>
-              <span style={{ color: "#ffffff" }}>Page </span>
-              <span style={{ color: "#FF5722" }}>Not Found</span>
+              <span style={{ color: "#ffffff" }}>
+                {titleText.split(" ")[0] || "Page"}{" "}
+              </span>
+              <span style={{ color: "#FF5722" }}>
+                {titleText.split(" ").slice(1).join(" ") || "Not Found"}
+              </span>
             </>
           )}
         </h1>
@@ -165,9 +192,7 @@ export function NotFoundView({ locale = "en" }: NotFoundViewProps) {
             textShadow: "0 2px 8px rgba(0, 0, 0, 0.6)",
           }}
         >
-          {isArabic
-            ? "الصفحة التي تبحث عنها غير موجودة أو ربما تم نقلها."
-            : "The page you're looking for doesn't seem to exist or may have been moved."}
+          {subtitleText}
         </p>
       </div>
 
@@ -220,7 +245,7 @@ export function NotFoundView({ locale = "en" }: NotFoundViewProps) {
           }}
         >
           <Home style={{ width: "19px", height: "19px", color: "#ffffff" }} strokeWidth={2.4} />
-          <span>{isArabic ? "العودة إلى الرئيسية" : "Back to Home"}</span>
+          <span>{homeBtnText}</span>
         </Link>
 
         {/* Browse Products Button */}
@@ -257,7 +282,7 @@ export function NotFoundView({ locale = "en" }: NotFoundViewProps) {
           }}
         >
           <LayoutGrid style={{ width: "19px", height: "19px", color: "#ffffff" }} strokeWidth={2.2} />
-          <span>{isArabic ? "تصفح المنتجات" : "Browse Products"}</span>
+          <span>{productsBtnText}</span>
         </Link>
       </div>
     </div>

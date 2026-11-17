@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NotFoundView } from "@/components/not-found-view";
+import { getNotFoundData } from "@/sanity/queries";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,11 +8,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function NotFound() {
+export default async function NotFound() {
+  const sanityData = await getNotFoundData();
+
   return (
     <html lang="en">
       <body style={{ margin: 0, padding: 0, overflow: "hidden", backgroundColor: "#082a7f" }}>
-        <NotFoundView locale="en" />
+        <NotFoundView locale="en" sanityData={sanityData} />
       </body>
     </html>
   );
