@@ -5,17 +5,19 @@ import { JsonLd } from "@/components/json-ld";
 import { content } from "@/lib/content";
 import type { Locale } from "@/lib/locale";
 import { faqSchema } from "@/lib/schema";
+import { getHomePageData } from "@/sanity/queries";
 
 export async function Landing({ locale }: { locale: Locale }) {
   const { faqs } = content(locale);
+  const sanityData = await getHomePageData(locale);
 
   return (
     <>
       <JsonLd data={faqSchema(faqs)} />
       <Hero>
-        <HeroLead locale={locale} />
+        <HeroLead locale={locale} sanityData={sanityData} />
       </Hero>
-      <HomeRest locale={locale} />
+      <HomeRest locale={locale} sanityData={sanityData} />
     </>
   );
 }

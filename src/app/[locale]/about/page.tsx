@@ -12,6 +12,7 @@ import { localePath } from "@/lib/paths";
 import { aboutPageGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
+import { getAboutPageData } from "@/sanity/queries";
 
 export async function generateMetadata({
   params,
@@ -33,6 +34,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const page = copy[locale];
   const t = page.about;
   const rtl = locale === "ar";
+  const sanityData = await getAboutPageData(locale);
+
+  const heroTitle = sanityData?.title || t.title;
+  const heroLede = sanityData?.lede || t.lede;
+  const heading = sanityData?.heading || t.heading;
+  const p1 = sanityData?.p1 || t.p1;
+  const p2 = sanityData?.p2 || t.p2;
+  const skylineImageSrc = sanityData?.skylineImageUrl || "/images/riyadh.jpg";
 
   const pillars = [
     {
@@ -115,10 +124,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       />
 
       <PageHero
-        title={t.title}
-        lede={t.lede}
+        title={heroTitle}
+        lede={heroLede}
         badge={rtl ? "نبذة عن سيسنت تكنولوجيز" : "Company Profile · Sysnet Technologies"}
-        image="/images/riyadh.jpg"
+        image={skylineImageSrc}
         stats={[
           { label: rtl ? "المقر الرئيسي" : "Headquarters", value: rtl ? "الملز، الرياض" : "Malaz, Riyadh" },
           { label: rtl ? "ساعات المكتب" : "Operating Desk", value: rtl ? "السبت–الخميس ٩–١٨" : "Sat–Thu, 9:00–18:00" },
@@ -130,7 +139,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <section className="mx-auto grid max-w-[1400px] items-center gap-10 px-4 py-12 md:grid-cols-2 md:px-10 md:py-16">
         <div className="group relative min-h-[460px] overflow-hidden rounded-[22px] border border-line bg-white shadow-lift">
           <Photo
-            src="/images/riyadh.jpg"
+            src={skylineImageSrc}
             alt={t.skylineAlt}
             sizes="(min-width: 768px) 45vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
@@ -155,10 +164,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             {rtl ? "سيسنت تكنولوجيز" : "Sysnet Technologies"}
           </div>
           <h2 className="mt-4 text-3xl font-medium tracking-normal text-ink md:text-4xl">
-            {t.heading}
+            {heading}
           </h2>
-          <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-muted">{t.p1}</p>
-          <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-muted">{t.p2}</p>
+          <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-muted">{p1}</p>
+          <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-muted">{p2}</p>
 
           <div className="mt-8 rounded-[18px] border border-line bg-white p-6 shadow-sm">
             <h3 className="text-sm font-medium uppercase tracking-wider text-navy">

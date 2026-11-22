@@ -14,6 +14,7 @@ import { localePath } from "@/lib/paths";
 import { servicesCatalogGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
+import { getServicesPageData } from "@/sanity/queries";
 
 export async function generateMetadata({
   params,
@@ -34,6 +35,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
   const locale = parseLocale((await params).locale);
   const { t, services } = content(locale);
   const rtl = locale === "ar";
+  const sanityData = await getServicesPageData(locale);
+
+  const title = sanityData?.title || t.servicesPage.title;
+  const lede = sanityData?.lede || t.servicesPage.lede;
 
   return (
     <>
@@ -46,8 +51,8 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       />
 
       <PageHero
-        title={t.servicesPage.title}
-        lede={t.servicesPage.lede}
+        title={title}
+        lede={lede}
         badge={rtl ? "١٥ خط خدمة" : "15 Service Lines"}
         image="/images/network-switchers.jpg"
         stats={[

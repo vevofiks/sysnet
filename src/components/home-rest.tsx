@@ -23,11 +23,27 @@ const industryImages: Record<string, string> = {
 
 const stepIcons = [Phone, MapPin, FileSpreadsheet, Wrench, ShieldCheck];
 
-export function HomeRest({ locale }: { locale: Locale }) {
+import type { SanityHomePageData } from "@/sanity/queries";
+
+export function HomeRest({
+  locale,
+  sanityData,
+}: {
+  locale: Locale;
+  sanityData?: SanityHomePageData | null;
+}) {
   const { t, services, industries, steps, projects, faqs } = content(locale);
   const rtl = locale === "ar";
   const featured = services.filter((service) => service.featured);
   const rest = services.filter((service) => !service.featured);
+
+  const crewTitle = sanityData?.crewTitle || t.crew.title;
+  const crewBody = sanityData?.crewBody || t.crew.body;
+  const crewImg = sanityData?.crewImageUrl || "/images/crew-cctv-pole.png";
+  const sectorsTitle = sanityData?.sectorsTitle || t.sectorsTitle;
+  const stepsTitle = sanityData?.stepsTitle || t.stepsTitle;
+  const bookTitle = sanityData?.bookTitle || t.book.title;
+  const bookBody = sanityData?.bookBody || t.book.body;
 
   return (
     <>
@@ -39,9 +55,9 @@ export function HomeRest({ locale }: { locale: Locale }) {
             {rtl ? "فريق عمل موحد في الرياض" : "Unified Riyadh Field Crew"}
           </div>
           <h2 className="mt-4 max-w-[16ch] text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-5xl">
-            {t.crew.title}
+            {crewTitle}
           </h2>
-          <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-muted">{t.crew.body}</p>
+          <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-muted">{crewBody}</p>
           <BulletList className="mt-8" items={t.crew.points} />
 
           <div className="mt-8 flex flex-wrap gap-4 pt-2">
@@ -64,7 +80,7 @@ export function HomeRest({ locale }: { locale: Locale }) {
         <div className="relative">
           <Fade className="group relative min-h-[440px] overflow-hidden rounded-[24px] border border-line bg-navy-deep shadow-lift">
             <Photo
-              src="/images/crew-cctv-pole.png"
+              src={crewImg}
               alt={t.crew.alt}
               sizes="(min-width: 768px) 45vw, 100vw"
               className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
@@ -103,7 +119,7 @@ export function HomeRest({ locale }: { locale: Locale }) {
                 {rtl ? "قطاعات الأعمال في الرياض" : "Riyadh Facility Sectors"}
               </span>
               <h2 className="mt-2 max-w-[18ch] text-3xl font-medium leading-[1.08] tracking-normal text-white md:text-5xl">
-                {t.sectorsTitle}
+                {sectorsTitle}
               </h2>
             </Reveal>
             <p className="max-w-[45ch] text-sm text-ice/80">
@@ -288,7 +304,7 @@ export function HomeRest({ locale }: { locale: Locale }) {
             </span>
             <Reveal>
               <h2 className="mt-2 text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-5xl">
-                {t.stepsTitle}
+                {stepsTitle}
               </h2>
             </Reveal>
             <p className="mx-auto mt-4 max-w-[60ch] text-base text-muted">
@@ -384,10 +400,10 @@ export function HomeRest({ locale }: { locale: Locale }) {
               <span>{rtl ? "مكتب الملز بالرياض" : "Riyadh Operations Hub"}</span>
             </div>
             <h2 className="max-w-[16ch] text-3xl font-medium leading-[1.08] tracking-normal text-white md:text-5xl">
-              {t.book.title}
+              {bookTitle}
             </h2>
             <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-ice/90 md:text-lg">
-              {t.book.body}
+              {bookBody}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:justify-end">

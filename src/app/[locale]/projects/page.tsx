@@ -12,6 +12,7 @@ import { localePath } from "@/lib/paths";
 import { projectsGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
+import { getProjectsPageData } from "@/sanity/queries";
 
 export async function generateMetadata({
   params,
@@ -32,6 +33,10 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   const locale = parseLocale((await params).locale);
   const { t, projects } = content(locale);
   const rtl = locale === "ar";
+  const sanityData = await getProjectsPageData(locale);
+
+  const title = sanityData?.title || t.projectsPage.title;
+  const lede = sanityData?.lede || t.projectsPage.lede;
 
   const standards = [
     {
@@ -71,8 +76,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       />
 
       <PageHero
-        title={t.projectsPage.title}
-        lede={t.projectsPage.lede}
+        title={title}
+        lede={lede}
         badge={rtl ? "نماذج واقعية من مشاريع الرياض" : "Real Riyadh Installation Scopes"}
         image="/images/warehouse.jpg"
         stats={[

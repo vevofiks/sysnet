@@ -11,6 +11,7 @@ import { parseLocale } from "@/lib/locale";
 import { contactPageGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
+import { getContactPageData } from "@/sanity/queries";
 
 const ContactMap = dynamic(() => import("@/components/contact-map").then((mod) => mod.ContactMap));
 
@@ -34,6 +35,13 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const t = copy[locale];
   const rtl = locale === "ar";
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapsQuery)}&z=14&output=embed`;
+  const sanityData = await getContactPageData(locale);
+
+  const title = sanityData?.title || t.contact.title;
+  const lede = sanityData?.lede || t.contact.lede;
+  const heading = sanityData?.officeHeading || t.contact.heading;
+  const phoneVal = sanityData?.phone || company.phoneDisplay;
+  const emailVal = sanityData?.email || company.email;
 
   const districts = [
     rtl ? "الملز" : "Al Malaz",
@@ -73,13 +81,13 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       />
 
       <PageHero
-        title={t.contact.title}
-        lede={t.contact.lede}
+        title={title}
+        lede={lede}
         badge={rtl ? "مكتب الحجز والمعاينة الميدانية" : "Direct Malaz Survey Booking Desk"}
         image="/images/office.jpg"
         stats={[
           { label: rtl ? "سرعة الرد" : "Response Time", value: rtl ? "في نفس اليوم" : "Same-Day Dispatch" },
-          { label: rtl ? "الهاتف المباشر" : "Direct Phone", value: company.phoneDisplay },
+          { label: rtl ? "الهاتف المباشر" : "Direct Phone", value: phoneVal },
           { label: rtl ? "تغطية المعاينة" : "Survey Radius", value: rtl ? "الرياض والدمام" : "Riyadh & Dammam" },
         ]}
       />
@@ -92,7 +100,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               {rtl ? "المكتب متاح للرد المباشر" : "Malaz Desk Active & Online"}
             </div>
             <h2 className="mt-3 text-3xl font-medium tracking-normal text-ink">
-              {t.contact.heading}
+              {heading}
             </h2>
             <p className="mt-2 text-base text-muted">
               {rtl

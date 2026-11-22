@@ -7,6 +7,8 @@ import type { Locale } from "@/lib/locale";
 import { documentTitle } from "@/lib/seo";
 import { getNotFoundData } from "@/sanity/queries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };

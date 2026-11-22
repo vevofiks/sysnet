@@ -4,10 +4,23 @@ import { ArrowRight } from "lucide-react";
 import { content } from "@/lib/content";
 import type { Locale } from "@/lib/locale";
 import { localePath } from "@/lib/paths";
+import type { SanityHomePageData } from "@/sanity/queries";
 
-export function HeroLead({ locale }: { locale: Locale }) {
+export function HeroLead({
+  locale,
+  sanityData,
+}: {
+  locale: Locale;
+  sanityData?: SanityHomePageData | null;
+}) {
   const t = content(locale).t;
   const rtl = locale === "ar";
+
+  const title = sanityData?.heroTitle || t.hero.title;
+  const lede = sanityData?.heroLede || t.hero.lede;
+  const exploreBtn = sanityData?.heroExploreBtn || t.hero.explore;
+  const contactBtn = sanityData?.heroContactBtn || t.hero.contact;
+  const heroImageSrc = sanityData?.heroImageUrl || "/images/hero-cctv-commercial.jpg";
 
   const scopes = [
     rtl ? "كاميرات المراقبة" : "CCTV Surveillance",
@@ -20,7 +33,7 @@ export function HeroLead({ locale }: { locale: Locale }) {
     <article className="absolute inset-0">
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-cctv-commercial.jpg"
+          src={heroImageSrc}
           alt={t.hero.photoAlt}
           fill
           priority
@@ -38,10 +51,10 @@ export function HeroLead({ locale }: { locale: Locale }) {
           </div>
 
           <h1 className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl text-white">
-            {t.hero.title}
+            {title}
           </h1>
           <p className="mt-3 line-clamp-4 max-w-[40ch] text-sm leading-relaxed text-ice/90 sm:mt-5 sm:line-clamp-none sm:max-w-[48ch] sm:text-base md:text-lg">
-            {t.hero.lede}
+            {lede}
           </p>
 
           <div className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
@@ -49,14 +62,14 @@ export function HeroLead({ locale }: { locale: Locale }) {
               href={localePath(locale, "/services")}
               className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[5px] bg-paper px-6 text-sm font-medium uppercase tracking-normal text-navy hover:bg-ice sm:w-auto transition-colors"
             >
-              {t.hero.explore}
+              {exploreBtn}
               <ArrowRight className="size-4 rtl:rotate-180" strokeWidth={1.5} aria-hidden="true" />
             </Link>
             <Link
               href={localePath(locale, "/contact")}
               className="inline-flex h-12 w-full items-center justify-center rounded-[5px] border border-ice/50 px-6 text-sm font-medium uppercase tracking-normal text-ice hover:bg-ice/10 sm:w-auto transition-colors"
             >
-              {t.hero.contact}
+              {contactBtn}
             </Link>
           </div>
 

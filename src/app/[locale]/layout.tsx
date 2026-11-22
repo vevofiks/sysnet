@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 import { IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Outfit } from "next/font/google";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
@@ -9,6 +10,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Analytics } from "@/components/analytics";
 import { JsonLd } from "@/components/json-ld";
 import { DocumentLocale, LocaleProvider } from "@/components/locale";
+import { VisualEditing } from "@/components/visual-editing";
 import { copy } from "@/lib/copy";
 import type { Locale } from "@/lib/locale";
 import { company } from "@/lib/site";
@@ -125,6 +127,7 @@ export default async function RootLayout({
   if (value !== "en" && value !== "ar") notFound();
   const locale: Locale = value;
   const arabic = locale === "ar";
+  const { isEnabled: isDraft } = await draftMode();
 
   return (
     <html
@@ -146,6 +149,18 @@ export default async function RootLayout({
         <Suspense fallback={<HeaderFallback />}>
           <LocalizedDocument locale={locale}>{children}</LocalizedDocument>
         </Suspense>
+        {isDraft && (
+          <>
+            <VisualEditing />
+            <aside aria-label="Draft Mode" className="fixed bottom-4 start-4 z-50 flex items-center gap-2 rounded-full bg-navy px-4 py-2 text-xs font-mono text-white shadow-2xl ring-1 ring-white/20">
+              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Live Visual Editing Active</span>
+              <a href="/api/draft-mode/disable" className="ms-2 font-semibold text-orange-soft underline hover:text-white">
+                Exit
+              </a>
+            </aside>
+          </>
+        )}
         <Analytics />
         <JsonLd data={siteGraph(locale)} />
       </body>
