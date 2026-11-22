@@ -36,6 +36,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const rtl = locale === "ar";
   const sanityData = await getAboutPageData(locale);
 
+  const heroBadge = sanityData?.badge || (rtl ? "نبذة عن سيسنت تكنولوجيز" : "Company Profile · Sysnet Technologies");
   const heroTitle = sanityData?.title || t.title;
   const heroLede = sanityData?.lede || t.lede;
   const heading = sanityData?.heading || t.heading;
@@ -43,7 +44,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const p2 = sanityData?.p2 || t.p2;
   const skylineImageSrc = sanityData?.skylineImageUrl || "/images/riyadh.jpg";
 
-  const pillars = [
+  const staticPillars = [
     {
       num: "01",
       title: rtl ? "مخطط معتمد قبل الحفر والطلب" : "Marked Drawings Before Ordering",
@@ -73,6 +74,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         : "Our crews deploy directly from Malaz to serve Riyadh and Dammam with reliable same-day dispatch.",
     },
   ];
+
+  const pillars = sanityData?.pillarsList && sanityData.pillarsList.length > 0 ? sanityData.pillarsList : staticPillars;
+  const workBadge = sanityData?.workBadge || (rtl ? "معايير التنفيذ الميداني" : "Field Standards in Practice");
+  const workTitle = sanityData?.workTitle || t.workTitle;
+  const workLede =
+    sanityData?.workLede ||
+    (rtl
+      ? "صور واقعية من تنفيذ الفنيين في الميدان: تأسيس، ترقيم، واختبار عملي قبل التسليم."
+      : "Authentic views of our technicians in the field: termination, labeling, and proving on site.");
+  const ctaBadge = sanityData?.ctaBadge || (rtl ? "مكتب العمليات بالملز" : "Malaz Operations Desk");
+  const ctaTitle = sanityData?.ctaTitle || page.book.title;
+  const ctaBody = sanityData?.ctaBody || page.book.body;
+  const ctaBtnSurvey = sanityData?.ctaBtnSurvey || page.book.survey;
+  const ctaBtnCall = sanityData?.ctaBtnCall || page.book.call;
 
   const galleryItems = [
     {
@@ -126,7 +141,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <PageHero
         title={heroTitle}
         lede={heroLede}
-        badge={rtl ? "نبذة عن سيسنت تكنولوجيز" : "Company Profile · Sysnet Technologies"}
+        badge={heroBadge}
         image={skylineImageSrc}
         stats={[
           { label: rtl ? "المقر الرئيسي" : "Headquarters", value: rtl ? "الملز، الرياض" : "Malaz, Riyadh" },
@@ -217,16 +232,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-ice px-3 py-1 text-xs font-medium uppercase tracking-wider text-navy">
                 <FileCheck className="size-3.5" />
-                {rtl ? "معايير التنفيذ الميداني" : "Field Standards in Practice"}
+                <span>{workBadge}</span>
               </div>
               <h2 className="mt-3 text-3xl font-medium tracking-normal text-ink md:text-4xl">
-                {t.workTitle}
+                {workTitle}
               </h2>
             </div>
             <p className="max-w-[48ch] text-sm leading-relaxed text-muted md:text-base">
-              {rtl
-                ? "صور واقعية من تنفيذ الفنيين في الميدان: تأسيس، ترقيم، واختبار عملي قبل التسليم."
-                : "Authentic views of our technicians in the field: termination, labeling, and proving on site."}
+              {workLede}
             </p>
           </div>
 
@@ -362,23 +375,26 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
         <div className="relative mx-auto grid max-w-[1400px] items-center gap-8 px-4 py-16 md:grid-cols-[1.2fr_0.8fr] md:px-10 md:py-20">
           <div>
+            <div className="mb-4 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-mono uppercase tracking-wider text-orange-soft backdrop-blur-md">
+              <span>{ctaBadge}</span>
+            </div>
             <h2 className="max-w-[18ch] text-3xl font-medium leading-[1.1] tracking-normal text-white md:text-5xl">
-              {page.book.title}
+              {ctaTitle}
             </h2>
-            <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-ice/85">{page.book.body}</p>
+            <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-ice/85">{ctaBody}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
             <Link
               href={localePath(locale, "/contact")}
               className="inline-flex h-12 items-center justify-center rounded-[5px] bg-paper px-6 text-sm font-medium uppercase tracking-normal text-navy hover:bg-ice"
             >
-              {page.book.survey}
+              {ctaBtnSurvey}
             </Link>
             <a
               href={`tel:${company.phoneTel}`}
               className="inline-flex h-12 items-center justify-center rounded-[5px] border border-white/50 px-6 text-sm font-medium uppercase tracking-normal text-white hover:bg-white/10"
             >
-              {page.book.call}
+              {ctaBtnCall}
             </a>
           </div>
         </div>

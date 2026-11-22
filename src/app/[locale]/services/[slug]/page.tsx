@@ -15,6 +15,7 @@ import { localePath } from "@/lib/paths";
 import { serviceDetailGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company, services as catalog } from "@/lib/site";
+import { getServiceDetailData } from "@/sanity/queries";
 
 type Params = { locale: string; slug: string };
 
@@ -116,6 +117,13 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
   const service = services[index];
   if (!service || !guide) notFound();
 
+  const sanityService = await getServiceDetailData(slug, locale);
+  const serviceTitle = sanityService?.title || service.title;
+  const serviceSummary = sanityService?.summary || service.summary;
+  const serviceDetail = sanityService?.detail || service.detail;
+  const serviceImage = sanityService?.imageUrl || service.image;
+  const serviceAlt = sanityService?.alt || service.alt;
+
   const rtl = locale === "ar";
   const others = services.filter((item) => item.slug !== service.slug);
   const relatedScopes = services.filter((item) => guide.related.includes(item.slug));
@@ -192,7 +200,7 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
             </h1>
           </div>
           <p className="max-w-[44ch] text-base leading-relaxed text-ice/90 md:pb-2 md:text-lg">
-            {service.summary}
+            {serviceSummary}
           </p>
         </div>
       </header>
@@ -202,10 +210,10 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         <div>
           <div className="inline-flex items-center gap-2.5 rounded-full border border-navy/15 bg-ice px-3.5 py-1.5 text-xs font-medium uppercase tracking-wider text-navy">
             <ServiceIcon name={service.icon} className="size-4 text-orange-deep" />
-            <span>{service.title}</span>
+            <span>{serviceTitle}</span>
           </div>
           <h2 className="mt-4 text-2xl font-medium leading-snug text-ink md:text-3xl">
-            {service.detail}
+            {serviceDetail}
           </h2>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -227,8 +235,8 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         <div className="group relative overflow-hidden rounded-[22px] border border-line bg-[#f8fbfe] shadow-lift">
           <div className="relative aspect-[4/3] w-full overflow-hidden bg-ice">
             <Photo
-              src={service.image}
-              alt={service.alt}
+              src={serviceImage}
+              alt={serviceAlt}
               sizes="(min-width: 768px) 46vw, 100vw"
               priority
               className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
@@ -236,7 +244,7 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
           </div>
           <div className="border-t border-line bg-white p-4">
             <div className="flex items-center justify-between text-xs text-muted">
-              <span className="font-medium text-navy">{service.title}</span>
+              <span className="font-medium text-navy">{serviceTitle}</span>
               <span className="inline-flex items-center gap-1 text-orange-deep font-mono">
                 <ShieldCheck className="size-3.5" />
                 {rtl ? "تم الفحص في الموقع" : "Verified on Site"}

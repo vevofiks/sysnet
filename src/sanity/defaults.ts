@@ -250,3 +250,219 @@ export const homePageDefaults = {
   bookBtnCallEn: "Call us",
   bookBtnCallAr: "اتصل بالمكتب",
 };
+
+// =============================================================================
+// ABOUT US PAGE DEFAULTS
+// =============================================================================
+export const aboutPageDefaults = {
+  badgeEn: "Company Profile · Sysnet Technologies",
+  badgeAr: "نبذة عن سيسنت تكنولوجيز",
+  titleEn: "CCTV installation from a Malaz office.",
+  titleAr: "تركيب كاميرات مراقبة من مكتب الملز.",
+  ledeEn:
+    "Sysnet Technologies is the name on the van and the invoice. The work is cameras, alarms, access control, and the cable that joins them.",
+  ledeAr:
+    "سيسنت تكنولوجيز هو الاسم على الفان والفاتورة. العمل يشمل الكاميرات والإنذارات والتحكم بالدخول وتمديدات الشبكات.",
+  headingEn: "Based in Riyadh, not a catalogue with a PO box.",
+  headingAr: "مقرنا في الرياض، ولسنا مجرد كتالوج بصندوق بريد.",
+  p1En:
+    "The office is in Malaz. Calls go to +966 53 298 0149. Mail goes to sales@sysnet-ksa.com. Survey crews cover the city: Olaya towers, villas in the north, and stores in Al Sulay.",
+  p1Ar:
+    "المكتب في الملز. الاتصالات على ‎+966 53 298 0149. البريد إلى sales@sysnet-ksa.com. فرق المعاينة تغطي المدينة: أبراج العليا، وفلل الشمال، ومستودعات السلي.",
+  p2En:
+    "Procurement teams get a parts list they can read. Facility managers get one cabinet instead of three vendors pointing at each other. Homeowners get a gate station that rings a monitor inside the house.",
+  p2Ar:
+    "فرق المشتريات تحصل على قائمة قطع تُقرأ. مدير المرافق يحصل على خزانة واحدة بدل ثلاثة مورّدين يشير بعضهم إلى بعض. صاحب البيت يحصل على محطة بوابة ترن على شاشة داخل المنزل.",
+  pillarsList: [
+    {
+      _key: "p1",
+      num: "01",
+      titleEn: "Marked Drawings Before Ordering",
+      titleAr: "مخطط معتمد قبل الحفر والطلب",
+      descEn:
+        "We survey the site and mark each camera angle and cable run on the floor plan before drilling begins.",
+      descAr: "نعاين الموقع ونحدد كل زاوية ونقطة بيانات على المخطط قبل طلب أي أجهزة أو حفر أي جدار.",
+    },
+    {
+      _key: "p2",
+      num: "02",
+      titleEn: "One Consolidated Cabinet",
+      titleAr: "كابينة موحدة تمنع تضارب المقاولين",
+      descEn:
+        "Cameras, alarms, and data patch panels terminate in one labeled rack to eliminate multi-vendor finger-pointing.",
+      descAr: "نجمع الكاميرات والإنذار والشبكة في كابينة واحدة منظمة تمنع تهرب المقاولين من المسؤولية.",
+    },
+    {
+      _key: "p3",
+      num: "03",
+      titleEn: "Complete Documented Handover",
+      titleAr: "تسليم رسمي بكلمات المرور وورقة الفحص",
+      descEn:
+        "We hand over verified test sheets, administrator passwords, and port maps with total transparency.",
+      descAr: "نسلمك ورقة فحص مختبرة، وكلمات مرور المشرف، وخريطة المنافذ دون أي غموض.",
+    },
+    {
+      _key: "p4",
+      num: "04",
+      titleEn: "Local Malaz Operations Desk",
+      titleAr: "مكتب محلي في الملز جاهز للمعاينة والصيانة",
+      descEn:
+        "Our crews deploy directly from Malaz to serve Riyadh and Dammam with reliable same-day dispatch.",
+      descAr: "فريقنا ينطلق من الملز لتغطية أحياء الرياض والدمام مع سرعة الرد والتنفيذ في اليوم نفسه.",
+    },
+  ],
+  workBadgeEn: "Field Standards in Practice",
+  workBadgeAr: "معايير التنفيذ الميداني",
+  workTitleEn: "What the technicians actually do on site.",
+  workTitleAr: "ما يقوم به الفنيون عملياً في الموقع.",
+  workLedeEn:
+    "Authentic views of our technicians in the field: termination, labeling, and proving on site.",
+  workLedeAr: "صور واقعية من تنفيذ الفنيين في الميدان: تأسيس، ترقيم، واختبار عملي قبل التسليم.",
+  ctaBadgeEn: "Malaz Operations Desk",
+  ctaBadgeAr: "مكتب العمليات بالملز",
+  ctaTitleEn: "Talk to the Malaz Desk",
+  ctaTitleAr: "تواصل مع مكتب الملز",
+  ctaBodyEn:
+    "Speak directly with field technicians and engineers. We provide prompt site surveys across Riyadh within 24 hours.",
+  ctaBodyAr: "تحدث مباشرة مع المهندسين والفنيين. نقدم معاينات ميدانية سريعة في أنحاء الرياض خلال 24 ساعة.",
+  ctaBtnSurveyEn: "Book a Survey",
+  ctaBtnSurveyAr: "احجز معاينة",
+  ctaBtnCallEn: "Direct Phone",
+  ctaBtnCallAr: "الاتصال المباشر",
+};
+
+// =============================================================================
+// SERVICES OVERVIEW PAGE DEFAULTS
+// =============================================================================
+export const servicesPageDefaults = {
+  badgeEn: "15 Service Lines",
+  badgeAr: "١٥ خط خدمة",
+  titleEn: "CCTV and cabling services in Riyadh.",
+  titleAr: "خدمات كاميرات المراقبة وتمديدات الشبكات في الرياض.",
+  ledeEn:
+    "Each scope below is something we price on its own. Most Riyadh jobs combine two or three: a camera, a reader, and the cable between them.",
+  ledeAr:
+    "كل نطاق عمل أدناه نسعره بشكل مستقل. معظم مشاريع الرياض تجمع بين اثنين أو ثلاثة: كاميرا، وقارئ بطاقات، والكيبل الرابط بينهما.",
+  catalogHeadingEn: "All 15 Service Scopes",
+  catalogHeadingAr: "جميع خطوط الخدمة في الرياض",
+  catalogSubtitleEn:
+    "Select any scope to inspect full survey coverage, field procedures, and handover deliverables.",
+  catalogSubtitleAr:
+    "اختر النطاق الذي يناسب مبناك للحصول على تفاصيل المواصفات وما تشمله المعاينة وما يتم تسليمه لإدارة المبنى.",
+  featuredTitleEn: "Most Requested Installation Scopes",
+  featuredTitleAr: "أكثر النطاقات طلباً وتنفيذاً في الرياض",
+  featuredLedeEn:
+    "Floor-plan marked coverage and certified numbered racks delivered as unified scopes.",
+  featuredLedeAr: "حلول شاملة مع تحديد الزوايا على المخطط وتسليم كبائن مرتبة ومرقمة بالكامل.",
+  advantageBadgeEn: "Single-Contractor Advantage",
+  advantageBadgeAr: "ميزة المقاول الموحد",
+  advantageTitleEn: "One drawing, one cabinet, one invoice.",
+  advantageTitleAr: "مخطط واحد، كابينة واحدة، وفاتورة واحدة.",
+  advantageBodyEn:
+    "Why facilities choose Sysnet over multiple sub-contractors: eliminate vendor blame games, maintain clean cabling, and receive full admin handover on every installation.",
+  advantageBodyAr:
+    "لماذا تفضل الشركات سيسنت بدلاً من تعدد المقاولين: إنهاء تضارب المسؤوليات، والحفاظ على كبائن منظمة، وتسليم كلمات المرور كاملة لإدارة المنشأة.",
+  advantageBtnAllEn: "Explore All Scopes",
+  advantageBtnAllAr: "استعراض جميع النطاقات",
+  advantageBtnSurveyEn: "Request a Survey",
+  advantageBtnSurveyAr: "طلب معاينة ميدانية",
+};
+
+// =============================================================================
+// PROJECTS PAGE DEFAULTS
+// =============================================================================
+export const projectsPageDefaults = {
+  badgeEn: "Real Riyadh Installation Scopes",
+  badgeAr: "نماذج واقعية من مشاريع الرياض",
+  titleEn: "CCTV and cabling projects in Riyadh.",
+  titleAr: "مشاريع الكاميرات والكيابل في الرياض.",
+  ledeEn:
+    "These are typical scopes surveyed, installed, and handed over across Riyadh commercial towers, logistics warehouses, and residential compounds.",
+  ledeAr:
+    "نماذج واقعية لنطاقات العمل المنفذة في أبراج ومستودعات ومجمعات الرياض: تحديد زوايا الكاميرات ومسارات الكيابل وتجهيز الكبائن.",
+  standardsBadgeEn: "Installation Standards",
+  standardsBadgeAr: "معايير التنفيذ المعتمدة",
+  standardsTitleEn: "Every project tested and documented before handover.",
+  standardsTitleAr: "كل مشروع يُفحص ويوثق بدقة هندسية قبل التسليم.",
+  standardsList: [
+    {
+      _key: "st1",
+      titleEn: "100% Labeled & Tested",
+      titleAr: "ترقيم وفحص ١٠٠٪",
+      descEn: "Every patch lead and port is numbered at both ends with certified test sheets.",
+      descAr: "جميع المنافذ والكيابل ترقم عند الطرفين وتسلم ورقة الفحص كاملة.",
+    },
+    {
+      _key: "st2",
+      titleEn: "Verified 30-Day Retention",
+      titleAr: "تسجيل ٣٠ يوماً فعلياً",
+      descEn: "Hard drives sized to actual resolution and bitrate to guarantee full retention.",
+      descAr: "حساب مساحة الأقراص الصلبة وفق عدد الكاميرات ومعدل الإطارات الفعلي.",
+    },
+    {
+      _key: "st3",
+      titleEn: "Segregated Alarm Circuits",
+      titleAr: "فصل دوائر الحريق عن السرقة",
+      descEn: "Fire alarm loops stay strictly isolated from intrusion contacts.",
+      descAr: "دوائر إنذار الحريق مستقلة تماماً عن حساسات الأبواب والنوافذ.",
+    },
+    {
+      _key: "st4",
+      titleEn: "Full Admin Credentials",
+      titleAr: "تسليم كلمات المرور للإدارة",
+      descEn: "Direct handover of master passwords and cabinet maps to facility leadership.",
+      descAr: "تسليم كلمات مرور المشرف وخريطة الكابينة لمدير المبنى دون حجب.",
+    },
+  ],
+};
+
+// =============================================================================
+// CONTACT PAGE DEFAULTS
+// =============================================================================
+export const contactPageDefaults = {
+  badgeEn: "Direct Malaz Survey Booking Desk",
+  badgeAr: "مكتب الحجز والمعاينة الميدانية",
+  titleEn: "Book a CCTV survey in Riyadh.",
+  titleAr: "احجز معاينة لكاميرات المراقبة في الرياض.",
+  ledeEn:
+    "The form opens WhatsApp to the Malaz office. Hours are Saturday to Thursday, 9:00 to 18:00.",
+  ledeAr: "النموذج يفتح محادثة واتساب مع مكتب الملز. أوقات العمل من السبت إلى الخميس، 9:00 إلى 18:00.",
+  statusBadgeEn: "Malaz Desk Active & Online",
+  statusBadgeAr: "المكتب متاح للرد المباشر",
+  officeHeadingEn: "Malaz Operations Desk",
+  officeHeadingAr: "مكتب الملز بالرياض",
+  addressEn: "Malaz, Riyadh, Saudi Arabia",
+  addressAr: "الملز، الرياض، المملكة العربية السعودية",
+  phone: "+966 53 298 0149",
+  email: "sales@sysnet-ksa.com",
+  hoursEn: "Saturday to Thursday, 9:00 to 18:00",
+  hoursAr: "السبت إلى الخميس، 9:00 إلى 18:00",
+  formSubmitBtnEn: "Send on WhatsApp",
+  formSubmitBtnAr: "إرسال عبر واتساب",
+  stepsList: [
+    {
+      _key: "cs1",
+      num: "1",
+      titleEn: "Request Received at Malaz Desk",
+      titleAr: "استلام الطلب في مكتب الملز",
+      descEn: "Immediate review of location and facility type.",
+      descAr: "مراجعة الموقع ونوع المبنى فوراً.",
+    },
+    {
+      _key: "cs2",
+      num: "2",
+      titleEn: "Site Survey Appointment Scheduled",
+      titleAr: "تحديد موعد المعاينة الميدانية",
+      descEn: "Field crew attends your building to mark plans.",
+      descAr: "فريق المسح الميداني يزور موقعك لتحديد المخطط.",
+    },
+    {
+      _key: "cs3",
+      num: "3",
+      titleEn: "Itemized Parts & Labour Quotation",
+      titleAr: "تسليم جدول الكميات والأسعار",
+      descEn: "Transparent breakdown separating equipment from labour.",
+      descAr: "عرض أسعار مفصل يفصل الأجهزة عن التركيب.",
+    },
+  ],
+};

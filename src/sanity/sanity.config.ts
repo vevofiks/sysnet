@@ -8,20 +8,35 @@ import { presentationTool, defineDocuments } from "sanity/presentation";
 import { schemaTypes } from "./schemas";
 import { structure } from "./structure";
 import { projectId, dataset } from "./env";
-import { homePageDefaults } from "./defaults";
+import {
+  homePageDefaults,
+  aboutPageDefaults,
+  servicesPageDefaults,
+  projectsPageDefaults,
+  contactPageDefaults,
+} from "./defaults";
 
-const PopulateHomeDefaultsAction: DocumentActionComponent = (props) => {
+const PopulateDefaultsAction: DocumentActionComponent = (props) => {
   const { id, type } = props;
   const { patch } = useDocumentOperation(id, type);
 
-  if (type !== "homePage") return null;
+  let defaults: Record<string, any> | null = null;
+  if (type === "homePage") defaults = homePageDefaults;
+  else if (type === "aboutPage") defaults = aboutPageDefaults;
+  else if (type === "servicesPage") defaults = servicesPageDefaults;
+  else if (type === "projectsPage") defaults = projectsPageDefaults;
+  else if (type === "contactPage") defaults = contactPageDefaults;
+
+  if (!defaults) return null;
 
   return {
-    label: "⚡ Fill All Sections with Default Content",
+    label: "⚡ Fill Page with Default Content",
     title:
-      "Populate all 10 sections with complete bilingual default content so every badge, card, button, and list item is immediately editable in Presentation Mode",
+      "Populate all sections of this page with complete bilingual default content so every badge, title, card, and button is immediately editable in Presentation Mode",
     onHandle: () => {
-      patch.execute([{ setIfMissing: homePageDefaults }]);
+      if (defaults) {
+        patch.execute([{ setIfMissing: defaults }]);
+      }
     },
   };
 };
@@ -34,8 +49,12 @@ export default defineConfig({
   dataset: dataset || "production",
   document: {
     actions: (prev, context) => {
-      if (context.schemaType === "homePage") {
-        return [PopulateHomeDefaultsAction, ...prev];
+      if (
+        ["homePage", "aboutPage", "servicesPage", "projectsPage", "contactPage"].includes(
+          context.schemaType
+        )
+      ) {
+        return [PopulateDefaultsAction, ...prev];
       }
       return prev;
     },
@@ -66,8 +85,16 @@ export default defineConfig({
             filter: `_type == "servicesPage"`,
           },
           {
+            route: ["/:locale/services/:slug", "/services/:slug"],
+            filter: `_type == "service" && slug.current == $slug`,
+          },
+          {
             route: ["/:locale/projects", "/projects"],
             filter: `_type == "projectsPage"`,
+          },
+          {
+            route: ["/:locale/projects/:slug", "/projects/:slug"],
+            filter: `_type == "projectItem" && slug.current == $slug`,
           },
           {
             route: ["/:locale/contact", "/contact"],

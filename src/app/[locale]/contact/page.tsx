@@ -37,6 +37,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapsQuery)}&z=14&output=embed`;
   const sanityData = await getContactPageData(locale);
 
+  const badge = sanityData?.badge || (rtl ? "مكتب الحجز والمعاينة الميدانية" : "Direct Malaz Survey Booking Desk");
+  const statusBadge = sanityData?.statusBadge || (rtl ? "المكتب متاح للرد المباشر" : "Malaz Desk Active & Online");
   const title = sanityData?.title || t.contact.title;
   const lede = sanityData?.lede || t.contact.lede;
   const heading = sanityData?.officeHeading || t.contact.heading;
@@ -52,7 +54,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     rtl ? "الدمام" : "Dammam",
   ];
 
-  const steps = [
+  const staticSteps = [
     {
       num: "1",
       title: rtl ? "استلام الطلب في مكتب الملز" : "Request Received at Malaz Desk",
@@ -70,6 +72,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     },
   ];
 
+  const steps = sanityData?.stepsList && sanityData.stepsList.length > 0 ? sanityData.stepsList : staticSteps;
+
   return (
     <>
       <DocumentTitle title={documentTitle(t.meta.contactTitle, t.meta.brand)} />
@@ -83,7 +87,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       <PageHero
         title={title}
         lede={lede}
-        badge={rtl ? "مكتب الحجز والمعاينة الميدانية" : "Direct Malaz Survey Booking Desk"}
+        badge={badge}
         image="/images/office.jpg"
         stats={[
           { label: rtl ? "سرعة الرد" : "Response Time", value: rtl ? "في نفس اليوم" : "Same-Day Dispatch" },
@@ -97,7 +101,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         <div className="space-y-8">
           <div>
             <div className="inline-flex items-center rounded-full border border-green-600/20 bg-green-50 px-3 py-1 text-xs font-medium uppercase tracking-wider text-green-700">
-              {rtl ? "المكتب متاح للرد المباشر" : "Malaz Desk Active & Online"}
+              <span>{statusBadge}</span>
             </div>
             <h2 className="mt-3 text-3xl font-medium tracking-normal text-ink">
               {heading}

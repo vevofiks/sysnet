@@ -35,10 +35,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   const rtl = locale === "ar";
   const sanityData = await getProjectsPageData(locale);
 
+  const badge = sanityData?.badge || (rtl ? "نماذج واقعية من مشاريع الرياض" : "Real Riyadh Installation Scopes");
   const title = sanityData?.title || t.projectsPage.title;
   const lede = sanityData?.lede || t.projectsPage.lede;
+  const standardsBadge = sanityData?.standardsBadge || (rtl ? "معايير الجودة" : "Quality Assurance");
+  const standardsTitle = sanityData?.standardsTitle || (rtl ? "التزامات هندسية تطبق على كل مشروع" : "Standards Delivered on Every Project");
 
-  const standards = [
+  const staticStandards = [
     {
       title: rtl ? "ترقيم وفحص ١٠٠٪" : "100% Labeled & Tested",
       desc: rtl
@@ -65,6 +68,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
     },
   ];
 
+  const standards = sanityData?.standardsList && sanityData.standardsList.length > 0 ? sanityData.standardsList : staticStandards;
+
   return (
     <>
       <DocumentTitle title={documentTitle(t.meta.projectsTitle, t.meta.brand)} />
@@ -78,7 +83,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       <PageHero
         title={title}
         lede={lede}
-        badge={rtl ? "نماذج واقعية من مشاريع الرياض" : "Real Riyadh Installation Scopes"}
+        badge={badge}
         image="/images/warehouse.jpg"
         stats={[
           { label: rtl ? "مستودعات ولوجستيات" : "Warehouses", value: rtl ? "حي السلي" : "Al Sulay Yards" },
@@ -197,10 +202,10 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
         <div className="mx-auto max-w-[1400px] px-4 md:px-10">
           <div className="text-center">
             <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">
-              {rtl ? "معايير الجودة" : "Quality Assurance"}
+              {standardsBadge}
             </span>
             <h2 className="mt-2 text-3xl font-medium tracking-normal text-ink md:text-4xl">
-              {rtl ? "التزامات هندسية تطبق على كل مشروع" : "Standards Delivered on Every Project"}
+              {standardsTitle}
             </h2>
             <p className="mx-auto mt-4 max-w-[65ch] text-base leading-relaxed text-muted">
               {rtl

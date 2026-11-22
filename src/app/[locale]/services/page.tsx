@@ -37,8 +37,34 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
   const rtl = locale === "ar";
   const sanityData = await getServicesPageData(locale);
 
+  const badge = sanityData?.badge || (rtl ? "١٥ خط خدمة" : "15 Service Lines");
   const title = sanityData?.title || t.servicesPage.title;
   const lede = sanityData?.lede || t.servicesPage.lede;
+  const catalogHeading = sanityData?.catalogHeading || (rtl ? "جميع خطوط الخدمة في الرياض" : "All 15 Service Scopes");
+  const catalogSubtitle =
+    sanityData?.catalogSubtitle ||
+    (rtl
+      ? "اختر النطاق الذي يناسب مبناك للحصول على تفاصيل المواصفات وما تشمله المعاينة وما يتم تسليمه لإدارة المبنى."
+      : "Select any scope to inspect full survey coverage, field procedures, and handover deliverables.");
+  const featuredTitle =
+    sanityData?.featuredTitle ||
+    (rtl ? "أكثر النطاقات طلباً وتنفيذاً في الرياض" : "Most Requested Installation Scopes");
+  const featuredLede =
+    sanityData?.featuredLede ||
+    (rtl
+      ? "حلول شاملة مع تحديد الزوايا على المخطط وتسليم كبائن مرتبة ومرقمة بالكامل."
+      : "Floor-plan marked coverage and certified numbered racks delivered as unified scopes.");
+  const advantageBadge = sanityData?.advantageBadge || (rtl ? "ميزة المقاول الموحد" : "Single-Contractor Advantage");
+  const advantageTitle =
+    sanityData?.advantageTitle ||
+    (rtl
+      ? "لماذا تجمع الكاميرات والإنذار والشبكة تحت مقاول واحد؟"
+      : "Why Consolidate Cameras, Alarms & Cabling Under One Crew?");
+  const advantageBody =
+    sanityData?.advantageBody ||
+    (rtl
+      ? "في الرياض، يعاني مديرو المرافق وأصحاب الفلل من تشتت المسؤولية بين مقاول للكاميرات وآخر للإنذار وثالث للشبكة. سيسنت تجمع كل هذا على مخطط واحد وكابينة واحدة وزيارة معاينة واحدة."
+      : "In Riyadh, facility managers often wrestle with three separate contractors pointing fingers when a camera goes dark. Sysnet places CCTV, fire safety, and data cabling on a single drawing, one cabinet, and one visit plan.");
 
   return (
     <>
@@ -53,7 +79,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       <PageHero
         title={title}
         lede={lede}
-        badge={rtl ? "١٥ خط خدمة" : "15 Service Lines"}
+        badge={badge}
         image="/images/network-switchers.jpg"
         stats={[
           { label: rtl ? "نطاقات العمل" : "Service Lines", value: rtl ? "١٥ نطاقًا متكاملًا" : "15 Complete Scopes" },
@@ -67,18 +93,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         services={services}
         locale={locale}
         seeScopeText={t.priced.seeScope}
-        heading={rtl ? "جميع خطوط الخدمة في الرياض" : "All 15 Service Scopes"}
-        catalogSubtitle={
-          rtl
-            ? "اختر النطاق الذي يناسب مبناك للحصول على تفاصيل المواصفات وما تشمله المعاينة وما يتم تسليمه لإدارة المبنى."
-            : "Select any scope to inspect full survey coverage, field procedures, and handover deliverables."
-        }
-        featuredTitle={rtl ? "أكثر النطاقات طلباً وتنفيذاً في الرياض" : "Most Requested Installation Scopes"}
-        featuredLede={
-          rtl
-            ? "حلول شاملة مع تحديد الزوايا على المخطط وتسليم كبائن مرتبة ومرقمة بالكامل."
-            : "Floor-plan marked coverage and certified numbered racks delivered as unified scopes."
-        }
+        heading={catalogHeading}
+        catalogSubtitle={catalogSubtitle}
+        featuredTitle={featuredTitle}
+        featuredLede={featuredLede}
         primaryScope01Label={rtl ? "نطاق رئيسي ٠١" : "Primary Scope 01"}
         primaryScope02Label={rtl ? "نطاق رئيسي ٠٢" : "Primary Scope 02"}
         cctvSubtitle={rtl ? "تسجيل ٣٠ يوماً" : "30-Day NVR"}
@@ -111,17 +129,13 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3 py-1 text-xs font-medium uppercase tracking-wider text-navy">
               <Layers className="size-3.5 text-orange-deep" />
-              {rtl ? "ميزة المقاول الموحد" : "The Single Contractor Model"}
+              <span>{advantageBadge}</span>
             </div>
             <h2 className="mt-4 text-3xl font-medium tracking-normal text-ink md:text-4xl">
-              {rtl
-                ? "لماذا تجمع الكاميرات والإنذار والشبكة تحت مقاول واحد؟"
-                : "Why Consolidate Cameras, Alarms & Cabling Under One Crew?"}
+              {advantageTitle}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted">
-              {rtl
-                ? "في الرياض، يعاني مديرو المرافق وأصحاب الفلل من تشتت المسؤولية بين مقاول للكاميرات وآخر للإنذار وثالث للشبكة. سيسنت تجمع كل هذا على مخطط واحد وكابينة واحدة وزيارة معاينة واحدة."
-                : "In Riyadh, facility managers often wrestle with three separate contractors pointing fingers when a camera goes dark. Sysnet places CCTV, fire safety, and data cabling on a single drawing, one cabinet, and one visit plan."}
+              {advantageBody}
             </p>
 
             <div className="mt-8 space-y-4">

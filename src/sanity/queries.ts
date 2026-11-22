@@ -315,6 +315,7 @@ export async function getHomePageData(locale: Locale): Promise<SanityHomePageDat
 
 // --- About Page Query ---
 export interface SanityAboutPageData {
+  badge?: string;
   title?: string;
   lede?: string;
   heading?: string;
@@ -322,8 +323,15 @@ export interface SanityAboutPageData {
   p2?: string;
   skylineImageUrl?: string | null;
   techImageUrl?: string | null;
+  pillarsList?: { num: string; title: string; desc: string }[];
+  workBadge?: string;
   workTitle?: string;
-  workText1?: string;
+  workLede?: string;
+  ctaBadge?: string;
+  ctaTitle?: string;
+  ctaBody?: string;
+  ctaBtnSurvey?: string;
+  ctaBtnCall?: string;
 }
 
 export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageData | null> {
@@ -333,6 +341,7 @@ export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageD
   try {
     const data = await client.fetch(
       `*[_type == "aboutPage"][0]{
+        badgeEn, badgeAr,
         titleEn, titleAr,
         ledeEn, ledeAr,
         headingEn, headingAr,
@@ -340,8 +349,20 @@ export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageD
         p2En, p2Ar,
         skylineImage,
         techImage,
+        pillarsList[]{
+          _key,
+          num,
+          titleEn, titleAr,
+          descEn, descAr
+        },
+        workBadgeEn, workBadgeAr,
         workTitleEn, workTitleAr,
-        workText1En, workText1Ar
+        workLedeEn, workLedeAr,
+        ctaBadgeEn, ctaBadgeAr,
+        ctaTitleEn, ctaTitleAr,
+        ctaBodyEn, ctaBodyAr,
+        ctaBtnSurveyEn, ctaBtnSurveyAr,
+        ctaBtnCallEn, ctaBtnCallAr
       }`
     );
     if (!data) return null;
@@ -358,7 +379,15 @@ export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageD
       if (b) techImageUrl = b.width(1200).quality(85).url();
     }
 
+    type PillarRaw = { num?: string; titleEn?: string; titleAr?: string; descEn?: string; descAr?: string };
+    const pillarsList = data.pillarsList?.map((p: PillarRaw) => ({
+      num: p.num || "01",
+      title: isAr ? (p.titleAr || p.titleEn || "") : (p.titleEn || p.titleAr || ""),
+      desc: isAr ? (p.descAr || p.descEn || "") : (p.descEn || p.descAr || ""),
+    }));
+
     return {
+      badge: isAr ? (data.badgeAr || data.badgeEn) : (data.badgeEn || data.badgeAr),
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
       lede: isAr ? (data.ledeAr || data.ledeEn) : (data.ledeEn || data.ledeAr),
       heading: isAr ? (data.headingAr || data.headingEn) : (data.headingEn || data.headingAr),
@@ -366,8 +395,15 @@ export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageD
       p2: isAr ? (data.p2Ar || data.p2En) : (data.p2En || data.p2Ar),
       skylineImageUrl,
       techImageUrl,
+      pillarsList,
+      workBadge: isAr ? (data.workBadgeAr || data.workBadgeEn) : (data.workBadgeEn || data.workBadgeAr),
       workTitle: isAr ? (data.workTitleAr || data.workTitleEn) : (data.workTitleEn || data.workTitleAr),
-      workText1: isAr ? (data.workText1Ar || data.workText1En) : (data.workText1En || data.workText1Ar),
+      workLede: isAr ? (data.workLedeAr || data.workLedeEn) : (data.workLedeEn || data.workLedeAr),
+      ctaBadge: isAr ? (data.ctaBadgeAr || data.ctaBadgeEn) : (data.ctaBadgeEn || data.ctaBadgeAr),
+      ctaTitle: isAr ? (data.ctaTitleAr || data.ctaTitleEn) : (data.ctaTitleEn || data.ctaTitleAr),
+      ctaBody: isAr ? (data.ctaBodyAr || data.ctaBodyEn) : (data.ctaBodyEn || data.ctaBodyAr),
+      ctaBtnSurvey: isAr ? (data.ctaBtnSurveyAr || data.ctaBtnSurveyEn) : (data.ctaBtnSurveyEn || data.ctaBtnSurveyAr),
+      ctaBtnCall: isAr ? (data.ctaBtnCallAr || data.ctaBtnCallEn) : (data.ctaBtnCallEn || data.ctaBtnCallAr),
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for aboutPage:", error);
@@ -377,8 +413,18 @@ export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageD
 
 // --- Services Page Query ---
 export interface SanityServicesPageData {
+  badge?: string;
   title?: string;
   lede?: string;
+  catalogHeading?: string;
+  catalogSubtitle?: string;
+  featuredTitle?: string;
+  featuredLede?: string;
+  advantageBadge?: string;
+  advantageTitle?: string;
+  advantageBody?: string;
+  advantageBtnAll?: string;
+  advantageBtnSurvey?: string;
 }
 
 export async function getServicesPageData(locale: Locale): Promise<SanityServicesPageData | null> {
@@ -388,15 +434,35 @@ export async function getServicesPageData(locale: Locale): Promise<SanityService
   try {
     const data = await client.fetch(
       `*[_type == "servicesPage"][0]{
+        badgeEn, badgeAr,
         titleEn, titleAr,
-        ledeEn, ledeAr
+        ledeEn, ledeAr,
+        catalogHeadingEn, catalogHeadingAr,
+        catalogSubtitleEn, catalogSubtitleAr,
+        featuredTitleEn, featuredTitleAr,
+        featuredLedeEn, featuredLedeAr,
+        advantageBadgeEn, advantageBadgeAr,
+        advantageTitleEn, advantageTitleAr,
+        advantageBodyEn, advantageBodyAr,
+        advantageBtnAllEn, advantageBtnAllAr,
+        advantageBtnSurveyEn, advantageBtnSurveyAr
       }`
     );
     if (!data) return null;
     const isAr = locale === "ar";
     return {
+      badge: isAr ? (data.badgeAr || data.badgeEn) : (data.badgeEn || data.badgeAr),
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
       lede: isAr ? (data.ledeAr || data.ledeEn) : (data.ledeEn || data.ledeAr),
+      catalogHeading: isAr ? (data.catalogHeadingAr || data.catalogHeadingEn) : (data.catalogHeadingEn || data.catalogHeadingAr),
+      catalogSubtitle: isAr ? (data.catalogSubtitleAr || data.catalogSubtitleEn) : (data.catalogSubtitleEn || data.catalogSubtitleAr),
+      featuredTitle: isAr ? (data.featuredTitleAr || data.featuredTitleEn) : (data.featuredTitleEn || data.featuredTitleAr),
+      featuredLede: isAr ? (data.featuredLedeAr || data.featuredLedeEn) : (data.featuredLedeEn || data.featuredLedeAr),
+      advantageBadge: isAr ? (data.advantageBadgeAr || data.advantageBadgeEn) : (data.advantageBadgeEn || data.advantageBadgeAr),
+      advantageTitle: isAr ? (data.advantageTitleAr || data.advantageTitleEn) : (data.advantageTitleEn || data.advantageTitleAr),
+      advantageBody: isAr ? (data.advantageBodyAr || data.advantageBodyEn) : (data.advantageBodyEn || data.advantageBodyAr),
+      advantageBtnAll: isAr ? (data.advantageBtnAllAr || data.advantageBtnAllEn) : (data.advantageBtnAllEn || data.advantageBtnAllAr),
+      advantageBtnSurvey: isAr ? (data.advantageBtnSurveyAr || data.advantageBtnSurveyEn) : (data.advantageBtnSurveyEn || data.advantageBtnSurveyAr),
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for servicesPage:", error);
@@ -406,9 +472,12 @@ export async function getServicesPageData(locale: Locale): Promise<SanityService
 
 // --- Projects Page Query ---
 export interface SanityProjectsPageData {
+  badge?: string;
   title?: string;
   lede?: string;
-  prompt?: string;
+  standardsBadge?: string;
+  standardsTitle?: string;
+  standardsList?: { title: string; desc: string }[];
 }
 
 export async function getProjectsPageData(locale: Locale): Promise<SanityProjectsPageData | null> {
@@ -418,17 +487,33 @@ export async function getProjectsPageData(locale: Locale): Promise<SanityProject
   try {
     const data = await client.fetch(
       `*[_type == "projectsPage"][0]{
+        badgeEn, badgeAr,
         titleEn, titleAr,
         ledeEn, ledeAr,
-        promptEn, promptAr
+        standardsBadgeEn, standardsBadgeAr,
+        standardsTitleEn, standardsTitleAr,
+        standardsList[]{
+          _key,
+          titleEn, titleAr,
+          descEn, descAr
+        }
       }`
     );
     if (!data) return null;
     const isAr = locale === "ar";
+    type StdRaw = { titleEn?: string; titleAr?: string; descEn?: string; descAr?: string };
+    const standardsList = data.standardsList?.map((s: StdRaw) => ({
+      title: isAr ? (s.titleAr || s.titleEn || "") : (s.titleEn || s.titleAr || ""),
+      desc: isAr ? (s.descAr || s.descEn || "") : (s.descEn || s.descAr || ""),
+    }));
+
     return {
+      badge: isAr ? (data.badgeAr || data.badgeEn) : (data.badgeEn || data.badgeAr),
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
       lede: isAr ? (data.ledeAr || data.ledeEn) : (data.ledeEn || data.ledeAr),
-      prompt: isAr ? (data.promptAr || data.promptEn) : (data.promptEn || data.promptAr),
+      standardsBadge: isAr ? (data.standardsBadgeAr || data.standardsBadgeEn) : (data.standardsBadgeEn || data.standardsBadgeAr),
+      standardsTitle: isAr ? (data.standardsTitleAr || data.standardsTitleEn) : (data.standardsTitleEn || data.standardsTitleAr),
+      standardsList,
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for projectsPage:", error);
@@ -438,14 +523,17 @@ export async function getProjectsPageData(locale: Locale): Promise<SanityProject
 
 // --- Contact Page Query ---
 export interface SanityContactPageData {
+  badge?: string;
   title?: string;
   lede?: string;
+  statusBadge?: string;
   officeHeading?: string;
   address?: string;
   phone?: string;
   email?: string;
   hours?: string;
   formSubmitBtn?: string;
+  stepsList?: { num: string; title: string; desc: string }[];
 }
 
 export async function getContactPageData(locale: Locale): Promise<SanityContactPageData | null> {
@@ -455,30 +543,95 @@ export async function getContactPageData(locale: Locale): Promise<SanityContactP
   try {
     const data = await client.fetch(
       `*[_type == "contactPage"][0]{
+        badgeEn, badgeAr,
         titleEn, titleAr,
         ledeEn, ledeAr,
+        statusBadgeEn, statusBadgeAr,
         officeHeadingEn, officeHeadingAr,
         addressEn, addressAr,
         phone,
         email,
         hoursEn, hoursAr,
-        formSubmitBtnEn, formSubmitBtnAr
+        formSubmitBtnEn, formSubmitBtnAr,
+        stepsList[]{
+          _key,
+          num,
+          titleEn, titleAr,
+          descEn, descAr
+        }
       }`
     );
     if (!data) return null;
     const isAr = locale === "ar";
+    type StepRaw = { num?: string; titleEn?: string; titleAr?: string; descEn?: string; descAr?: string };
+    const stepsList = data.stepsList?.map((s: StepRaw) => ({
+      num: s.num || "1",
+      title: isAr ? (s.titleAr || s.titleEn || "") : (s.titleEn || s.titleAr || ""),
+      desc: isAr ? (s.descAr || s.descEn || "") : (s.descEn || s.descAr || ""),
+    }));
+
     return {
+      badge: isAr ? (data.badgeAr || data.badgeEn) : (data.badgeEn || data.badgeAr),
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
       lede: isAr ? (data.ledeAr || data.ledeEn) : (data.ledeEn || data.ledeAr),
+      statusBadge: isAr ? (data.statusBadgeAr || data.statusBadgeEn) : (data.statusBadgeEn || data.statusBadgeAr),
       officeHeading: isAr ? (data.officeHeadingAr || data.officeHeadingEn) : (data.officeHeadingEn || data.officeHeadingAr),
       address: isAr ? (data.addressAr || data.addressEn) : (data.addressEn || data.addressAr),
       phone: data.phone,
       email: data.email,
       hours: isAr ? (data.hoursAr || data.hoursEn) : (data.hoursEn || data.hoursAr),
       formSubmitBtn: isAr ? (data.formSubmitBtnAr || data.formSubmitBtnEn) : (data.formSubmitBtnEn || data.formSubmitBtnAr),
+      stepsList,
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for contactPage:", error);
+    return null;
+  }
+}
+
+// --- Service Detail (Sub-service page) Query ---
+export interface SanityServiceDetailData {
+  title?: string;
+  summary?: string;
+  detail?: string;
+  imageUrl?: string | null;
+  alt?: string;
+}
+
+export async function getServiceDetailData(
+  slug: string,
+  locale: Locale
+): Promise<SanityServiceDetailData | null> {
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
+  try {
+    const data = await client.fetch(
+      `*[_type == "service" && slug.current == $slug][0]{
+        titleEn, titleAr,
+        summaryEn, summaryAr,
+        detailEn, detailAr,
+        image,
+        alt
+      }`,
+      { slug }
+    );
+    if (!data) return null;
+    const isAr = locale === "ar";
+    let imageUrl: string | null = null;
+    if (data.image) {
+      const b = urlFor(data.image);
+      if (b) imageUrl = b.width(1200).quality(85).url();
+    }
+    return {
+      title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
+      summary: isAr ? (data.summaryAr || data.summaryEn) : (data.summaryEn || data.summaryAr),
+      detail: isAr ? (data.detailAr || data.detailEn) : (data.detailEn || data.detailAr),
+      imageUrl,
+      alt: data.alt,
+    };
+  } catch (error) {
+    console.warn(`Notice: Sanity query error for service ${slug}:`, error);
     return null;
   }
 }
