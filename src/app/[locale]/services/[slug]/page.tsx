@@ -118,6 +118,7 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
   if (!service || !guide) notFound();
 
   const sanityService = await getServiceDetailData(slug, locale);
+  const serviceHeading = sanityService?.heading || guide.h1;
   const serviceTitle = sanityService?.title || service.title;
   const serviceSummary = sanityService?.summary || service.summary;
   const serviceDetail = sanityService?.detail || service.detail;
@@ -196,7 +197,7 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
               <span>{rtl ? "النطاق" : "Scope"} {String(index + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}</span>
             </div>
             <h1 className="mt-3 max-w-[22ch] text-3xl font-medium leading-[1.1] tracking-normal text-white md:text-4xl lg:text-5xl">
-              {guide.h1}
+              {serviceHeading}
             </h1>
           </div>
           <p className="max-w-[44ch] text-base leading-relaxed text-ice/90 md:pb-2 md:text-lg">

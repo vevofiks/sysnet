@@ -12,7 +12,7 @@ import { localePath } from "@/lib/paths";
 import { projectsGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
-import { getProjectsPageData } from "@/sanity/queries";
+import { getProjectsPageData, getProjectsList } from "@/sanity/queries";
 
 export async function generateMetadata({
   params,
@@ -34,6 +34,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   const { t, projects } = content(locale);
   const rtl = locale === "ar";
   const sanityData = await getProjectsPageData(locale);
+  const sanityProjects = await getProjectsList(locale);
+  const projectCards = sanityProjects && sanityProjects.length > 0 ? sanityProjects : projects;
 
   const badge = sanityData?.badge || (rtl ? "نماذج واقعية من مشاريع الرياض" : "Real Riyadh Installation Scopes");
   const title = sanityData?.title || t.projectsPage.title;
@@ -96,7 +98,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       <section className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-4 md:px-10">
           <div className="space-y-10 md:space-y-12">
-            {projects.map((project, index) => {
+            {projectCards.map((project, index) => {
               const isEven = index % 2 === 0;
               return (
                 <article
@@ -113,7 +115,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                           {project.tag}
                         </span>
                         <span className="font-mono text-xs text-muted">
-                          {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                          {String(index + 1).padStart(2, "0")} / {String(projectCards.length).padStart(2, "0")}
                         </span>
                       </div>
 
@@ -175,8 +177,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                       {/* Image 2: Scene / Facility Environment */}
                       <div className="group relative aspect-[4/3] overflow-hidden rounded-[18px] border border-line bg-navy-deep shadow-sm">
                         <Photo
-                          src={project.scene}
-                          alt={project.sceneAlt}
+                          src={project.scene || project.image}
+                          alt={"sceneAlt" in project && project.sceneAlt ? project.sceneAlt : project.alt}
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                         />

@@ -33,8 +33,8 @@ export const openingHours = {
 
 export const geoCoordinates = {
   "@type": "GeoCoordinates",
-  latitude: 24.6644,
-  longitude: 46.7275,
+  latitude: 24.6617052,
+  longitude: 46.7294951,
 };
 
 export function localBusinessNode(locale: Locale) {
@@ -59,7 +59,7 @@ export function localBusinessNode(locale: Locale) {
     paymentAccepted: "Cash, Credit Card, Bank Wire Transfer",
     address: postalAddress,
     geo: geoCoordinates,
-    hasMap: "https://maps.google.com/?q=24.6644,46.7275",
+    hasMap: "https://maps.app.goo.gl/tKWcuAAcyYEuRL797",
     openingHoursSpecification: openingHours,
     areaServed,
     contactPoint: [

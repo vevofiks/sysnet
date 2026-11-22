@@ -17,6 +17,16 @@ export const serviceType = defineType({
       type: "string",
     }),
     defineField({
+      name: "headingEn",
+      title: "Hero Main Heading (English)",
+      type: "string",
+    }),
+    defineField({
+      name: "headingAr",
+      title: "Hero Main Heading (Arabic)",
+      type: "string",
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",

@@ -34,7 +34,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const locale = parseLocale((await params).locale);
   const t = copy[locale];
   const rtl = locale === "ar";
-  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapsQuery)}&z=14&output=embed`;
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapsQuery)}&z=16&output=embed`;
   const sanityData = await getContactPageData(locale);
 
   const badge = sanityData?.badge || (rtl ? "مكتب الحجز والمعاينة الميدانية" : "Direct Malaz Survey Booking Desk");
@@ -177,9 +177,19 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
           {/* Operational Hub Visual Card */}
           <div className="overflow-hidden rounded-[20px] border border-line bg-[#f8fbfe] p-5 shadow-sm">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-navy">
-              <MapPin className="size-4 text-orange-deep" />
-              <span>{t.contact.address}</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-navy">
+                <MapPin className="size-4 text-orange-deep" />
+                <span>{t.contact.address}</span>
+              </div>
+              <a
+                href={company.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-medium text-navy hover:text-orange-deep hover:underline"
+              >
+                {rtl ? "الاتجاهات ↗" : "Get Directions ↗"}
+              </a>
             </div>
             <p className="mt-2 text-base font-medium text-ink">{t.company.address}</p>
 
@@ -241,12 +251,22 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       {/* Map Section */}
       <section className="border-t border-line bg-[#f8fbfe]">
         <div className="mx-auto max-w-[1400px] px-4 py-8 md:px-10">
-          <div className="flex items-center justify-between py-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 py-4">
             <div className="flex items-center gap-2">
               <MapPin className="size-4 text-orange-deep" />
               <h2 className="text-base font-medium text-ink">{t.a11y.mapHeading}</h2>
             </div>
-            <span className="text-xs text-muted">{company.address}</span>
+            <div className="flex items-center gap-4">
+              <span className="text-xs text-muted">{company.address}</span>
+              <a
+                href={company.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-xs font-medium text-navy transition-colors hover:border-navy hover:text-orange-deep"
+              >
+                <span>{rtl ? "فتح في خرائط Google ↗" : "Open in Google Maps ↗"}</span>
+              </a>
+            </div>
           </div>
         </div>
         <ContactMap src={mapSrc} title={t.a11y.mapTitle} />

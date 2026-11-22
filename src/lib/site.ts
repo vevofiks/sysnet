@@ -6,7 +6,8 @@ export const company = {
   whatsapp: "966532980149",
   email: "sales@sysnet-ksa.com",
   address: "Malaz, Riyadh, Saudi Arabia",
-  mapsQuery: "Malaz, Riyadh, Saudi Arabia",
+  mapsQuery: "24.6617052,46.7294951",
+  mapsUrl: "https://maps.app.goo.gl/tKWcuAAcyYEuRL797",
   url: "https://www.sysnet-ksa.com",
   hours: "Saturday–Thursday, 9:00–18:00",
 };

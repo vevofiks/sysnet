@@ -14,7 +14,7 @@ import { localePath } from "@/lib/paths";
 import { servicesCatalogGraph } from "@/lib/schema";
 import { documentTitle, pageMeta } from "@/lib/seo";
 import { company } from "@/lib/site";
-import { getServicesPageData } from "@/sanity/queries";
+import { getServicesPageData, getServicesList } from "@/sanity/queries";
 
 export async function generateMetadata({
   params,
@@ -36,6 +36,18 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
   const { t, services } = content(locale);
   const rtl = locale === "ar";
   const sanityData = await getServicesPageData(locale);
+  const sanityServicesMap = await getServicesList(locale);
+
+  const serviceCards = services.map((s) => {
+    const override = sanityServicesMap?.[s.slug];
+    if (!override) return s;
+    return {
+      ...s,
+      title: override.title || s.title,
+      summary: override.summary || s.summary,
+      detail: override.detail || s.detail,
+    };
+  });
 
   const badge = sanityData?.badge || (rtl ? "١٥ خط خدمة" : "15 Service Lines");
   const title = sanityData?.title || t.servicesPage.title;
@@ -90,7 +102,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
 
       {/* Interactive Catalog with Filter Bar */}
       <ServicesCatalog
-        services={services}
+        services={serviceCards}
         locale={locale}
         seeScopeText={t.priced.seeScope}
         heading={catalogHeading}

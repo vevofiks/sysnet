@@ -470,6 +470,40 @@ export async function getServicesPageData(locale: Locale): Promise<SanityService
   }
 }
 
+export async function getServicesList(
+  locale: Locale
+): Promise<Record<string, { title?: string; summary?: string; detail?: string }> | null> {
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
+  try {
+    const data = await client.fetch(
+      `*[_type == "service"]{
+        "slug": slug.current,
+        titleEn, titleAr,
+        summaryEn, summaryAr,
+        detailEn, detailAr
+      }`
+    );
+    if (!data || data.length === 0) return null;
+    const isAr = locale === "ar";
+    const map: Record<string, { title?: string; summary?: string; detail?: string }> = {};
+    for (const item of data) {
+      if (item.slug) {
+        map[item.slug] = {
+          title: isAr ? (item.titleAr || item.titleEn) : (item.titleEn || item.titleAr),
+          summary: isAr ? (item.summaryAr || item.summaryEn) : (item.summaryEn || item.summaryAr),
+          detail: isAr ? (item.detailAr || item.detailEn) : (item.detailEn || item.detailAr),
+        };
+      }
+    }
+    return map;
+  } catch (error) {
+    console.warn("Notice: Sanity query error for service catalog list:", error);
+    return null;
+  }
+}
+
 // --- Projects Page Query ---
 export interface SanityProjectsPageData {
   badge?: string;
@@ -517,6 +551,58 @@ export async function getProjectsPageData(locale: Locale): Promise<SanityProject
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for projectsPage:", error);
+    return null;
+  }
+}
+
+export interface SanityProjectItem {
+  slug: string;
+  tag: string;
+  title: string;
+  summary: string;
+  image: string;
+  scene?: string;
+  sceneAlt?: string;
+  alt: string;
+  facts: string[];
+}
+
+export async function getProjectsList(locale: Locale): Promise<SanityProjectItem[] | null> {
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
+  try {
+    const data = await client.fetch(
+      `*[_type == "projectItem"] | order(_createdAt asc){
+        titleEn, titleAr,
+        "slug": slug.current,
+        tagEn, tagAr,
+        summaryEn, summaryAr,
+        image,
+        sceneImage,
+        factsEn, factsAr
+      }`
+    );
+    if (!data || data.length === 0) return null;
+    const isAr = locale === "ar";
+    return data.map((item: any) => {
+      let imageUrl = "/images/united-security-cameras.jpg";
+      if (item.image) {
+        const b = urlFor(item.image);
+        if (b) imageUrl = b.width(800).quality(85).url();
+      }
+      return {
+        slug: item.slug,
+        title: isAr ? (item.titleAr || item.titleEn) : (item.titleEn || item.titleAr),
+        tag: isAr ? (item.tagAr || item.tagEn) : (item.tagEn || item.tagAr),
+        summary: isAr ? (item.summaryAr || item.summaryEn) : (item.summaryEn || item.summaryAr),
+        image: imageUrl,
+        alt: item.titleEn || "Project installation",
+        facts: isAr ? (item.factsAr || item.factsEn || []) : (item.factsEn || item.factsAr || []),
+      };
+    });
+  } catch (error) {
+    console.warn("Notice: Sanity query error for projectItem:", error);
     return null;
   }
 }
@@ -592,6 +678,7 @@ export async function getContactPageData(locale: Locale): Promise<SanityContactP
 // --- Service Detail (Sub-service page) Query ---
 export interface SanityServiceDetailData {
   title?: string;
+  heading?: string;
   summary?: string;
   detail?: string;
   imageUrl?: string | null;
@@ -609,6 +696,7 @@ export async function getServiceDetailData(
     const data = await client.fetch(
       `*[_type == "service" && slug.current == $slug][0]{
         titleEn, titleAr,
+        headingEn, headingAr,
         summaryEn, summaryAr,
         detailEn, detailAr,
         image,
@@ -625,6 +713,7 @@ export async function getServiceDetailData(
     }
     return {
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
+      heading: isAr ? (data.headingAr || data.headingEn) : (data.headingEn || data.headingAr),
       summary: isAr ? (data.summaryAr || data.summaryEn) : (data.summaryEn || data.summaryAr),
       detail: isAr ? (data.detailAr || data.detailEn) : (data.detailEn || data.detailAr),
       imageUrl,
