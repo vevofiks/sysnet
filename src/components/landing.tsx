@@ -1,3 +1,4 @@
+import { draftMode } from "next/headers";
 import { Hero } from "@/components/hero";
 import { HeroLead } from "@/components/hero-lead";
 import { HomeRest } from "@/components/home-rest";
@@ -10,11 +11,16 @@ import { getHomePageData } from "@/sanity/queries";
 export async function Landing({ locale }: { locale: Locale }) {
   const { faqs } = content(locale);
   const sanityData = await getHomePageData(locale);
+  let isDraft = false;
+  try {
+    const draft = await draftMode();
+    isDraft = draft.isEnabled;
+  } catch {}
 
   return (
     <>
       <JsonLd data={faqSchema(faqs)} />
-      <Hero>
+      <Hero isDraft={isDraft}>
         <HeroLead locale={locale} sanityData={sanityData} />
       </Hero>
       <HomeRest locale={locale} sanityData={sanityData} />

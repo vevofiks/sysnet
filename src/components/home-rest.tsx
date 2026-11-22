@@ -32,18 +32,74 @@ export function HomeRest({
   locale: Locale;
   sanityData?: SanityHomePageData | null;
 }) {
-  const { t, services, industries, steps, projects, faqs } = content(locale);
+  const { t, services, industries: staticIndustries, steps: staticSteps, projects, faqs: staticFaqs } = content(locale);
   const rtl = locale === "ar";
   const featured = services.filter((service) => service.featured);
   const rest = services.filter((service) => !service.featured);
 
+  const industries = sanityData?.industriesList && sanityData.industriesList.length > 0 ? sanityData.industriesList : staticIndustries;
+  const steps = sanityData?.stepsList && sanityData.stepsList.length > 0 ? sanityData.stepsList : staticSteps;
+  const faqs = sanityData?.faqsList && sanityData.faqsList.length > 0 ? sanityData.faqsList : staticFaqs;
+  const brandLabel = sanityData?.brandLabel || t.supply.label;
+
+  const crewBadge = sanityData?.crewBadge || (rtl ? "فريق عمل موحد في الرياض" : "Unified Riyadh Field Crew");
   const crewTitle = sanityData?.crewTitle || t.crew.title;
   const crewBody = sanityData?.crewBody || t.crew.body;
+  const crewPoints = sanityData?.crewPoints && sanityData.crewPoints.length > 0 ? sanityData.crewPoints : t.crew.points;
+  const crewBtnAll = sanityData?.crewBtnAllServices || t.priced.allLines;
+  const crewBtnSurvey = sanityData?.crewBtnSurvey || t.book.survey;
   const crewImg = sanityData?.crewImageUrl || "/images/crew-cctv-pole.png";
+  const crewCardBadge = sanityData?.crewCardBadge || (rtl ? "مسؤولية فنية كاملة" : "Consolidated Accountability");
+  const crewCardText =
+    sanityData?.crewCardText ||
+    (rtl
+      ? "مخطط معتمد، وكابينة واحدة تجمع الكاميرات والإنذار والشبكة، وتسليم رسمي بكلمات المرور."
+      : "Marked floor plans, single cabinet for CCTV, alarm & network, with verified handover sheets.");
+
+  const sectorsBadge = sanityData?.sectorsBadge || (rtl ? "قطاعات الأعمال في الرياض" : "Riyadh Facility Sectors");
   const sectorsTitle = sanityData?.sectorsTitle || t.sectorsTitle;
+  const sectorsLede =
+    sanityData?.sectorsLede ||
+    (rtl
+      ? "تجهيز متكامل للشركات والمستودعات والفلل والمنشآت الصحية."
+      : "Tailored camera angles, retention sizing, and cabling designed for each facility type.");
+
+  const scopedBadge = sanityData?.scopedBadge || (rtl ? "النطاقات والأسعار" : "Scoped Engineering");
+  const scopedTitle = sanityData?.scopedTitle || t.priced.title;
+  const scopedLede = sanityData?.scopedLede || t.priced.lede;
+  const scopedSeeScopeBtn = sanityData?.scopedSeeScopeBtn || t.priced.seeScope;
+  const complementaryBadge = sanityData?.complementaryBadge || (rtl ? "النطاقات التكميلية" : "Complementary Trades");
+  const complementaryTitle = sanityData?.complementaryTitle || (rtl ? "خطوط الخدمة الأخرى المنفذة في نفس الزيارة" : "All Other Scopes Quoted & Installed Together");
+  const complementaryBtn = sanityData?.complementaryBtn || t.priced.allLines;
+  const complementaryContactBtn = sanityData?.complementaryContactBtn || t.book.survey;
+
+  const stepsBadge = sanityData?.stepsBadge || (rtl ? "مسار العمل الميداني" : "Structured Methodology");
   const stepsTitle = sanityData?.stepsTitle || t.stepsTitle;
+  const stepsLede =
+    sanityData?.stepsLede ||
+    (rtl
+      ? "من المكالمة الأولى إلى تسليم المخطط النهائي وكلمات المرور لمدير المبنى."
+      : "From the first phone call to the handover of passwords and test sheets.");
+
+  const trustIndicators = sanityData?.trustIndicators && sanityData.trustIndicators.length > 0
+    ? sanityData.trustIndicators
+    : [
+        rtl ? "معاينة ميدانية خلال 24 ساعة" : "Site survey dispatched within 24 hours",
+        rtl ? "مخطط كابلات وجدول كميات معتمد" : "Certified cable schedule & parts list",
+        rtl ? "تسليم معتمد مع كلمات المرور" : "Tested handover with passwords",
+      ];
+
+  const projectsBadge = sanityData?.projectsBadge || (rtl ? "مشاريع نموذجية" : "Verified Projects");
+  const projectsTitle = sanityData?.projectsTitle || t.survey.title;
+  const projectsLede = sanityData?.projectsLede || t.survey.lede;
+
+  const faqTitle = sanityData?.faqTitle || t.faqTitle;
+
+  const bookBadge = sanityData?.bookBadge || (rtl ? "مكتب الملز بالرياض" : "Riyadh Operations Hub");
   const bookTitle = sanityData?.bookTitle || t.book.title;
   const bookBody = sanityData?.bookBody || t.book.body;
+  const bookBtnSurvey = sanityData?.bookBtnSurvey || t.book.survey;
+  const bookBtnCall = sanityData?.bookBtnCall || t.book.call;
 
   return (
     <>
@@ -52,27 +108,27 @@ export function HomeRest({
         <Reveal>
           <div className="inline-flex items-center gap-2 rounded-full border border-orange-deep/20 bg-orange-soft/40 px-3.5 py-1 text-xs font-medium uppercase tracking-wider text-orange-deep">
             <ShieldCheck className="size-3.5" />
-            {rtl ? "فريق عمل موحد في الرياض" : "Unified Riyadh Field Crew"}
+            <span>{crewBadge}</span>
           </div>
           <h2 className="mt-4 max-w-[16ch] text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-5xl">
             {crewTitle}
           </h2>
           <p className="mt-5 max-w-[65ch] text-base leading-relaxed text-muted">{crewBody}</p>
-          <BulletList className="mt-8" items={t.crew.points} />
+          <BulletList className="mt-8" items={crewPoints} />
 
           <div className="mt-8 flex flex-wrap gap-4 pt-2">
             <Link
               href={localePath(locale, "/services")}
               className="inline-flex h-12 items-center gap-2 rounded-[5px] bg-navy px-6 text-sm font-medium uppercase tracking-normal text-white transition-colors hover:bg-navy-deep"
             >
-              {t.priced.allLines}
+              {crewBtnAll}
               <ArrowRight className="size-4 rtl:rotate-180" />
             </Link>
             <Link
               href={localePath(locale, "/contact")}
               className="inline-flex h-12 items-center justify-center rounded-[5px] border border-line bg-white px-6 text-sm font-medium uppercase tracking-normal text-ink transition-colors hover:border-navy"
             >
-              {t.book.survey}
+              {crewBtnSurvey}
             </Link>
           </div>
         </Reveal>
@@ -88,12 +144,10 @@ export function HomeRest({
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-transparent to-transparent" />
             <div className="absolute bottom-6 start-6 end-6 rounded-[14px] border border-white/20 bg-white/10 p-5 text-white backdrop-blur-md">
               <div className="text-xs font-mono uppercase tracking-wider text-orange-soft">
-                <span>{rtl ? "مسؤولية فنية كاملة" : "Consolidated Accountability"}</span>
+                <span>{crewCardBadge}</span>
               </div>
               <p className="mt-1 text-sm font-medium leading-relaxed">
-                {rtl
-                  ? "مخطط معتمد، وكابينة واحدة تجمع الكاميرات والإنذار والشبكة، وتسليم رسمي بكلمات المرور."
-                  : "Marked floor plans, single cabinet for CCTV, alarm & network, with verified handover sheets."}
+                {crewCardText}
               </p>
             </div>
           </Fade>
@@ -116,16 +170,14 @@ export function HomeRest({
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <Reveal>
               <span className="font-mono text-xs uppercase tracking-widest text-orange-soft">
-                {rtl ? "قطاعات الأعمال في الرياض" : "Riyadh Facility Sectors"}
+                {sectorsBadge}
               </span>
               <h2 className="mt-2 max-w-[18ch] text-3xl font-medium leading-[1.08] tracking-normal text-white md:text-5xl">
                 {sectorsTitle}
               </h2>
             </Reveal>
             <p className="max-w-[45ch] text-sm text-ice/80">
-              {rtl
-                ? "تجهيز متكامل للشركات والمستودعات والفلل والمنشآت الصحية."
-                : "Tailored camera angles, retention sizing, and cabling designed for each facility type."}
+              {sectorsLede}
             </p>
           </div>
 
@@ -164,12 +216,12 @@ export function HomeRest({
       </section>
 
       {/* Equipment Brand Marquee */}
-      <section className="overflow-hidden border-b border-line bg-white" aria-label={t.supply.label}>
+      <section className="overflow-hidden border-b border-line bg-white" aria-label={brandLabel}>
         <div className="mx-auto max-w-[1400px] px-4 pt-10 text-center md:px-10 md:pt-14">
-          <p className="font-mono text-xs uppercase tracking-widest text-orange-deep">{t.supply.label}</p>
+          <p className="font-mono text-xs uppercase tracking-widest text-orange-deep">{brandLabel}</p>
         </div>
         <div className="pb-10 pt-4 md:pb-14">
-          <BrandLoop label={t.supply.label} rtl={locale === "ar"} />
+          <BrandLoop label={brandLabel} rtl={locale === "ar"} />
         </div>
       </section>
 
@@ -179,13 +231,13 @@ export function HomeRest({
           <div className="grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr]">
             <Reveal>
               <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">
-                {rtl ? "النطاقات والأسعار" : "Scoped Engineering"}
+                {scopedBadge}
               </span>
               <h2 className="mt-2 max-w-[16ch] text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-5xl">
-                {t.priced.title}
+                {scopedTitle}
               </h2>
             </Reveal>
-            <p className="max-w-[65ch] text-base leading-relaxed text-muted">{t.priced.lede}</p>
+            <p className="max-w-[65ch] text-base leading-relaxed text-muted">{scopedLede}</p>
           </div>
 
           {/* 4 Featured Scopes with Photography */}
@@ -219,7 +271,7 @@ export function HomeRest({
                     href={localePath(locale, `/services/${service.slug}`)}
                     className="mt-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-navy transition-colors group-hover:text-orange-deep"
                   >
-                    <span>{t.priced.seeScope}</span>
+                    <span>{scopedSeeScopeBtn}</span>
                     <ArrowRight className="size-4 rtl:rotate-180 transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                   </Link>
                 </div>
@@ -232,10 +284,10 @@ export function HomeRest({
             <div className="flex flex-col justify-between gap-4 border-b border-line pb-6 sm:flex-row sm:items-center">
               <div>
                 <span className="font-mono text-xs uppercase tracking-wider text-orange-deep">
-                  {rtl ? "النطاقات التكميلية" : "Complementary Trades"}
+                  {complementaryBadge}
                 </span>
                 <h3 className="mt-1 text-xl font-medium text-ink">
-                  {rtl ? "خطوط الخدمة الأخرى المنفذة في نفس الزيارة" : "All Other Scopes Quoted & Installed Together"}
+                  {complementaryTitle}
                 </h3>
               </div>
               <div className="flex gap-3">
@@ -243,13 +295,13 @@ export function HomeRest({
                   href={localePath(locale, "/services")}
                   className="inline-flex h-10 items-center justify-center rounded-[5px] bg-navy px-4 text-xs font-medium uppercase tracking-normal text-white hover:bg-navy-deep"
                 >
-                  {t.priced.allLines}
+                  {complementaryBtn}
                 </Link>
                 <Link
                   href={localePath(locale, "/contact")}
                   className="inline-flex h-10 items-center justify-center rounded-[5px] border border-line px-4 text-xs font-medium uppercase tracking-normal text-ink hover:border-navy"
                 >
-                  {t.priced.parts}
+                  {complementaryContactBtn}
                 </Link>
               </div>
             </div>
@@ -284,7 +336,7 @@ export function HomeRest({
                       {service.summary}
                     </p>
                     <div className="mt-3 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-orange-deep">
-                      <span>{t.priced.seeScope}</span>
+                      <span>{scopedSeeScopeBtn}</span>
                       <ArrowRight className="size-3 rtl:rotate-180 transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                     </div>
                   </div>
@@ -300,7 +352,7 @@ export function HomeRest({
         <div className="mx-auto max-w-[1400px] px-4 md:px-10">
           <div className="text-center">
             <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">
-              {rtl ? "مسار العمل الميداني" : "Structured Methodology"}
+              {stepsBadge}
             </span>
             <Reveal>
               <h2 className="mt-2 text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-5xl">
@@ -308,9 +360,7 @@ export function HomeRest({
               </h2>
             </Reveal>
             <p className="mx-auto mt-4 max-w-[60ch] text-base text-muted">
-              {rtl
-                ? "من المكالمة الأولى إلى تسليم المخطط النهائي وكلمات المرور لمدير المبنى."
-                : "From the first phone call to the handover of passwords and test sheets."}
+              {stepsLede}
             </p>
           </div>
 
@@ -344,20 +394,12 @@ export function HomeRest({
 
           {/* Operational Trust Indicator Band */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6 rounded-[14px] border border-line/80 bg-white px-6 py-3.5 text-xs text-muted shadow-2xs">
-            <span className="inline-flex items-center gap-1.5 font-medium text-ink">
-              <CheckCircle2 className="size-4 text-orange-deep" />
-              {rtl ? "معاينة ميدانية خلال 24 ساعة" : "Site survey dispatched within 24 hours"}
-            </span>
-            <span className="hidden sm:inline text-line">•</span>
-            <span className="inline-flex items-center gap-1.5 font-medium text-ink">
-              <CheckCircle2 className="size-4 text-orange-deep" />
-              {rtl ? "مخطط كابلات وجدول كميات معتمد" : "Certified cable schedule & parts list"}
-            </span>
-            <span className="hidden sm:inline text-line">•</span>
-            <span className="inline-flex items-center gap-1.5 font-medium text-ink">
-              <CheckCircle2 className="size-4 text-orange-deep" />
-              {rtl ? "تسليم معتمد مع كلمات المرور" : "Tested handover with passwords"}
-            </span>
+            {trustIndicators.map((indicator, idx) => (
+              <span key={idx} className="inline-flex items-center gap-1.5 font-medium text-ink">
+                <CheckCircle2 className="size-4 text-orange-deep" />
+                <span>{indicator}</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -368,13 +410,13 @@ export function HomeRest({
           <div className="grid items-end gap-6 md:grid-cols-[1fr_1fr]">
             <Reveal>
               <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">
-                {rtl ? "مشاريع نموذجية" : "Verified Projects"}
+                {projectsBadge}
               </span>
               <h2 className="mt-2 max-w-[16ch] text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-5xl">
-                {t.survey.title}
+                {projectsTitle}
               </h2>
             </Reveal>
-            <p className="max-w-[65ch] text-base leading-relaxed text-muted">{t.survey.lede}</p>
+            <p className="max-w-[65ch] text-base leading-relaxed text-muted">{projectsLede}</p>
           </div>
           <div className="mt-8">
             <CaseRail items={projects} />
@@ -385,8 +427,8 @@ export function HomeRest({
         </div>
       </section>
 
-      <ServiceAreas locale={locale} />
-      <HomeFaq title={t.faqTitle} faqs={faqs} />
+      <ServiceAreas locale={locale} sanityData={sanityData} />
+      <HomeFaq title={faqTitle} faqs={faqs} sanityData={sanityData} />
 
       {/* High-impact Booking CTA Banner */}
       <section className="relative overflow-hidden bg-navy text-ice">
@@ -397,7 +439,7 @@ export function HomeRest({
         <div className="relative mx-auto grid max-w-[1400px] items-center gap-8 px-4 py-12 md:grid-cols-[1.2fr_0.8fr] md:px-10 md:py-16">
           <div>
             <div className="mb-4 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-mono uppercase tracking-wider text-orange-soft backdrop-blur-md">
-              <span>{rtl ? "مكتب الملز بالرياض" : "Riyadh Operations Hub"}</span>
+              <span>{bookBadge}</span>
             </div>
             <h2 className="max-w-[16ch] text-3xl font-medium leading-[1.08] tracking-normal text-white md:text-5xl">
               {bookTitle}
@@ -411,14 +453,14 @@ export function HomeRest({
               href={localePath(locale, "/contact")}
               className="inline-flex h-12 items-center justify-center rounded-[5px] bg-paper px-6 text-sm font-medium uppercase tracking-normal text-navy transition-colors hover:bg-ice"
             >
-              {t.book.survey}
+              {bookBtnSurvey}
             </Link>
             <a
               href={`tel:${company.phoneTel}`}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-[5px] border border-white/50 px-6 text-sm font-medium uppercase tracking-normal text-white transition-colors hover:bg-white/10"
             >
               <Phone className="size-4" />
-              {t.book.call}
+              {bookBtnCall}
             </a>
           </div>
         </div>

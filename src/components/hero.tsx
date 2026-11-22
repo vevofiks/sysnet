@@ -20,7 +20,7 @@ const heroSlideImages = [
   "/images/hero-safety.jpg",
 ];
 
-export function Hero({ children }: { children: ReactNode }) {
+export function Hero({ children, isDraft = false }: { children: ReactNode; isDraft?: boolean }) {
   const locale = useLocale();
   const t = useCopy();
   const on = useMotionReady();
@@ -53,7 +53,7 @@ export function Hero({ children }: { children: ReactNode }) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [hoverPaused, setHoverPaused] = useState(false);
-  const paused = hoverPaused;
+  const paused = hoverPaused || isDraft;
   const count = slides.length;
   const slide = slides[index];
 

@@ -50,19 +50,66 @@ export async function getNotFoundData(): Promise<SanityNotFoundData | null> {
 
 // --- Home Page Query ---
 export interface SanityHomePageData {
+  heroBadge?: string;
   heroTitle?: string;
   heroLede?: string;
   heroImageUrl?: string | null;
   heroExploreBtn?: string;
   heroContactBtn?: string;
+  heroScopes?: string[];
+
+  crewBadge?: string;
   crewTitle?: string;
   crewBody?: string;
+  crewPoints?: string[];
+  crewBtnAllServices?: string;
+  crewBtnSurvey?: string;
   crewImageUrl?: string | null;
+  crewCardBadge?: string;
+  crewCardText?: string;
+
+  sectorsBadge?: string;
   sectorsTitle?: string;
+  sectorsLede?: string;
+  industriesList?: { index: string; title: string; text: string }[];
+
+  brandLabel?: string;
+
+  scopedBadge?: string;
+  scopedTitle?: string;
+  scopedLede?: string;
+  scopedSeeScopeBtn?: string;
+  complementaryBadge?: string;
+  complementaryTitle?: string;
+  complementaryBtn?: string;
+  complementaryContactBtn?: string;
+
+  stepsBadge?: string;
   stepsTitle?: string;
+  stepsLede?: string;
+  stepsList?: { index: string; title: string; text: string }[];
+  trustIndicators?: string[];
+
+  projectsBadge?: string;
+  projectsTitle?: string;
+  projectsLede?: string;
+
+  areasBadge?: string;
+  areasTitle?: string;
+  areasBody?: string;
+
+  faqBadge?: string;
   faqTitle?: string;
+  faqLede?: string;
+  faqCardTitle?: string;
+  faqCardLede?: string;
+  faqsList?: { q: string; a: string }[];
+
+  bookBadge?: string;
   bookTitle?: string;
   bookBody?: string;
+  bookBtnSurvey?: string;
+  bookBtnCall?: string;
 }
 
 export async function getHomePageData(locale: Locale): Promise<SanityHomePageData | null> {
@@ -72,19 +119,82 @@ export async function getHomePageData(locale: Locale): Promise<SanityHomePageDat
   try {
     const data = await client.fetch(
       `*[_type == "homePage"][0]{
+        heroBadgeEn, heroBadgeAr,
         heroTitleEn, heroTitleAr,
         heroLedeEn, heroLedeAr,
         heroImage,
         heroExploreBtnEn, heroExploreBtnAr,
         heroContactBtnEn, heroContactBtnAr,
+        heroScopesEn, heroScopesAr,
+
+        crewBadgeEn, crewBadgeAr,
         crewTitleEn, crewTitleAr,
         crewBodyEn, crewBodyAr,
+        crewPointsEn, crewPointsAr,
+        crewBtnAllServicesEn, crewBtnAllServicesAr,
+        crewBtnSurveyEn, crewBtnSurveyAr,
         crewImage,
+        crewCardBadgeEn, crewCardBadgeAr,
+        crewCardTextEn, crewCardTextAr,
+
+        sectorsBadgeEn, sectorsBadgeAr,
         sectorsTitleEn, sectorsTitleAr,
+        sectorsLedeEn, sectorsLedeAr,
+        industriesList[]{
+          _key,
+          index,
+          titleEn, titleAr,
+          textEn, textAr
+        },
+
+        brandLabelEn, brandLabelAr,
+
+        scopedBadgeEn, scopedBadgeAr,
+        scopedTitleEn, scopedTitleAr,
+        scopedLedeEn, scopedLedeAr,
+        scopedSeeScopeBtnEn, scopedSeeScopeBtnAr,
+        complementaryBadgeEn, complementaryBadgeAr,
+        complementaryTitleEn, complementaryTitleAr,
+        complementaryBtnEn, complementaryBtnAr,
+        complementaryContactBtnEn, complementaryContactBtnAr,
+
+        stepsBadgeEn, stepsBadgeAr,
         stepsTitleEn, stepsTitleAr,
+        stepsLedeEn, stepsLedeAr,
+        stepsList[]{
+          _key,
+          index,
+          titleEn, titleAr,
+          textEn, textAr
+        },
+        trustIndicator1En, trustIndicator1Ar,
+        trustIndicator2En, trustIndicator2Ar,
+        trustIndicator3En, trustIndicator3Ar,
+
+        projectsBadgeEn, projectsBadgeAr,
+        projectsTitleEn, projectsTitleAr,
+        projectsLedeEn, projectsLedeAr,
+
+        areasBadgeEn, areasBadgeAr,
+        areasTitleEn, areasTitleAr,
+        areasBodyEn, areasBodyAr,
+
+        faqBadgeEn, faqBadgeAr,
         faqTitleEn, faqTitleAr,
+        faqLedeEn, faqLedeAr,
+        faqCardTitleEn, faqCardTitleAr,
+        faqCardLedeEn, faqCardLedeAr,
+        faqsList[]{
+          _key,
+          questionEn, questionAr,
+          answerEn, answerAr
+        },
+
+        bookBadgeEn, bookBadgeAr,
         bookTitleEn, bookTitleAr,
-        bookBodyEn, bookBodyAr
+        bookBodyEn, bookBodyAr,
+        bookBtnSurveyEn, bookBtnSurveyAr,
+        bookBtnCallEn, bookBtnCallAr
       }`
     );
     if (!data) return null;
@@ -101,20 +211,101 @@ export async function getHomePageData(locale: Locale): Promise<SanityHomePageDat
       if (b) crewImageUrl = b.width(1200).quality(85).url();
     }
 
+    const heroScopes = isAr
+      ? (data.heroScopesAr?.length ? data.heroScopesAr : data.heroScopesEn)
+      : (data.heroScopesEn?.length ? data.heroScopesEn : data.heroScopesAr);
+
+    const crewPoints = isAr
+      ? (data.crewPointsAr?.length ? data.crewPointsAr : data.crewPointsEn)
+      : (data.crewPointsEn?.length ? data.crewPointsEn : data.crewPointsAr);
+
+    type IndustryRaw = { index?: string; titleEn?: string; titleAr?: string; textEn?: string; textAr?: string };
+    const industriesList = data.industriesList?.map((item: IndustryRaw) => ({
+      index: item.index || "01",
+      title: isAr ? (item.titleAr || item.titleEn || "") : (item.titleEn || item.titleAr || ""),
+      text: isAr ? (item.textAr || item.textEn || "") : (item.textEn || item.textAr || ""),
+    }));
+
+    type StepRaw = { index?: string; titleEn?: string; titleAr?: string; textEn?: string; textAr?: string };
+    const stepsList = data.stepsList?.map((item: StepRaw) => ({
+      index: item.index || "01",
+      title: isAr ? (item.titleAr || item.titleEn || "") : (item.titleEn || item.titleAr || ""),
+      text: isAr ? (item.textAr || item.textEn || "") : (item.textEn || item.textAr || ""),
+    }));
+
+    const trustIndicators = [
+      isAr ? (data.trustIndicator1Ar || data.trustIndicator1En) : (data.trustIndicator1En || data.trustIndicator1Ar),
+      isAr ? (data.trustIndicator2Ar || data.trustIndicator2En) : (data.trustIndicator2En || data.trustIndicator2Ar),
+      isAr ? (data.trustIndicator3Ar || data.trustIndicator3En) : (data.trustIndicator3En || data.trustIndicator3Ar),
+    ].filter(Boolean);
+
+    type FaqRaw = { questionEn?: string; questionAr?: string; answerEn?: string; answerAr?: string };
+    const faqsList = data.faqsList?.map((item: FaqRaw) => ({
+      q: isAr ? (item.questionAr || item.questionEn || "") : (item.questionEn || item.questionAr || ""),
+      a: isAr ? (item.answerAr || item.answerEn || "") : (item.answerEn || item.answerAr || ""),
+    }));
+
     return {
+      heroBadge: isAr ? (data.heroBadgeAr || data.heroBadgeEn) : (data.heroBadgeEn || data.heroBadgeAr),
       heroTitle: isAr ? (data.heroTitleAr || data.heroTitleEn) : (data.heroTitleEn || data.heroTitleAr),
       heroLede: isAr ? (data.heroLedeAr || data.heroLedeEn) : (data.heroLedeEn || data.heroLedeAr),
       heroImageUrl,
       heroExploreBtn: isAr ? (data.heroExploreBtnAr || data.heroExploreBtnEn) : (data.heroExploreBtnEn || data.heroExploreBtnAr),
       heroContactBtn: isAr ? (data.heroContactBtnAr || data.heroContactBtnEn) : (data.heroContactBtnEn || data.heroContactBtnAr),
+      heroScopes,
+
+      crewBadge: isAr ? (data.crewBadgeAr || data.crewBadgeEn) : (data.crewBadgeEn || data.crewBadgeAr),
       crewTitle: isAr ? (data.crewTitleAr || data.crewTitleEn) : (data.crewTitleEn || data.crewTitleAr),
       crewBody: isAr ? (data.crewBodyAr || data.crewBodyEn) : (data.crewBodyEn || data.crewBodyAr),
+      crewPoints,
+      crewBtnAllServices: isAr ? (data.crewBtnAllServicesAr || data.crewBtnAllServicesEn) : (data.crewBtnAllServicesEn || data.crewBtnAllServicesAr),
+      crewBtnSurvey: isAr ? (data.crewBtnSurveyAr || data.crewBtnSurveyEn) : (data.crewBtnSurveyEn || data.crewBtnSurveyAr),
       crewImageUrl,
+      crewCardBadge: isAr ? (data.crewCardBadgeAr || data.crewCardBadgeEn) : (data.crewCardBadgeEn || data.crewCardBadgeAr),
+      crewCardText: isAr ? (data.crewCardTextAr || data.crewCardTextEn) : (data.crewCardTextEn || data.crewCardTextAr),
+
+      sectorsBadge: isAr ? (data.sectorsBadgeAr || data.sectorsBadgeEn) : (data.sectorsBadgeEn || data.sectorsBadgeAr),
       sectorsTitle: isAr ? (data.sectorsTitleAr || data.sectorsTitleEn) : (data.sectorsTitleEn || data.sectorsTitleAr),
+      sectorsLede: isAr ? (data.sectorsLedeAr || data.sectorsLedeEn) : (data.sectorsLedeEn || data.sectorsLedeAr),
+      industriesList,
+
+      brandLabel: isAr ? (data.brandLabelAr || data.brandLabelEn) : (data.brandLabelEn || data.brandLabelAr),
+
+      scopedBadge: isAr ? (data.scopedBadgeAr || data.scopedBadgeEn) : (data.scopedBadgeEn || data.scopedBadgeAr),
+      scopedTitle: isAr ? (data.scopedTitleAr || data.scopedTitleEn) : (data.scopedTitleEn || data.scopedTitleAr),
+      scopedLede: isAr ? (data.scopedLedeAr || data.scopedLedeEn) : (data.scopedLedeEn || data.scopedLedeAr),
+      scopedSeeScopeBtn: isAr ? (data.scopedSeeScopeBtnAr || data.scopedSeeScopeBtnEn) : (data.scopedSeeScopeBtnEn || data.scopedSeeScopeBtnAr),
+      complementaryBadge: isAr ? (data.complementaryBadgeAr || data.complementaryBadgeEn) : (data.complementaryBadgeEn || data.complementaryBadgeAr),
+      complementaryTitle: isAr ? (data.complementaryTitleAr || data.complementaryTitleEn) : (data.complementaryTitleEn || data.complementaryTitleAr),
+      complementaryBtn: isAr ? (data.complementaryBtnAr || data.complementaryBtnEn) : (data.complementaryBtnEn || data.complementaryBtnAr),
+      complementaryContactBtn: isAr ? (data.complementaryContactBtnAr || data.complementaryContactBtnEn) : (data.complementaryContactBtnEn || data.complementaryContactBtnAr),
+
+      stepsBadge: isAr ? (data.stepsBadgeAr || data.stepsBadgeEn) : (data.stepsBadgeEn || data.stepsBadgeAr),
       stepsTitle: isAr ? (data.stepsTitleAr || data.stepsTitleEn) : (data.stepsTitleEn || data.stepsTitleAr),
+      stepsLede: isAr ? (data.stepsLedeAr || data.stepsLedeEn) : (data.stepsLedeEn || data.stepsLedeAr),
+      stepsList,
+      trustIndicators,
+
+      projectsBadge: isAr ? (data.projectsBadgeAr || data.projectsBadgeEn) : (data.projectsBadgeEn || data.projectsBadgeAr),
+      projectsTitle: isAr ? (data.projectsTitleAr || data.projectsTitleEn) : (data.projectsTitleEn || data.projectsTitleAr),
+      projectsLede: isAr ? (data.projectsLedeAr || data.projectsLedeEn) : (data.projectsLedeEn || data.projectsLedeAr),
+
+      areasBadge: isAr ? (data.areasBadgeAr || data.areasBadgeEn) : (data.areasBadgeEn || data.areasBadgeAr),
+      areasTitle: isAr ? (data.areasTitleAr || data.areasTitleEn) : (data.areasTitleEn || data.areasTitleAr),
+      areasBody: isAr ? (data.areasBodyAr || data.areasBodyEn) : (data.areasBodyEn || data.areasBodyAr),
+
+      faqBadge: isAr ? (data.faqBadgeAr || data.faqBadgeEn) : (data.faqBadgeEn || data.faqBadgeAr),
       faqTitle: isAr ? (data.faqTitleAr || data.faqTitleEn) : (data.faqTitleEn || data.faqTitleAr),
+      faqLede: isAr ? (data.faqLedeAr || data.faqLedeEn) : (data.faqLedeEn || data.faqLedeAr),
+      faqCardTitle: isAr ? (data.faqCardTitleAr || data.faqCardTitleEn) : (data.faqCardTitleEn || data.faqCardTitleAr),
+      faqCardLede: isAr ? (data.faqCardLedeAr || data.faqCardLedeEn) : (data.faqCardLedeEn || data.faqCardLedeAr),
+      faqsList,
+
+      bookBadge: isAr ? (data.bookBadgeAr || data.bookBadgeEn) : (data.bookBadgeEn || data.bookBadgeAr),
       bookTitle: isAr ? (data.bookTitleAr || data.bookTitleEn) : (data.bookTitleEn || data.bookTitleAr),
       bookBody: isAr ? (data.bookBodyAr || data.bookBodyEn) : (data.bookBodyEn || data.bookBodyAr),
+      bookBtnSurvey: isAr ? (data.bookBtnSurveyAr || data.bookBtnSurveyEn) : (data.bookBtnSurveyEn || data.bookBtnSurveyAr),
+      bookBtnCall: isAr ? (data.bookBtnCallAr || data.bookBtnCallEn) : (data.bookBtnCallEn || data.bookBtnCallAr),
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for homePage:", error);

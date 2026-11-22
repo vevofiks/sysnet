@@ -16,18 +16,24 @@ export function HeroLead({
   const t = content(locale).t;
   const rtl = locale === "ar";
 
+  const heroBadge =
+    sanityData?.heroBadge ||
+    (rtl ? "مكتب الرياض الميداني · حي الملز" : "Riyadh Field Operations Desk · Malaz");
   const title = sanityData?.heroTitle || t.hero.title;
   const lede = sanityData?.heroLede || t.hero.lede;
   const exploreBtn = sanityData?.heroExploreBtn || t.hero.explore;
   const contactBtn = sanityData?.heroContactBtn || t.hero.contact;
   const heroImageSrc = sanityData?.heroImageUrl || "/images/hero-cctv-commercial.jpg";
 
-  const scopes = [
-    rtl ? "كاميرات المراقبة" : "CCTV Surveillance",
-    rtl ? "إنذار الحريق" : "Fire Alarms",
-    rtl ? "التحكم بالدخول" : "Access Control",
-    rtl ? "تمديد الشبكات" : "Cat6 Structured Cabling",
-  ];
+  const scopes =
+    sanityData?.heroScopes && sanityData.heroScopes.length > 0
+      ? sanityData.heroScopes
+      : [
+          rtl ? "كاميرات المراقبة" : "CCTV Surveillance",
+          rtl ? "إنذار الحريق" : "Fire Alarms",
+          rtl ? "التحكم بالدخول" : "Access Control",
+          rtl ? "تمديد الشبكات" : "Cat6 Structured Cabling",
+        ];
 
   return (
     <article className="absolute inset-0">
@@ -37,8 +43,8 @@ export function HeroLead({
           alt={t.hero.photoAlt}
           fill
           priority
-          sizes="100vw"
-          quality={85}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1400px"
+          quality={75}
           className="object-cover object-[center_35%]"
         />
       </div>
@@ -47,7 +53,7 @@ export function HeroLead({
       <div className="relative flex h-full items-end">
         <div className="mx-auto w-full max-w-[1400px] px-4 pb-24 pt-10 sm:pb-28 sm:pt-16 md:px-10 md:pb-32">
           <div className="mb-4 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-orange-soft backdrop-blur-md">
-            <span>{rtl ? "مكتب الرياض الميداني · حي الملز" : "Riyadh Field Operations Desk · Malaz"}</span>
+            <span>{heroBadge}</span>
           </div>
 
           <h1 className="hero-title max-w-[12ch] text-[1.75rem] font-medium leading-[1.2] tracking-normal sm:max-w-[14ch] sm:text-5xl sm:leading-[1.05] md:text-6xl text-white">

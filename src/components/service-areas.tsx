@@ -1,10 +1,21 @@
 import { MapPin, Building2 } from "lucide-react";
 import { copy } from "@/lib/copy";
 import type { Locale } from "@/lib/locale";
+import type { SanityHomePageData } from "@/sanity/queries";
 
-export function ServiceAreas({ locale }: { locale: Locale }) {
+export function ServiceAreas({
+  locale,
+  sanityData,
+}: {
+  locale: Locale;
+  sanityData?: SanityHomePageData | null;
+}) {
   const areas = copy[locale].areas;
   const rtl = locale === "ar";
+
+  const areasBadge = sanityData?.areasBadge || (rtl ? "نطاق التغطية الميدانية" : "Field Coverage Radius");
+  const areasTitle = sanityData?.areasTitle || areas.title;
+  const areasBody = sanityData?.areasBody || areas.body;
 
   const districtsByArea: Record<string, string[]> = {
     "Saudi Arabia": ["Riyadh Hub", "Eastern Province", "Central Region"],
@@ -22,14 +33,14 @@ export function ServiceAreas({ locale }: { locale: Locale }) {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3 py-1 text-xs font-medium uppercase tracking-wider text-navy">
               <MapPin className="size-3.5 text-orange-deep" />
-              <span>{rtl ? "نطاق التغطية الميدانية" : "Field Coverage Radius"}</span>
+              <span>{areasBadge}</span>
             </div>
             <h2 className="mt-3 max-w-[18ch] text-3xl font-medium leading-[1.08] tracking-normal text-ink md:text-4xl">
-              {areas.title}
+              {areasTitle}
             </h2>
           </div>
           <p className="max-w-[48ch] text-base leading-relaxed text-muted">
-            {areas.body}
+            {areasBody}
           </p>
         </div>
 
