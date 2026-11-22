@@ -1,5 +1,5 @@
 import { createImageUrlBuilder } from "@sanity/image-url";
-import { projectId, dataset, isSanityConfigured } from "./client";
+import { projectId, dataset, isSanityConfigured } from "./env";
 
 const imageBuilder = isSanityConfigured
   ? createImageUrlBuilder({ projectId, dataset })

@@ -3,7 +3,7 @@ import { structureTool } from "sanity/structure";
 import { presentationTool, defineDocuments } from "sanity/presentation";
 import { schemaTypes } from "./schemas";
 import { structure } from "./structure";
-import { projectId, dataset } from "./client";
+import { projectId, dataset } from "./env";
 
 export default defineConfig({
   name: "default",
@@ -25,23 +25,23 @@ export default defineConfig({
       resolve: {
         mainDocuments: defineDocuments([
           {
-            route: "/:locale",
+            route: ["/:locale", "/"],
             filter: `_type == "homePage"`,
           },
           {
-            route: "/:locale/about",
+            route: ["/:locale/about", "/about"],
             filter: `_type == "aboutPage"`,
           },
           {
-            route: "/:locale/services",
+            route: ["/:locale/services", "/services"],
             filter: `_type == "servicesPage"`,
           },
           {
-            route: "/:locale/projects",
+            route: ["/:locale/projects", "/projects"],
             filter: `_type == "projectsPage"`,
           },
           {
-            route: "/:locale/contact",
+            route: ["/:locale/contact", "/contact"],
             filter: `_type == "contactPage"`,
           },
         ]),

@@ -1,4 +1,4 @@
-import { client, isSanityConfigured } from "./client";
+import { getSanityClient, isSanityConfigured } from "./client";
 import { urlFor } from "./image";
 import type { Locale } from "@/lib/locale";
 
@@ -16,7 +16,9 @@ export interface SanityNotFoundData {
 }
 
 export async function getNotFoundData(): Promise<SanityNotFoundData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "notFoundPage"][0]{
@@ -64,7 +66,9 @@ export interface SanityHomePageData {
 }
 
 export async function getHomePageData(locale: Locale): Promise<SanityHomePageData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "homePage"][0]{
@@ -132,7 +136,9 @@ export interface SanityAboutPageData {
 }
 
 export async function getAboutPageData(locale: Locale): Promise<SanityAboutPageData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "aboutPage"][0]{
@@ -185,7 +191,9 @@ export interface SanityServicesPageData {
 }
 
 export async function getServicesPageData(locale: Locale): Promise<SanityServicesPageData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "servicesPage"][0]{
@@ -213,7 +221,9 @@ export interface SanityProjectsPageData {
 }
 
 export async function getProjectsPageData(locale: Locale): Promise<SanityProjectsPageData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "projectsPage"][0]{
@@ -248,7 +258,9 @@ export interface SanityContactPageData {
 }
 
 export async function getContactPageData(locale: Locale): Promise<SanityContactPageData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "contactPage"][0]{
@@ -292,7 +304,9 @@ export interface SanityNavigationData {
 }
 
 export async function getNavigationData(locale: Locale): Promise<SanityNavigationData | null> {
-  if (!isSanityConfigured || !client) return null;
+  if (!isSanityConfigured) return null;
+  const client = await getSanityClient();
+  if (!client) return null;
   try {
     const data = await client.fetch(
       `*[_type == "navigation"][0]{
