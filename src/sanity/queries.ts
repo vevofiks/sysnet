@@ -683,6 +683,19 @@ export interface SanityServiceDetailData {
   detail?: string;
   imageUrl?: string | null;
   alt?: string;
+  journeyBadge?: string;
+  journeyTitle?: string;
+  workflowSteps?: { num: string; title: string; desc: string }[];
+  secondaryBadge?: string;
+  secondaryHeading?: string;
+  secondaryBody?: string;
+  includesTitle?: string;
+  includes?: string[];
+  leavesTitle?: string;
+  leaves?: string[];
+  ctaBadge?: string;
+  ctaHeading?: string;
+  ctaBody?: string;
 }
 
 export async function getServiceDetailData(
@@ -700,7 +713,25 @@ export async function getServiceDetailData(
         summaryEn, summaryAr,
         detailEn, detailAr,
         image,
-        alt
+        alt,
+        journeyBadgeEn, journeyBadgeAr,
+        journeyTitleEn, journeyTitleAr,
+        workflowSteps[]{
+          _key,
+          num,
+          titleEn, titleAr,
+          descEn, descAr
+        },
+        secondaryBadgeEn, secondaryBadgeAr,
+        secondaryHeadingEn, secondaryHeadingAr,
+        secondaryBodyEn, secondaryBodyAr,
+        includesTitleEn, includesTitleAr,
+        includesEn, includesAr,
+        leavesTitleEn, leavesTitleAr,
+        leavesEn, leavesAr,
+        ctaBadgeEn, ctaBadgeAr,
+        ctaHeadingEn, ctaHeadingAr,
+        ctaBodyEn, ctaBodyAr
       }`,
       { slug }
     );
@@ -711,6 +742,14 @@ export async function getServiceDetailData(
       const b = urlFor(data.image);
       if (b) imageUrl = b.width(1200).quality(85).url();
     }
+
+    type StepRaw = { num?: string; titleEn?: string; titleAr?: string; descEn?: string; descAr?: string };
+    const workflowSteps = data.workflowSteps?.map((s: StepRaw) => ({
+      num: s.num || "01",
+      title: isAr ? (s.titleAr || s.titleEn || "") : (s.titleEn || s.titleAr || ""),
+      desc: isAr ? (s.descAr || s.descEn || "") : (s.descEn || s.descAr || ""),
+    }));
+
     return {
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
       heading: isAr ? (data.headingAr || data.headingEn) : (data.headingEn || data.headingAr),
@@ -718,6 +757,19 @@ export async function getServiceDetailData(
       detail: isAr ? (data.detailAr || data.detailEn) : (data.detailEn || data.detailAr),
       imageUrl,
       alt: data.alt,
+      journeyBadge: isAr ? (data.journeyBadgeAr || data.journeyBadgeEn) : (data.journeyBadgeEn || data.journeyBadgeAr),
+      journeyTitle: isAr ? (data.journeyTitleAr || data.journeyTitleEn) : (data.journeyTitleEn || data.journeyTitleAr),
+      workflowSteps,
+      secondaryBadge: isAr ? (data.secondaryBadgeAr || data.secondaryBadgeEn) : (data.secondaryBadgeEn || data.secondaryBadgeAr),
+      secondaryHeading: isAr ? (data.secondaryHeadingAr || data.secondaryHeadingEn) : (data.secondaryHeadingEn || data.secondaryHeadingAr),
+      secondaryBody: isAr ? (data.secondaryBodyAr || data.secondaryBodyEn) : (data.secondaryBodyEn || data.secondaryBodyAr),
+      includesTitle: isAr ? (data.includesTitleAr || data.includesTitleEn) : (data.includesTitleEn || data.includesTitleAr),
+      includes: isAr ? (data.includesAr || data.includesEn) : (data.includesEn || data.includesAr),
+      leavesTitle: isAr ? (data.leavesTitleAr || data.leavesTitleEn) : (data.leavesTitleEn || data.leavesTitleAr),
+      leaves: isAr ? (data.leavesAr || data.leavesEn) : (data.leavesEn || data.leavesAr),
+      ctaBadge: isAr ? (data.ctaBadgeAr || data.ctaBadgeEn) : (data.ctaBadgeEn || data.ctaBadgeAr),
+      ctaHeading: isAr ? (data.ctaHeadingAr || data.ctaHeadingEn) : (data.ctaHeadingEn || data.ctaHeadingAr),
+      ctaBody: isAr ? (data.ctaBodyAr || data.ctaBodyEn) : (data.ctaBodyEn || data.ctaBodyAr),
     };
   } catch (error) {
     console.warn(`Notice: Sanity query error for service ${slug}:`, error);
