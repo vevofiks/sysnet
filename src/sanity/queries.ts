@@ -509,9 +509,19 @@ export interface SanityProjectsPageData {
   badge?: string;
   title?: string;
   lede?: string;
+  heroImageUrl?: string | null;
+  heroStats?: { label: string; value: string }[];
   standardsBadge?: string;
   standardsTitle?: string;
+  standardsLede?: string;
   standardsList?: { title: string; desc: string }[];
+  ctaPrompt?: string;
+  ctaLede?: string;
+  ctaBtnSurvey?: string;
+  ctaBtnCall?: string;
+  ctaImageUrl?: string | null;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export async function getProjectsPageData(locale: Locale): Promise<SanityProjectsPageData | null> {
@@ -524,17 +534,50 @@ export async function getProjectsPageData(locale: Locale): Promise<SanityProject
         badgeEn, badgeAr,
         titleEn, titleAr,
         ledeEn, ledeAr,
+        heroImage,
+        heroStats[]{
+          _key,
+          labelEn, labelAr,
+          valueEn, valueAr
+        },
         standardsBadgeEn, standardsBadgeAr,
         standardsTitleEn, standardsTitleAr,
+        standardsLedeEn, standardsLedeAr,
         standardsList[]{
           _key,
           titleEn, titleAr,
           descEn, descAr
-        }
+        },
+        ctaPromptEn, ctaPromptAr,
+        ctaLedeEn, ctaLedeAr,
+        ctaBtnSurveyEn, ctaBtnSurveyAr,
+        ctaBtnCallEn, ctaBtnCallAr,
+        ctaImage,
+        metaTitleEn, metaTitleAr,
+        metaDescriptionEn, metaDescriptionAr
       }`
     );
     if (!data) return null;
     const isAr = locale === "ar";
+
+    let heroImageUrl: string | null = null;
+    if (data.heroImage) {
+      const b = urlFor(data.heroImage);
+      if (b) heroImageUrl = b.width(1600).quality(85).url();
+    }
+
+    let ctaImageUrl: string | null = null;
+    if (data.ctaImage) {
+      const b = urlFor(data.ctaImage);
+      if (b) ctaImageUrl = b.width(1600).quality(85).url();
+    }
+
+    type StatRaw = { labelEn?: string; labelAr?: string; valueEn?: string; valueAr?: string };
+    const heroStats = data.heroStats?.map((s: StatRaw) => ({
+      label: isAr ? (s.labelAr || s.labelEn || "") : (s.labelEn || s.labelAr || ""),
+      value: isAr ? (s.valueAr || s.valueEn || "") : (s.valueEn || s.valueAr || ""),
+    }));
+
     type StdRaw = { titleEn?: string; titleAr?: string; descEn?: string; descAr?: string };
     const standardsList = data.standardsList?.map((s: StdRaw) => ({
       title: isAr ? (s.titleAr || s.titleEn || "") : (s.titleEn || s.titleAr || ""),
@@ -545,9 +588,19 @@ export async function getProjectsPageData(locale: Locale): Promise<SanityProject
       badge: isAr ? (data.badgeAr || data.badgeEn) : (data.badgeEn || data.badgeAr),
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
       lede: isAr ? (data.ledeAr || data.ledeEn) : (data.ledeEn || data.ledeAr),
+      heroImageUrl,
+      heroStats,
       standardsBadge: isAr ? (data.standardsBadgeAr || data.standardsBadgeEn) : (data.standardsBadgeEn || data.standardsBadgeAr),
       standardsTitle: isAr ? (data.standardsTitleAr || data.standardsTitleEn) : (data.standardsTitleEn || data.standardsTitleAr),
+      standardsLede: isAr ? (data.standardsLedeAr || data.standardsLedeEn) : (data.standardsLedeEn || data.standardsLedeAr),
       standardsList,
+      ctaPrompt: isAr ? (data.ctaPromptAr || data.ctaPromptEn) : (data.ctaPromptEn || data.ctaPromptAr),
+      ctaLede: isAr ? (data.ctaLedeAr || data.ctaLedeEn) : (data.ctaLedeEn || data.ctaLedeAr),
+      ctaBtnSurvey: isAr ? (data.ctaBtnSurveyAr || data.ctaBtnSurveyEn) : (data.ctaBtnSurveyEn || data.ctaBtnSurveyAr),
+      ctaBtnCall: isAr ? (data.ctaBtnCallAr || data.ctaBtnCallEn) : (data.ctaBtnCallEn || data.ctaBtnCallAr),
+      ctaImageUrl,
+      metaTitle: isAr ? (data.metaTitleAr || data.metaTitleEn) : (data.metaTitleEn || data.metaTitleAr),
+      metaDescription: isAr ? (data.metaDescriptionAr || data.metaDescriptionEn) : (data.metaDescriptionEn || data.metaDescriptionAr),
     };
   } catch (error) {
     console.warn("Notice: Sanity query error for projectsPage:", error);
@@ -564,7 +617,15 @@ export interface SanityProjectItem {
   scene?: string;
   sceneAlt?: string;
   alt: string;
+  order?: number;
+  location?: string;
+  client?: string;
+  hardwareLabel?: string;
+  sceneLabel?: string;
+  deliverablesTitle?: string;
   facts: string[];
+  ctaText?: string;
+  ctaUrl?: string;
 }
 
 export async function getProjectsList(locale: Locale): Promise<SanityProjectItem[] | null> {
@@ -573,14 +634,24 @@ export async function getProjectsList(locale: Locale): Promise<SanityProjectItem
   if (!client) return null;
   try {
     const data = await client.fetch(
-      `*[_type == "projectItem"] | order(_createdAt asc){
+      `*[_type == "projectItem"] | order(order asc, _createdAt asc){
         titleEn, titleAr,
         "slug": slug.current,
+        order,
         tagEn, tagAr,
+        locationEn, locationAr,
+        clientEn, clientAr,
         summaryEn, summaryAr,
         image,
+        alt,
+        hardwareLabelEn, hardwareLabelAr,
         sceneImage,
-        factsEn, factsAr
+        sceneAlt,
+        sceneLabelEn, sceneLabelAr,
+        deliverablesTitleEn, deliverablesTitleAr,
+        factsEn, factsAr,
+        ctaTextEn, ctaTextAr,
+        ctaUrl
       }`
     );
     if (!data || data.length === 0) return null;
@@ -591,14 +662,29 @@ export async function getProjectsList(locale: Locale): Promise<SanityProjectItem
         const b = urlFor(item.image);
         if (b) imageUrl = b.width(800).quality(85).url();
       }
+      let sceneUrl: string | undefined = undefined;
+      if (item.sceneImage) {
+        const b = urlFor(item.sceneImage);
+        if (b) sceneUrl = b.width(800).quality(85).url();
+      }
       return {
         slug: item.slug,
         title: isAr ? (item.titleAr || item.titleEn) : (item.titleEn || item.titleAr),
         tag: isAr ? (item.tagAr || item.tagEn) : (item.tagEn || item.tagAr),
+        order: item.order,
+        location: isAr ? (item.locationAr || item.locationEn) : (item.locationEn || item.locationAr),
+        client: isAr ? (item.clientAr || item.clientEn) : (item.clientEn || item.clientAr),
         summary: isAr ? (item.summaryAr || item.summaryEn) : (item.summaryEn || item.summaryAr),
         image: imageUrl,
-        alt: item.titleEn || "Project installation",
+        alt: item.alt || item.titleEn || "Project installation",
+        hardwareLabel: isAr ? (item.hardwareLabelAr || item.hardwareLabelEn) : (item.hardwareLabelEn || item.hardwareLabelAr),
+        scene: sceneUrl,
+        sceneAlt: item.sceneAlt || item.alt || item.titleEn,
+        sceneLabel: isAr ? (item.sceneLabelAr || item.sceneLabelEn) : (item.sceneLabelEn || item.sceneLabelAr),
+        deliverablesTitle: isAr ? (item.deliverablesTitleAr || item.deliverablesTitleEn) : (item.deliverablesTitleEn || item.deliverablesTitleAr),
         facts: isAr ? (item.factsAr || item.factsEn || []) : (item.factsEn || item.factsAr || []),
+        ctaText: isAr ? (item.ctaTextAr || item.ctaTextEn) : (item.ctaTextEn || item.ctaTextAr),
+        ctaUrl: item.ctaUrl || "/contact",
       };
     });
   } catch (error) {
@@ -678,24 +764,42 @@ export async function getContactPageData(locale: Locale): Promise<SanityContactP
 // --- Service Detail (Sub-service page) Query ---
 export interface SanityServiceDetailData {
   title?: string;
+  scopeNumber?: string;
   heading?: string;
   summary?: string;
+  features?: string[];
+  subheroBadge?: string;
   detail?: string;
   imageUrl?: string | null;
   alt?: string;
+  imageLabel?: string;
+  imageBadge?: string;
+  btnQuoteText?: string;
+  btnCallText?: string;
   journeyBadge?: string;
   journeyTitle?: string;
   workflowSteps?: { num: string; title: string; desc: string }[];
+  sections?: { heading: string; body: string[] }[];
   secondaryBadge?: string;
   secondaryHeading?: string;
   secondaryBody?: string;
+  secondaryImageUrl?: string | null;
+  secondaryImageLabel?: string;
+  secondaryCtaText?: string;
   includesTitle?: string;
   includes?: string[];
   leavesTitle?: string;
   leaves?: string[];
+  faqBadge?: string;
+  faqTitle?: string;
+  faqsList?: { q: string; a: string }[];
   ctaBadge?: string;
   ctaHeading?: string;
   ctaBody?: string;
+  ctaBtnSurvey?: string;
+  ctaBtnCall?: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export async function getServiceDetailData(
@@ -709,11 +813,18 @@ export async function getServiceDetailData(
     const data = await client.fetch(
       `*[_type == "service" && slug.current == $slug][0]{
         titleEn, titleAr,
+        scopeNumberEn, scopeNumberAr,
         headingEn, headingAr,
         summaryEn, summaryAr,
+        featuresEn, featuresAr,
+        subheroBadgeEn, subheroBadgeAr,
         detailEn, detailAr,
         image,
         alt,
+        imageLabelEn, imageLabelAr,
+        imageBadgeEn, imageBadgeAr,
+        btnQuoteTextEn, btnQuoteTextAr,
+        btnCallTextEn, btnCallTextAr,
         journeyBadgeEn, journeyBadgeAr,
         journeyTitleEn, journeyTitleAr,
         workflowSteps[]{
@@ -722,26 +833,56 @@ export async function getServiceDetailData(
           titleEn, titleAr,
           descEn, descAr
         },
+        sections[]{
+          _key,
+          headingEn, headingAr,
+          bodyEn, bodyAr
+        },
         secondaryBadgeEn, secondaryBadgeAr,
         secondaryHeadingEn, secondaryHeadingAr,
         secondaryBodyEn, secondaryBodyAr,
+        secondaryImage,
+        secondaryImageLabelEn, secondaryImageLabelAr,
+        secondaryCtaTextEn, secondaryCtaTextAr,
         includesTitleEn, includesTitleAr,
         includesEn, includesAr,
         leavesTitleEn, leavesTitleAr,
         leavesEn, leavesAr,
+        faqBadgeEn, faqBadgeAr,
+        faqTitleEn, faqTitleAr,
+        faqsList[]{
+          _key,
+          questionEn, questionAr,
+          answerEn, answerAr
+        },
         ctaBadgeEn, ctaBadgeAr,
         ctaHeadingEn, ctaHeadingAr,
-        ctaBodyEn, ctaBodyAr
+        ctaBodyEn, ctaBodyAr,
+        ctaBtnSurveyEn, ctaBtnSurveyAr,
+        ctaBtnCallEn, ctaBtnCallAr,
+        metaTitleEn, metaTitleAr,
+        metaDescriptionEn, metaDescriptionAr
       }`,
       { slug }
     );
     if (!data) return null;
     const isAr = locale === "ar";
+
     let imageUrl: string | null = null;
     if (data.image) {
       const b = urlFor(data.image);
       if (b) imageUrl = b.width(1200).quality(85).url();
     }
+
+    let secondaryImageUrl: string | null = null;
+    if (data.secondaryImage) {
+      const b = urlFor(data.secondaryImage);
+      if (b) secondaryImageUrl = b.width(1200).quality(85).url();
+    }
+
+    const features = isAr
+      ? (data.featuresAr?.length ? data.featuresAr : data.featuresEn)
+      : (data.featuresEn?.length ? data.featuresEn : data.featuresAr);
 
     type StepRaw = { num?: string; titleEn?: string; titleAr?: string; descEn?: string; descAr?: string };
     const workflowSteps = data.workflowSteps?.map((s: StepRaw) => ({
@@ -750,26 +891,66 @@ export async function getServiceDetailData(
       desc: isAr ? (s.descAr || s.descEn || "") : (s.descEn || s.descAr || ""),
     }));
 
+    type SectionRaw = { headingEn?: string; headingAr?: string; bodyEn?: string[]; bodyAr?: string[] };
+    const sections = data.sections?.map((sec: SectionRaw) => ({
+      heading: isAr ? (sec.headingAr || sec.headingEn || "") : (sec.headingEn || sec.headingAr || ""),
+      body: isAr
+        ? (sec.bodyAr?.length ? sec.bodyAr : sec.bodyEn || [])
+        : (sec.bodyEn?.length ? sec.bodyEn : sec.bodyAr || []),
+    }));
+
+    type FaqRaw = { questionEn?: string; questionAr?: string; answerEn?: string; answerAr?: string };
+    const faqsList = data.faqsList?.map((faq: FaqRaw) => ({
+      q: isAr ? (faq.questionAr || faq.questionEn || "") : (faq.questionEn || faq.questionAr || ""),
+      a: isAr ? (faq.answerAr || faq.answerEn || "") : (faq.answerEn || faq.answerAr || ""),
+    }));
+
+    const includes = isAr
+      ? (data.includesAr?.length ? data.includesAr : data.includesEn)
+      : (data.includesEn?.length ? data.includesEn : data.includesAr);
+
+    const leaves = isAr
+      ? (data.leavesAr?.length ? data.leavesAr : data.leavesEn)
+      : (data.leavesEn?.length ? data.leavesEn : data.leavesAr);
+
     return {
       title: isAr ? (data.titleAr || data.titleEn) : (data.titleEn || data.titleAr),
+      scopeNumber: isAr ? (data.scopeNumberAr || data.scopeNumberEn) : (data.scopeNumberEn || data.scopeNumberAr),
       heading: isAr ? (data.headingAr || data.headingEn) : (data.headingEn || data.headingAr),
       summary: isAr ? (data.summaryAr || data.summaryEn) : (data.summaryEn || data.summaryAr),
+      features,
+      subheroBadge: isAr ? (data.subheroBadgeAr || data.subheroBadgeEn) : (data.subheroBadgeEn || data.subheroBadgeAr),
       detail: isAr ? (data.detailAr || data.detailEn) : (data.detailEn || data.detailAr),
       imageUrl,
       alt: data.alt,
+      imageLabel: isAr ? (data.imageLabelAr || data.imageLabelEn) : (data.imageLabelEn || data.imageLabelAr),
+      imageBadge: isAr ? (data.imageBadgeAr || data.imageBadgeEn) : (data.imageBadgeEn || data.imageBadgeAr),
+      btnQuoteText: isAr ? (data.btnQuoteTextAr || data.btnQuoteTextEn) : (data.btnQuoteTextEn || data.btnQuoteTextAr),
+      btnCallText: isAr ? (data.btnCallTextAr || data.btnCallTextEn) : (data.btnCallTextEn || data.btnCallTextAr),
       journeyBadge: isAr ? (data.journeyBadgeAr || data.journeyBadgeEn) : (data.journeyBadgeEn || data.journeyBadgeAr),
       journeyTitle: isAr ? (data.journeyTitleAr || data.journeyTitleEn) : (data.journeyTitleEn || data.journeyTitleAr),
       workflowSteps,
+      sections,
       secondaryBadge: isAr ? (data.secondaryBadgeAr || data.secondaryBadgeEn) : (data.secondaryBadgeEn || data.secondaryBadgeAr),
       secondaryHeading: isAr ? (data.secondaryHeadingAr || data.secondaryHeadingEn) : (data.secondaryHeadingEn || data.secondaryHeadingAr),
       secondaryBody: isAr ? (data.secondaryBodyAr || data.secondaryBodyEn) : (data.secondaryBodyEn || data.secondaryBodyAr),
+      secondaryImageUrl,
+      secondaryImageLabel: isAr ? (data.secondaryImageLabelAr || data.secondaryImageLabelEn) : (data.secondaryImageLabelEn || data.secondaryImageLabelAr),
+      secondaryCtaText: isAr ? (data.secondaryCtaTextAr || data.secondaryCtaTextEn) : (data.secondaryCtaTextEn || data.secondaryCtaTextAr),
       includesTitle: isAr ? (data.includesTitleAr || data.includesTitleEn) : (data.includesTitleEn || data.includesTitleAr),
-      includes: isAr ? (data.includesAr || data.includesEn) : (data.includesEn || data.includesAr),
+      includes,
       leavesTitle: isAr ? (data.leavesTitleAr || data.leavesTitleEn) : (data.leavesTitleEn || data.leavesTitleAr),
-      leaves: isAr ? (data.leavesAr || data.leavesEn) : (data.leavesEn || data.leavesAr),
+      leaves,
+      faqBadge: isAr ? (data.faqBadgeAr || data.faqBadgeEn) : (data.faqBadgeEn || data.faqBadgeAr),
+      faqTitle: isAr ? (data.faqTitleAr || data.faqTitleEn) : (data.faqTitleEn || data.faqTitleAr),
+      faqsList,
       ctaBadge: isAr ? (data.ctaBadgeAr || data.ctaBadgeEn) : (data.ctaBadgeEn || data.ctaBadgeAr),
       ctaHeading: isAr ? (data.ctaHeadingAr || data.ctaHeadingEn) : (data.ctaHeadingEn || data.ctaHeadingAr),
       ctaBody: isAr ? (data.ctaBodyAr || data.ctaBodyEn) : (data.ctaBodyEn || data.ctaBodyAr),
+      ctaBtnSurvey: isAr ? (data.ctaBtnSurveyAr || data.ctaBtnSurveyEn) : (data.ctaBtnSurveyEn || data.ctaBtnSurveyAr),
+      ctaBtnCall: isAr ? (data.ctaBtnCallAr || data.ctaBtnCallEn) : (data.ctaBtnCallEn || data.ctaBtnCallAr),
+      metaTitle: isAr ? (data.metaTitleAr || data.metaTitleEn) : (data.metaTitleEn || data.metaTitleAr),
+      metaDescription: isAr ? (data.metaDescriptionAr || data.metaDescriptionEn) : (data.metaDescriptionEn || data.metaDescriptionAr),
     };
   } catch (error) {
     console.warn(`Notice: Sanity query error for service ${slug}:`, error);

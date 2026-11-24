@@ -91,12 +91,17 @@ export async function generateMetadata({
   const service = content(locale).services.find((item) => item.slug === slug);
   const guide = guideFor(locale, slug);
   if (!service || !guide) return {};
+
+  const sanityService = await getServiceDetailData(slug, locale);
+  const title = sanityService?.metaTitle || guide.seoTitle;
+  const description = sanityService?.metaDescription || guide.seoDescription;
+
   return pageMeta({
     locale,
     path: `/services/${slug}`,
-    title: guide.seoTitle,
-    description: guide.seoDescription,
-    alt: service.alt,
+    title,
+    description,
+    alt: sanityService?.alt || service.alt,
   });
 }
 
@@ -126,16 +131,24 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
   const serviceAlt = sanityService?.alt || service.alt;
 
   const rtl = locale === "ar";
-  const others = services.filter((item) => item.slug !== service.slug);
-  const relatedScopes = services.filter((item) => guide.related.includes(item.slug));
-  const crossLinkedServices = relatedScopes.length > 0 ? relatedScopes : others.slice(0, 4);
-  const secondary = secondaryImages[slug] ?? {
-    image: "/images/maintenance2.jpg",
-    labelEn: "Certified Field Installation Standards",
-    labelAr: "معايير التركيب الميداني المعتمدة",
-  };
+  const scopeBadge =
+    sanityService?.scopeNumber ||
+    (rtl
+      ? `النطاق ${String(index + 1).padStart(2, "0")} / ${String(services.length).padStart(2, "0")}`
+      : `Scope ${String(index + 1).padStart(2, "0")} / ${String(services.length).padStart(2, "0")}`);
+  const features = sanityService?.features && sanityService.features.length > 0 ? sanityService.features : [];
 
-  const workflowSteps = [
+  const subheroBadge = sanityService?.subheroBadge || serviceTitle;
+  const btnQuoteText = sanityService?.btnQuoteText || t.book.survey;
+  const btnCallText = sanityService?.btnCallText || t.book.call;
+  const imageLabel = sanityService?.imageLabel || serviceTitle;
+  const imageBadge = sanityService?.imageBadge || (rtl ? "تم الفحص في الموقع" : "Verified on Site");
+
+  const journeyBadge = sanityService?.journeyBadge || (rtl ? "مراحل التنفيذ" : "Execution Journey");
+  const journeyTitle =
+    sanityService?.journeyTitle || (rtl ? "كيف ننفذ هذا النطاق من المعاينة حتى التسليم؟" : "How We Survey & Install This Scope");
+
+  const staticWorkflowSteps = [
     {
       num: "01",
       title: rtl ? "معاينة وتحديد المخطط" : "Floor Plan Marking",
@@ -166,15 +179,57 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
     },
   ];
 
+  const steps =
+    sanityService?.workflowSteps && sanityService.workflowSteps.length > 0
+      ? sanityService.workflowSteps
+      : staticWorkflowSteps;
+
+  const sections =
+    sanityService?.sections && sanityService.sections.length > 0 ? sanityService.sections : guide.sections;
+
+  const others = services.filter((item) => item.slug !== service.slug);
+  const relatedScopes = services.filter((item) => guide.related.includes(item.slug));
+  const crossLinkedServices = relatedScopes.length > 0 ? relatedScopes : others.slice(0, 4);
+
+  const secondaryFallback = secondaryImages[slug] ?? {
+    image: "/images/maintenance2.jpg",
+    labelEn: "Certified Field Installation Standards",
+    labelAr: "معايير التركيب الميداني المعتمدة",
+  };
+
+  const secondaryBadge = sanityService?.secondaryBadge || (rtl ? "معايير التنفيذ في الرياض" : "Riyadh Site Standard");
+  const secondaryHeading =
+    sanityService?.secondaryHeading || (rtl ? "أجهزة موثوقة مع ضمان التسليم الفعلي" : "Reliable Hardware with Proven Handover");
+  const secondaryBody =
+    sanityService?.secondaryBody ||
+    (rtl
+      ? "لا نترك أجهزة غير معنونة أو أسلاكاً مجهولة المصدر. يلتزم فنيونا بوضع ملصقات تعريفية لكل نقطة وتدوين كلمات المرور لإدارة الموقع مباشرة."
+      : "We never leave unlabeled hardware or unidentified cables. Our technicians label every channel and provide master credentials directly to site management.");
+  const secondaryImage = sanityService?.secondaryImageUrl || secondaryFallback.image;
+  const secondaryImageLabel =
+    sanityService?.secondaryImageLabel || (rtl ? secondaryFallback.labelAr : secondaryFallback.labelEn);
+  const secondaryCtaText = sanityService?.secondaryCtaText || t.book.survey;
+
+  const includesTitle = sanityService?.includesTitle || t.servicesPage.includes;
+  const includesList =
+    sanityService?.includes && sanityService.includes.length > 0 ? sanityService.includes : service.includes;
+  const leavesTitle = sanityService?.leavesTitle || t.servicesPage.leaves;
+  const leavesList =
+    sanityService?.leaves && sanityService.leaves.length > 0 ? sanityService.leaves : service.leaves;
+
+  const faqBadge = sanityService?.faqBadge || "FAQ";
+  const faqTitle = sanityService?.faqTitle || t.faqTitle;
+  const faqList = sanityService?.faqsList && sanityService.faqsList.length > 0 ? sanityService.faqsList : guide.faq;
+
   return (
     <>
-      <DocumentTitle title={documentTitle(guide.seoTitle, t.meta.brand)} />
+      <DocumentTitle title={documentTitle(sanityService?.metaTitle || guide.seoTitle, t.meta.brand)} />
       <JsonLd
         data={serviceDetailGraph({
           locale,
           slug,
-          name: service.title,
-          description: guide.seoDescription,
+          name: serviceTitle,
+          description: sanityService?.metaDescription || guide.seoDescription,
           guide,
         })}
       />
@@ -184,7 +239,7 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         items={[
           { name: t.nav.home, path: "/" },
           { name: t.nav.services, path: "/services" },
-          { name: service.title },
+          { name: serviceTitle },
         ]}
       />
 
@@ -194,15 +249,23 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         <div className="relative mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 md:flex-row md:items-end md:justify-between md:gap-12 md:px-10 md:py-12">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-mono uppercase tracking-wider text-orange-soft">
-              <span>{rtl ? "النطاق" : "Scope"} {String(index + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}</span>
+              <span>{scopeBadge}</span>
             </div>
             <h1 className="mt-3 max-w-[22ch] text-3xl font-medium leading-[1.1] tracking-normal text-white md:text-4xl lg:text-5xl">
               {serviceHeading}
             </h1>
           </div>
-          <p className="max-w-[44ch] text-base leading-relaxed text-ice/90 md:pb-2 md:text-lg">
-            {serviceSummary}
-          </p>
+          <div className="max-w-[44ch] space-y-2 md:pb-2">
+            <p className="text-base leading-relaxed text-ice/90 md:text-lg">
+              {serviceSummary}
+            </p>
+            {features.length > 0 && (
+              <p className="text-xs font-mono uppercase tracking-wider text-orange-soft/90">
+                <span className="text-white/60">{rtl ? "الاستخدامات: " : "Features: "}</span>
+                {features.join(", ")}
+              </p>
+            )}
+          </div>
         </div>
       </header>
 
@@ -211,7 +274,7 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         <div>
           <div className="inline-flex items-center gap-2.5 rounded-full border border-navy/15 bg-ice px-3.5 py-1.5 text-xs font-medium uppercase tracking-wider text-navy">
             <ServiceIcon name={service.icon} className="size-4 text-orange-deep" />
-            <span>{serviceTitle}</span>
+            <span>{subheroBadge}</span>
           </div>
           <h2 className="mt-4 text-2xl font-medium leading-snug text-ink md:text-3xl">
             {serviceDetail}
@@ -221,14 +284,14 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
               href={localePath(locale, "/contact")}
               className="inline-flex h-12 items-center justify-center rounded-[5px] bg-navy px-6 text-sm font-medium uppercase tracking-normal text-white transition-colors hover:bg-navy-deep"
             >
-              {t.book.survey}
+              {btnQuoteText}
             </Link>
             <a
               href={`tel:${company.phoneTel}`}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-[5px] border border-line bg-white px-6 text-sm font-medium uppercase tracking-normal text-ink transition-colors hover:border-navy"
             >
               <Phone className="size-4 text-orange-deep" />
-              {t.book.call}
+              {btnCallText}
             </a>
           </div>
         </div>
@@ -245,10 +308,10 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
           </div>
           <div className="border-t border-line bg-white p-4">
             <div className="flex items-center justify-between text-xs text-muted">
-              <span className="font-medium text-navy">{serviceTitle}</span>
+              <span className="font-medium text-navy">{imageLabel}</span>
               <span className="inline-flex items-center gap-1 text-orange-deep font-mono">
                 <ShieldCheck className="size-3.5" />
-                {rtl ? "تم الفحص في الموقع" : "Verified on Site"}
+                {imageBadge}
               </span>
             </div>
           </div>
@@ -260,17 +323,17 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         <div className="mx-auto max-w-[1400px] px-4 md:px-10">
           <div className="text-center">
             <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">
-              {rtl ? "مراحل التنفيذ" : "Execution Journey"}
+              {journeyBadge}
             </span>
             <h2 className="mt-2 text-2xl font-medium tracking-normal text-ink md:text-3xl">
-              {rtl ? "كيف ننفذ هذا النطاق من المعاينة حتى التسليم؟" : "How We Survey & Install This Scope"}
+              {journeyTitle}
             </h2>
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {workflowSteps.map((step) => (
+            {steps.map((step) => (
               <div
-                key={step.num}
+                key={step.num || step.title}
                 className="relative flex flex-col rounded-[18px] border border-line bg-white p-6 shadow-sm"
               >
                 <span className="font-mono text-sm font-semibold text-orange-deep">{step.num}</span>
@@ -282,29 +345,30 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         </div>
       </section>
 
-      {/* Technical Guidance Sections */}
+      {/* Technical Guidance Sections (Content Grid) */}
       <div className="border-t border-line bg-white">
         <div className="mx-auto grid max-w-[1400px] md:grid-cols-2">
-          {guide.sections.map((section, sectionIdx) => {
-            const lastRowStart = guide.sections.length - (guide.sections.length % 2 === 0 ? 2 : 1);
+          {sections.map((section, sectionIdx) => {
+            const lastRowStart = sections.length - (sections.length % 2 === 0 ? 2 : 1);
+            const bodies = Array.isArray(section.body) ? section.body : [section.body].filter(Boolean);
             return (
               <section
-                key={section.heading}
+                key={section.heading || sectionIdx}
                 className={`border-line px-4 py-12 md:px-10 md:py-16 ${
                   sectionIdx % 2 === 0 ? "md:border-e" : ""
-                } ${sectionIdx < guide.sections.length - 1 ? "border-b" : ""} ${
+                } ${sectionIdx < sections.length - 1 ? "border-b" : ""} ${
                   sectionIdx >= lastRowStart ? "md:border-b-0" : ""
                 }`}
               >
                 <div className="inline-flex items-center gap-1.5 text-xs font-mono text-orange-deep uppercase tracking-wider">
-                  <span>Section 0{sectionIdx + 1}</span>
+                  <span>{rtl ? `القسم 0${sectionIdx + 1}` : `Section 0${sectionIdx + 1}`}</span>
                 </div>
                 <h2 className="mt-2 text-2xl font-medium leading-[1.15] tracking-normal text-ink md:text-3xl">
                   {section.heading}
                 </h2>
                 <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
-                  {section.body.map((paragraph) => (
-                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  {bodies.map((paragraph, pIdx) => (
+                    <p key={pIdx}>{paragraph}</p>
                   ))}
                 </div>
               </section>
@@ -318,18 +382,18 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
         <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-4 md:grid-cols-[1.1fr_0.9fr] md:px-10">
           <div className="relative min-h-[360px] overflow-hidden rounded-[22px] border border-line bg-white shadow-lift">
             <Photo
-              src={secondary.image}
-              alt={rtl ? secondary.labelAr : secondary.labelEn}
+              src={secondaryImage}
+              alt={secondaryImageLabel}
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent" />
             <div className="absolute bottom-5 start-5 end-5 rounded-[12px] border border-white/20 bg-white/10 p-4 text-white backdrop-blur-md">
               <p className="text-xs font-mono uppercase tracking-wider text-orange-soft">
-                {rtl ? "معايير التنفيذ في الرياض" : "Riyadh Site Standard"}
+                {secondaryBadge}
               </p>
               <p className="mt-1 text-sm font-medium">
-                {rtl ? secondary.labelAr : secondary.labelEn}
+                {secondaryImageLabel}
               </p>
             </div>
           </div>
@@ -339,19 +403,17 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
               {rtl ? "التزام الجودة والتسليم" : "Quality Commitment"}
             </span>
             <h2 className="text-3xl font-medium tracking-normal text-ink md:text-4xl">
-              {rtl ? "أجهزة موثوقة مع ضمان التسليم الفعلي" : "Reliable Hardware with Proven Handover"}
+              {secondaryHeading}
             </h2>
             <p className="text-base leading-relaxed text-muted">
-              {rtl
-                ? "لا نترك أجهزة غير معنونة أو أسلاكاً مجهولة المصدر. يلتزم فنيونا بوضع ملصقات تعريفية لكل نقطة وتدوين كلمات المرور لإدارة الموقع مباشرة."
-                : "We never leave unlabeled hardware or unidentified cables. Our technicians label every channel and provide master credentials directly to site management."}
+              {secondaryBody}
             </p>
             <div className="pt-2">
               <Link
                 href={localePath(locale, "/contact")}
                 className="inline-flex h-11 items-center gap-2 rounded-[5px] bg-navy px-5 text-sm font-medium uppercase tracking-normal text-white hover:bg-navy-deep"
               >
-                {t.book.survey}
+                {secondaryCtaText}
                 <ArrowRight className="size-4 rtl:rotate-180" />
               </Link>
             </div>
@@ -368,12 +430,12 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="size-5 text-orange-deep" />
                 <h2 className="text-2xl font-medium tracking-normal text-ink">
-                  {t.servicesPage.includes}
+                  {includesTitle}
                 </h2>
               </div>
               <ul className="mt-6 space-y-3.5">
-                {service.includes.map((item, itemIdx) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink/85">
+                {includesList.map((item, itemIdx) => (
+                  <li key={itemIdx} className="flex items-start gap-3 text-sm leading-relaxed text-ink/85">
                     <span className="font-mono text-xs font-semibold text-orange-deep mt-0.5">
                       {String(itemIdx + 1).padStart(2, "0")}
                     </span>
@@ -388,12 +450,12 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
               <div className="flex items-center gap-2.5">
                 <FileText className="size-5 text-navy" />
                 <h2 className="text-2xl font-medium tracking-normal text-ink">
-                  {t.servicesPage.leaves}
+                  {leavesTitle}
                 </h2>
               </div>
               <ul className="mt-6 space-y-3.5">
-                {service.leaves.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink/85">
+                {leavesList.map((item, itemIdx) => (
+                  <li key={itemIdx} className="flex items-start gap-3 text-sm leading-relaxed text-ink/85">
                     <Check className="size-4 text-navy mt-0.5 shrink-0" strokeWidth={2.5} />
                     <span>{item}</span>
                   </li>
@@ -408,15 +470,15 @@ async function ServiceBody({ params }: { params: Promise<Params> }) {
       <section className="border-t border-line bg-[#f8fbfe]">
         <div className="mx-auto grid max-w-[1400px] gap-10 px-4 py-10 md:grid-cols-[0.7fr_1.3fr] md:px-10 md:py-14">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">FAQ</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-orange-deep">{faqBadge}</span>
             <h2 className="mt-2 text-3xl font-medium tracking-normal text-ink md:text-4xl">
-              {t.faqTitle}
+              {faqTitle}
             </h2>
           </div>
           <div className="space-y-2">
-            {guide.faq.map((item) => (
+            {faqList.map((item, idx) => (
               <details
-                key={item.q}
+                key={item.q || idx}
                 className="group rounded-[14px] border border-line bg-white px-5 py-2 shadow-2xs"
               >
                 <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-2 text-start text-base font-medium text-ink marker:content-none [&::-webkit-details-marker]:hidden">

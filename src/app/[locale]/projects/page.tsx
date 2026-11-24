@@ -21,11 +21,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const locale = parseLocale((await params).locale);
   const t = copy[locale].meta;
+  const sanityData = await getProjectsPageData(locale);
   return pageMeta({
     locale,
     path: "/projects",
-    title: t.projectsTitle,
-    description: t.projectsDescription,
+    title: sanityData?.metaTitle || t.projectsTitle,
+    description: sanityData?.metaDescription || t.projectsDescription,
   });
 }
 
@@ -40,8 +41,23 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   const badge = sanityData?.badge || (rtl ? "نماذج واقعية من مشاريع الرياض" : "Real Riyadh Installation Scopes");
   const title = sanityData?.title || t.projectsPage.title;
   const lede = sanityData?.lede || t.projectsPage.lede;
+  const heroImage = sanityData?.heroImageUrl || "/images/warehouse.jpg";
+  const heroStats =
+    sanityData?.heroStats && sanityData.heroStats.length > 0
+      ? sanityData.heroStats
+      : [
+          { label: rtl ? "مستودعات ولوجستيات" : "Warehouses", value: rtl ? "حي السلي" : "Al Sulay Yards" },
+          { label: rtl ? "مباني تجارية" : "Commercial", value: rtl ? "حي العليا" : "Olaya Towers" },
+          { label: rtl ? "فلل وعيادات" : "Villas & Clinics", value: rtl ? "الملز وصلاح الدين" : "Malaz & Salah Al-Din" },
+        ];
+
   const standardsBadge = sanityData?.standardsBadge || (rtl ? "معايير الجودة" : "Quality Assurance");
   const standardsTitle = sanityData?.standardsTitle || (rtl ? "التزامات هندسية تطبق على كل مشروع" : "Standards Delivered on Every Project");
+  const standardsLede =
+    sanityData?.standardsLede ||
+    (rtl
+      ? "سواء كان المشروع مستودعاً في السلي أو فيلا في الملز، يتم تسليم الأعمال وفق معايير هندسية موثقة."
+      : "Whether installing 22 warehouse cameras in Al Sulay or 4 access doors in Malaz, these rules never change.");
 
   const staticStandards = [
     {
@@ -72,9 +88,15 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
 
   const standards = sanityData?.standardsList && sanityData.standardsList.length > 0 ? sanityData.standardsList : staticStandards;
 
+  const ctaPrompt = sanityData?.ctaPrompt || t.projectsPage.prompt;
+  const ctaLede = sanityData?.ctaLede || t.projectsPage.link;
+  const ctaBtnSurvey = sanityData?.ctaBtnSurvey || copy[locale].book.survey;
+  const ctaBtnCall = sanityData?.ctaBtnCall || copy[locale].book.call;
+  const ctaImage = sanityData?.ctaImageUrl || "/images/office.jpg";
+
   return (
     <>
-      <DocumentTitle title={documentTitle(t.meta.projectsTitle, t.meta.brand)} />
+      <DocumentTitle title={documentTitle(sanityData?.metaTitle || t.meta.projectsTitle, t.meta.brand)} />
       <JsonLd data={projectsGraph(locale)} />
       <Breadcrumbs
         locale={locale}
@@ -86,12 +108,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
         title={title}
         lede={lede}
         badge={badge}
-        image="/images/warehouse.jpg"
-        stats={[
-          { label: rtl ? "مستودعات ولوجستيات" : "Warehouses", value: rtl ? "حي السلي" : "Al Sulay Yards" },
-          { label: rtl ? "مباني تجارية" : "Commercial", value: rtl ? "حي العليا" : "Olaya Towers" },
-          { label: rtl ? "فلل وعيادات" : "Villas & Clinics", value: rtl ? "الملز وصلاح الدين" : "Malaz & Salah Al-Din" },
-        ]}
+        image={heroImage}
+        stats={heroStats}
       />
 
       {/* Case Studies with Dual Imagery */}
@@ -100,6 +118,26 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
           <div className="space-y-10 md:space-y-12">
             {projectCards.map((project, index) => {
               const isEven = index % 2 === 0;
+              const hardwareLabel =
+                ("hardwareLabel" in project && project.hardwareLabel) ||
+                (rtl ? "تفاصيل التركيب" : "Hardware Detail");
+              const sceneLabel =
+                ("sceneLabel" in project && project.sceneLabel) ||
+                (rtl ? "بيئة الموقع" : "Site Environment");
+              const deliverablesTitle =
+                ("deliverablesTitle" in project && project.deliverablesTitle) ||
+                (rtl ? "مواصفات النطاق والتسليم:" : "Scope Deliverables:");
+              const ctaText =
+                ("ctaText" in project && project.ctaText) ||
+                (rtl ? "طلب معاينة لنطاق مشابه" : "Request a Similar Survey");
+              const ctaUrl =
+                ("ctaUrl" in project && project.ctaUrl)
+                  ? project.ctaUrl.startsWith("/")
+                    ? localePath(locale, project.ctaUrl)
+                    : project.ctaUrl
+                  : localePath(locale, "/contact");
+              const location = "location" in project ? project.location : undefined;
+
               return (
                 <article
                   key={project.slug}
@@ -114,6 +152,12 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                           <Building className="size-3.5 text-orange-deep" />
                           {project.tag}
                         </span>
+                        {location && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1 text-xs font-medium text-ink">
+                            <MapPin className="size-3 text-orange-deep" />
+                            {location}
+                          </span>
+                        )}
                         <span className="font-mono text-xs text-muted">
                           {String(index + 1).padStart(2, "0")} / {String(projectCards.length).padStart(2, "0")}
                         </span>
@@ -129,7 +173,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
 
                       <div className="space-y-3 pt-2">
                         <p className="text-xs font-mono uppercase tracking-wider text-navy font-semibold">
-                          {rtl ? "مواصفات النطاق والتسليم:" : "Scope Deliverables:"}
+                          {deliverablesTitle}
                         </p>
                         <ul className="flex flex-wrap gap-2">
                           {project.facts.map((fact) => (
@@ -146,10 +190,10 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
 
                       <div className="pt-4">
                         <Link
-                          href={localePath(locale, "/contact")}
+                          href={ctaUrl}
                           className="inline-flex h-11 items-center gap-2 rounded-[5px] bg-navy px-5 text-sm font-medium uppercase tracking-normal text-white transition-colors duration-200 hover:bg-navy-deep"
                         >
-                          {rtl ? "طلب معاينة لنطاق مشابه" : "Request a Similar Survey"}
+                          {ctaText}
                           <ArrowRight className="size-4 rtl:rotate-180" />
                         </Link>
                       </div>
@@ -169,7 +213,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                         <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-white">
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-0.5 text-[11px] font-medium backdrop-blur-md">
                             <Camera className="size-3" />
-                            {rtl ? "تفاصيل التركيب" : "Hardware Detail"}
+                            {hardwareLabel}
                           </span>
                         </div>
                       </div>
@@ -186,7 +230,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                         <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-white">
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-navy/85 px-2.5 py-0.5 text-[11px] font-medium backdrop-blur-md">
                             <MapPin className="size-3 text-orange-soft" />
-                            {rtl ? "بيئة الموقع" : "Site Environment"}
+                            {sceneLabel}
                           </span>
                         </div>
                       </div>
@@ -210,9 +254,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
               {standardsTitle}
             </h2>
             <p className="mx-auto mt-4 max-w-[65ch] text-base leading-relaxed text-muted">
-              {rtl
-                ? "سواء كان المشروع مستودعاً في السلي أو فيلا في الملز، يتم تسليم الأعمال وفق معايير هندسية موثقة."
-                : "Whether installing 22 warehouse cameras in Al Sulay or 4 access doors in Malaz, these rules never change."}
+              {standardsLede}
             </p>
           </div>
 
@@ -239,16 +281,16 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       {/* Survey CTA Banner */}
       <section className="relative overflow-hidden bg-navy text-ice">
         <div className="absolute inset-0">
-          <Photo src="/images/office.jpg" alt="" className="object-cover opacity-20" sizes="100vw" />
+          <Photo src={ctaImage} alt="" className="object-cover opacity-20" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy to-navy-deep/90" />
         </div>
         <div className="relative mx-auto grid max-w-[1400px] items-center gap-8 px-4 py-16 md:grid-cols-[1.2fr_0.8fr] md:px-10 md:py-20">
           <div>
             <h2 className="max-w-[18ch] text-3xl font-medium leading-[1.1] tracking-normal text-white md:text-5xl">
-              {t.projectsPage.prompt}
+              {ctaPrompt}
             </h2>
             <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-ice/85">
-              {t.projectsPage.link}
+              {ctaLede}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
@@ -256,14 +298,14 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
               href={localePath(locale, "/contact")}
               className="inline-flex h-12 items-center justify-center rounded-[5px] bg-paper px-6 text-sm font-medium uppercase tracking-normal text-navy hover:bg-ice"
             >
-              {copy[locale].book.survey}
+              {ctaBtnSurvey}
             </Link>
             <a
               href={`tel:${company.phoneTel}`}
               className="inline-flex h-12 items-center justify-center rounded-[5px] border border-white/50 px-6 text-sm font-medium uppercase tracking-normal text-white hover:bg-white/10"
             >
               <Phone className="me-2 size-4" />
-              {copy[locale].book.call}
+              {ctaBtnCall}
             </a>
           </div>
         </div>

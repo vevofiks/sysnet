@@ -55,14 +55,26 @@ export function StudioAutoInit(props: LayoutProps) {
           }
         }
 
-        // Auto-seed the 15 services if not yet present
+        // Auto-seed and populate the 15 services with rich defaults
         for (const s of defaultServices) {
           await client.createIfNotExists(s as any);
+          const { _id, _type, ...fields } = s;
+          await client.patch(_id).setIfMissing(fields).commit().catch(() => {});
+          const draft = await client.getDocument(`drafts.${_id}`);
+          if (draft) {
+            await client.patch(`drafts.${_id}`).setIfMissing(fields).commit().catch(() => {});
+          }
         }
 
-        // Auto-seed the 4 projects if not yet present
+        // Auto-seed and populate the 4 projects with rich defaults
         for (const p of defaultProjects) {
           await client.createIfNotExists(p as any);
+          const { _id, _type, ...fields } = p;
+          await client.patch(_id).setIfMissing(fields).commit().catch(() => {});
+          const draft = await client.getDocument(`drafts.${_id}`);
+          if (draft) {
+            await client.patch(`drafts.${_id}`).setIfMissing(fields).commit().catch(() => {});
+          }
         }
       } catch (err) {
         console.warn("Notice: Studio auto-init check:", err);
