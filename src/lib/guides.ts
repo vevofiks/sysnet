@@ -12,16 +12,16 @@ export type Guide = {
 
 const en = {
   cctv: {
-    h1: "CCTV installation in Riyadh",
-    seoTitle: "CCTV installation in Riyadh for your site",
+    h1: "CCTV installation in Riyadh and Dammam",
+    seoTitle: "CCTV Installation in Riyadh and Dammam",
     seoDescription:
-      "See gates, docks and corridors, with playback your team can find. Cameras are surveyed, installed and tested with you in Riyadh. Request a free site survey.",
+      "Security camera installers for home and commercial CCTV systems in Riyadh and Dammam. IP camera installation, surveyed and tested on site. Call +966 53 298 0149.",
     related: ["cabling", "access", "intercom"],
     sections: [
       {
-        heading: "CCTV installation in Riyadh starts with the views you need",
+        heading: "CCTV installation in Riyadh and Dammam starts with the views you need",
         body: [
-          "A gate, a loading dock, or a corridor only helps when you can see it and play it back later. CCTV installation in Riyadh puts a fitting camera on each of those points and connects it to a recorder your team can search.",
+          "A gate, a loading dock, or a corridor only helps when you can see it and play it back later. CCTV installation in Riyadh and Dammam puts an IP camera on each of those points, for a villa or a commercial building, and connects it to a recorder your team can search.",
           "Storage matches the days you need, channels are labelled, and every view is played back with you before we leave.",
         ],
       },
@@ -86,9 +86,9 @@ const en = {
   },
   intercom: {
     h1: "Video intercom installation in Riyadh",
-    seoTitle: "Video intercom installation in Riyadh villas",
+    seoTitle: "Video Intercom Installation in Riyadh",
     seoDescription:
-      "See visitors and open the gate from a monitor inside your villa or lobby. Video door stations are cabled and tested across Riyadh. Request a free site survey.",
+      "Door entry and video intercom installation for villa gates and lobbies in Riyadh and Dammam. The monitor inside is tested before we leave.",
     related: ["cctv", "access", "home-office"],
     sections: [
       {
@@ -153,16 +153,16 @@ const en = {
     ],
   },
   cabling: {
-    h1: "Structured Network Cabling Installation in Riyadh",
-    seoTitle: "Cat6 Structured Network Cabling Installation in Riyadh | Sysnet",
+    h1: "Structured cabling and fiber optic installation in Riyadh",
+    seoTitle: "Structured Cabling and Fiber Optic Installation in Riyadh",
     seoDescription:
-      "Certified Cat6, Cat6a, and fiber optic network cabling installation for offices and warehouses in Riyadh and Dammam. Tested, labeled, and certified. Call +966 53 298 0149.",
+      "Structured cabling contractors for offices in Riyadh and Dammam. Fiber optic cabling, testing, and server rack cable management, with every outlet labeled. Call +966 53 298 0149.",
     related: ["cctv", "smart-office", "computers"],
     sections: [
       {
-        heading: "Network cabling in Riyadh that you can trace later",
+        heading: "Structured cabling and fiber optic installation in Riyadh",
         body: [
-          "A new floor fails on Monday when desks, cameras, and door readers have nowhere labelled to land. Network cabling in Riyadh is the permanent link from the main cabinet to each outlet, tested and numbered while the ceiling is still open.",
+          "A new floor fails on Monday when desks, cameras, and door readers have nowhere labelled to land. Structured cabling in Riyadh and Dammam is the permanent link from the server rack to each outlet. Fiber optic cabling is used where the riser needs it, then tested and numbered while the ceiling is still open.",
           "You receive a test report that matches the numbers on the panel and the faceplate. Later cameras or readers can land in the same cabinet because space and labels were planned with the cable.",
         ],
       },
@@ -293,16 +293,16 @@ const en = {
     ],
   },
   access: {
-    h1: "Access control and biometric systems in Riyadh",
-    seoTitle: "Access control and biometric systems in Riyadh",
+    h1: "Access control and biometric attendance in Riyadh",
+    seoTitle: "Access Control and Biometric Attendance in Riyadh",
     seoDescription:
-      "Know who came through the doors that matter, and when. Card and fingerprint readers are surveyed and tested for Riyadh buildings. Request a free site survey.",
+      "Access control system installation and biometric attendance for offices in Riyadh and Dammam. Card and fingerprint readers go on the doors that need a record.",
     related: ["cctv", "intercom", "cabling"],
     sections: [
       {
-        heading: "Access control and biometric systems in Riyadh for the doors that matter",
+        heading: "Access control and biometric attendance in Riyadh",
         body: [
-          "A staff entrance, a server room, or a clinic store should show who passed and when, without a reader on every corridor. Access control and biometric systems in Riyadh put a card or fingerprint reader only on the doors that need a record.",
+          "A staff entrance, a server room, or a clinic store should show who passed and when, without a reader on every corridor. Access control and biometric attendance in Riyadh and Dammam put a card or fingerprint reader only on the doors that need a record.",
           "The controller sits in the cabinet with your other systems. You keep the admin password, the first people are enrolled with you, and the door is tested from both sides.",
         ],
       },
@@ -361,16 +361,16 @@ const en = {
     ],
   },
   "fire-alarm": {
-    h1: "Fire alarm and intrusion alarm systems in Riyadh",
-    seoTitle: "Fire alarm and intrusion alarm systems in Riyadh",
+    h1: "Fire alarm system installation in Riyadh",
+    seoTitle: "Fire Alarm System Installation in Riyadh and Dammam",
     seoDescription:
-      "Hear a fire alarm your duty team can identify, with night alarms kept separate. Panels, detectors and sounders are tested in Riyadh. Request a free site survey.",
+      "Addressable fire alarm system installation and maintenance for buildings in Riyadh and Dammam. Detectors, call points, and sounders are tested on site.",
     related: ["fire-safety", "access", "cctv"],
     sections: [
       {
-        heading: "Fire alarm and intrusion alarm systems in Riyadh that your team can use",
+        heading: "Addressable fire alarm installation in Riyadh and Dammam",
         body: [
-          "A panel in a locked room, or a night alarm that sounds like a fire, leaves the person on duty unsure what to do. Fire alarm and intrusion alarm systems in Riyadh place detectors, call points, and sounders where people actually move, with intrusion on its own circuit.",
+          "A panel in a locked room, or a night alarm that sounds like a fire, leaves the person on duty unsure what to do. Fire alarm system installation in Riyadh and Dammam places detectors, call points, and sounders where people actually move, with intrusion on its own circuit.",
           "You get an addressable panel the supervisor can reach, a test of both circuits, and a device list.",
         ],
       },
@@ -429,10 +429,10 @@ const en = {
     ],
   },
   "fire-safety": {
-    h1: "Fire safety equipment in Riyadh",
-    seoTitle: "Fire safety equipment in Riyadh buildings",
+    h1: "Fire safety contractors in Riyadh",
+    seoTitle: "Fire Safety Contractors in Riyadh and Dammam",
     seoDescription:
-      "Find extinguishers, hose reels and emergency lights on the exit path. Equipment is placed and recorded for buildings in Riyadh. Request a free site survey.",
+      "Fire safety contractors in Riyadh and Dammam for extinguishers, hose reels, and emergency lights on the exit path. Request a site survey.",
     related: ["fire-alarm", "maintenance", "home-office"],
     sections: [
       {
@@ -497,16 +497,16 @@ const en = {
     ],
   },
   "home-office": {
-    h1: "Home and office security systems in Riyadh",
-    seoTitle: "Home and office security systems in Riyadh",
+    h1: "Home CCTV installation in Riyadh",
+    seoTitle: "Home CCTV Installation in Riyadh and Dammam",
     seoDescription:
-      "Cameras, a door station, data points and one cabinet, planned on one visit for a villa or small office in Riyadh. Request a free site survey.",
+      "Home security camera installation and villa intercom systems for houses in Riyadh and Dammam. One survey covers the gate, the cameras, and the cabinet.",
     related: ["cctv", "intercom", "cabling"],
     sections: [
       {
-        heading: "Home and office security systems in Riyadh on a single drawing",
+        heading: "Home CCTV installation in Riyadh and Dammam",
         body: [
-          "A villa or a small office needs a door view, a recorder, a few data points, and a cabinet. Home and office security systems in Riyadh put them on one drawing and one visit plan.",
+          "A villa or a small office needs a door view, a recorder, a few data points, and a cabinet. Home CCTV installation in Riyadh and Dammam puts the cameras and the villa intercom on one drawing and one visit plan.",
           "You still see cameras, the door station, cable, and labour as separate lines. The holes, the cabinet, and the test happen together.",
         ],
       },
@@ -571,16 +571,16 @@ const en = {
     ],
   },
   "smart-office": {
-    h1: "Smart office installation in Riyadh",
-    seoTitle: "Smart office installation in Riyadh workplaces",
+    h1: "Smart office solutions in Riyadh",
+    seoTitle: "Smart Office Solutions in Riyadh",
     seoDescription:
-      "Walk into a meeting room where the display, the door and every desk already work. Smart office fit-outs are surveyed across Riyadh. Request a free site survey.",
+      "Smart office solutions in Riyadh and Dammam. Meeting room displays, door access, and desk data land in one cabinet.",
     related: ["cabling", "access", "computers"],
     sections: [
       {
-        heading: "Smart office installation in Riyadh that works on the first meeting",
+        heading: "Smart office solutions in Riyadh for the meeting room",
         body: [
-          "A meeting room fails in the first week when the display, the door, and desks were left to three different people. Smart office installation in Riyadh lands the screen, the data, and the reader in one cabinet, with a port map on the door.",
+          "A meeting room fails in the first week when the display, the door, and desks were left to three different people. Smart office solutions in Riyadh and Dammam land the screen, the data, and the reader in one cabinet, with a port map on the door.",
           "You can play the display, open the door, and use the table outlet on the day the room is handed over. The map says which port is which.",
         ],
       },
@@ -719,16 +719,16 @@ const en = {
     ],
   },
   maintenance: {
-    h1: "Low Current & Security Systems Installation and Maintenance in Riyadh",
-    seoTitle: "Security Systems & CCTV Installation and Maintenance in Riyadh | Sysnet",
+    h1: "CCTV maintenance in Riyadh and Dammam",
+    seoTitle: "CCTV Maintenance Contract in Riyadh and Dammam",
     seoDescription:
-      "Certified installation, repair, and preventive maintenance visits for CCTV cameras, access control, fire alarms, and network cabling in Riyadh. Call +966 53 298 0149.",
+      "CCTV maintenance contracts and fire alarm maintenance visits in Riyadh and Dammam, including systems another company installed. Call +966 53 298 0149.",
     related: ["cctv", "fire-alarm", "cabling"],
     sections: [
       {
-        heading: "CCTV and security system maintenance in Riyadh, booked as a visit",
+        heading: "CCTV maintenance contracts in Riyadh and Dammam",
         body: [
-          "A dark camera, a recorder that has stopped, or a reader that beeps and stays shut needs a visit with a clear brief. CCTV and security system maintenance in Riyadh is that visit: we find the fault, tell you what it will take to restore it, and prove the result with you.",
+          "A dark camera, a recorder that has stopped, or a reader that beeps and stays shut needs a visit with a clear brief. A CCTV maintenance contract in Riyadh and Dammam is that visit: we find the fault, tell you what it will take to restore it, and prove the result with you.",
           "Alerts stay on the phones you choose. We also take on systems another company installed, once we can open the recorder and follow the cabling.",
         ],
       },
@@ -1067,16 +1067,16 @@ const en = {
 } satisfies Record<string, Guide>;
 const ar: Record<keyof typeof en, Guide> = {
   cctv: {
-    h1: "تركيب كاميرات مراقبة في الرياض",
-    seoTitle: "تركيب كاميرات مراقبة في الرياض لموقعك",
+    h1: "تركيب كاميرات مراقبة الرياض والدمام",
+    seoTitle: "تركيب كاميرات مراقبة الرياض والدمام",
     seoDescription:
-      "راقب بوابة المبنى والرصيف والممرات، وارجع إلى التسجيل وقت الحاجة. نعاين الكاميرات ونركّبها معك في الرياض قبل التشغيل. اطلب معاينة مجانية للموقع.",
+      "شركة كاميرات مراقبة للمنازل والفلل والمباني التجارية في الرياض والدمام. معاينة وتركيب وفحص. اتصل على 0532980149.",
     related: ["cabling", "access", "intercom"],
     sections: [
       {
-        heading: "تركيب كاميرات مراقبة في الرياض يبدأ من المشهد الذي تحتاجه",
+        heading: "تركيب كاميرات مراقبة في الرياض والدمام يبدأ من المشهد الذي تحتاجه",
         body: [
-          "بوابة أو رصيف تحميل أو ممر لا يفيدك إلا إذا رأيته ورجعت إلى التسجيل لاحقًا. تركيب كاميرات مراقبة في الرياض يضع كاميرا مناسبة على كل نقطة ويربطها بجهاز تسجيل NVR/DVR يستطيع فريقك البحث فيه.",
+          "بوابة أو رصيف تحميل أو ممر لا يفيدك إلا إذا رأيته ورجعت إلى التسجيل لاحقًا. تركيب كاميرات مراقبة في الرياض والدمام يضع كاميرا مناسبة على كل نقطة، لفيلا أو مبنى تجاري، ويربطها بجهاز تسجيل يستطيع فريقك البحث فيه.",
           "تُضبط مدة الحفظ على الأيام التي تحتاجها، وتُعلَّم القنوات، ويُعاد عرض كل مشهد معك قبل المغادرة.",
         ],
       },
@@ -1140,10 +1140,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   intercom: {
-    h1: "تركيب إنتركم مرئي في الرياض",
-    seoTitle: "تركيب إنتركم مرئي في الرياض للفلل",
+    h1: "تركيب انتركم منزلي مرئي في الرياض",
+    seoTitle: "تركيب انتركم منزلي مرئي في الرياض",
     seoDescription:
-      "شاهد الزائر وتحدّث إليه وافتح البوابة من شاشة داخل الفيلا أو البهو. نمد المحطة ونجرّب القفل معك قبل التسليم في الرياض. اطلب معاينة مجانية للموقع.",
+      "تركيب انتركم منزلي مرئي لبوابات الفلل ومداخل المباني في الرياض والدمام. نختبر الشاشة الداخلية قبل المغادرة.",
     related: ["cctv", "access", "home-office"],
     sections: [
       {
@@ -1208,10 +1208,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   cabling: {
-    h1: "تمديد كابلات وشبكات الكمبيوتر في الرياض",
-    seoTitle: "تمديد شبكات Cat6 وألياف بصرية لمكاتب ومباني الرياض | سيسنت",
+    h1: "تمديد شبكات كمبيوتر وفايبر في الرياض",
+    seoTitle: "تمديد شبكات كمبيوتر وفايبر في الرياض والدمام",
     seoDescription:
-      "تمديد كابلات شبكة Cat6 وفايبر معتمدة للمكاتب والمستودعات في الرياض والدمام. فحص فلوك وترقيم دقيق للمنافذ. احجز معاينة من مكتب الملز اليوم.",
+      "تمديد شبكات كمبيوتر وفايبر للمكاتب في الرياض والدمام، مع فحص المسارات وتنظيم كبائن السيرفرات وترقيم كل مخرج. اتصل على 0532980149.",
     related: ["cctv", "smart-office", "computers"],
     sections: [
       {
@@ -1348,10 +1348,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   access: {
-    h1: "أنظمة التحكم في الدخول والبصمة في الرياض",
-    seoTitle: "أنظمة التحكم في الدخول والبصمة في الرياض",
+    h1: "تركيب أجهزة بصمة حضور وانصراف في الرياض",
+    seoTitle: "تركيب أجهزة بصمة حضور وانصراف والتحكم في الدخول",
     seoDescription:
-      "اعرف من دخل من الأبواب المهمة ومتى، ببطاقة أو بصمة حسب استخدام الباب. نعاين النظام ونجرّبه معك في الرياض قبل التشغيل. اطلب معاينة مجانية للموقع.",
+      "تركيب أجهزة بصمة حضور وانصراف وأنظمة التحكم في الدخول والأبواب للمكاتب في الرياض والدمام. البطاقة أو البصمة على الأبواب التي تحتاج سجلًا.",
     related: ["cctv", "intercom", "cabling"],
     sections: [
       {
@@ -1416,10 +1416,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   "fire-alarm": {
-    h1: "أنظمة إنذار الحريق والسرقة في الرياض",
-    seoTitle: "أنظمة إنذار الحريق والسرقة في الرياض",
+    h1: "تركيب وصيانة أنظمة إنذار الحريق في الرياض",
+    seoTitle: "تركيب وصيانة أنظمة إنذار الحريق الرياض والدمام",
     seoDescription:
-      "إنذار حريق يفهمه فريق المناوبة، وإنذار ليلي على دائرة خاصة به. نختبر اللوحة والكواشف والأجراس في الرياض قبل التسليم. اطلب معاينة مجانية للموقع.",
+      "تركيب وصيانة أنظمة إنذار الحريق في الرياض والدمام. لوحة معنونة وكواشف ونقاط نداء وأجراس تُختبر في الموقع.",
     related: ["fire-safety", "access", "cctv"],
     sections: [
       {
@@ -1484,10 +1484,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   "fire-safety": {
-    h1: "معدات السلامة ومكافحة الحريق في الرياض",
-    seoTitle: "معدات السلامة ومكافحة الحريق في الرياض",
+    h1: "شركات السلامة ومكافحة الحريق في الرياض",
+    seoTitle: "شركات السلامة ومكافحة الحريق في الرياض",
     seoDescription:
-      "طفايات وبكرات خراطيم وإضاءة طوارئ على مسار الخروج الذي يسلكه الناس. نضع المعدات ونسلّم قائمة بمواقع كل قطعة في الرياض. اطلب معاينة مجانية للموقع.",
+      "شركات السلامة ومكافحة الحريق في الرياض والدمام: طفايات وبكرات خراطيم وإضاءة طوارئ على مسار الخروج. اطلب معاينة للموقع.",
     related: ["fire-alarm", "maintenance", "home-office"],
     sections: [
       {
@@ -1552,10 +1552,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   "home-office": {
-    h1: "أنظمة أمن المنازل والمكاتب في الرياض",
-    seoTitle: "أنظمة أمن المنازل والمكاتب في الرياض",
+    h1: "تركيب كاميرات مراقبة للمنازل والفلل",
+    seoTitle: "تركيب كاميرات مراقبة للمنازل والفلل في الرياض",
     seoDescription:
-      "كاميرات ومحطة باب ونقاط بيانات وخزانة واحدة في مخطط واحد لفيلا أو مكتب صغير في الرياض، قبل بدء الحفر داخل الجدران. اطلب معاينة مجانية للموقع.",
+      "تركيب كاميرات مراقبة للمنازل والفلل وانتركم منزلي مرئي في الرياض والدمام. معاينة واحدة تغطي البوابة والكاميرات والخزانة.",
     related: ["cctv", "intercom", "cabling"],
     sections: [
       {
@@ -1626,10 +1626,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   "smart-office": {
-    h1: "تجهيز المكاتب الذكية في الرياض",
-    seoTitle: "تجهيز المكاتب الذكية في الرياض",
+    h1: "تجهيز المكاتب الذكية وقاعات الاجتماعات",
+    seoTitle: "تجهيز المكاتب الذكية وقاعات الاجتماعات في الرياض",
     seoDescription:
-      "ادخل غرفة اجتماع تعمل فيها الشاشة والباب والمقاعد من أول يوم. نخطط الخزانة والمنافذ لمكاتب الرياض قبل وصول الأثاث. اطلب معاينة مجانية للموقع.",
+      "تجهيز المكاتب الذكية وقاعات الاجتماعات في الرياض والدمام. الشاشة والباب وبيانات المقاعد في خزانة واحدة.",
     related: ["cabling", "access", "computers"],
     sections: [
       {
@@ -1774,10 +1774,10 @@ const ar: Record<keyof typeof en, Guide> = {
     ],
   },
   maintenance: {
-    h1: "تركيب وصيانة الأنظمة الأمنية وشبكات المراقبة في الرياض",
-    seoTitle: "صيانة وتركيب كاميرات المراقبة والأنظمة الأمنية بالرياض | سيسنت",
+    h1: "صيانة كاميرات مراقبة وعقود صيانة في الرياض",
+    seoTitle: "صيانة كاميرات مراقبة وعقود صيانة في الرياض والدمام",
     seoDescription:
-      "خدمات تركيب وصيانة وفحص فني دوري لكاميرات المراقبة والإنذار وأجهزة البصمة وشبكات الكابلات في الرياض والدمام من مكتب الملز. اتصل الآن على 0532980149.",
+      "صيانة كاميرات مراقبة وعقود صيانة، وعقد صيانة إنذار الحريق، في الرياض والدمام، بما فيها أنظمة شركة أخرى. اتصل على 0532980149.",
     related: ["cctv", "fire-alarm", "cabling"],
     sections: [
       {

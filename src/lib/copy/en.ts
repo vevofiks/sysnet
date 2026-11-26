@@ -9,27 +9,27 @@ type Widen<T> = T extends string
 export const en = {
   meta: {
     brand: "Sysnet",
-    siteTitle: "CCTV Installation & Low Current Systems in Riyadh | Sysnet",
+    siteTitle: "CCTV Installation in Riyadh & Dammam | Sysnet",
     siteDescription:
-      "Certified low current contractor in Riyadh & Dammam. We install CCTV, Cat6 structured cabling, biometric access control, and fire alarms with same-day Malaz survey dispatch. Call +966 53 298 0149.",
-    ogTitle: "CCTV Installation & Low Current Security Systems in Riyadh | Sysnet",
+      "Security camera installers and an ELV company in Riyadh and Dammam. CCTV installation, fire alarm systems, access control, and structured cabling. Malaz desk: +966 53 298 0149.",
+    ogTitle: "CCTV Installation in Riyadh & Dammam | Sysnet",
     ogDescription:
-      "Certified CCTV, Cat6 structured cabling, access control, and fire alarm installations for buildings and warehouses across Riyadh and Dammam.",
-    homeTitle: "CCTV Installation & Low Current Security Systems in Riyadh",
+      "Commercial CCTV, addressable fire alarms, biometric access control, and fiber optic cabling for buildings in Riyadh and Dammam.",
+    homeTitle: "CCTV Installation in Riyadh & Dammam",
     homeDescription:
-      "Certified low current contractor in Riyadh & Dammam. We install CCTV, Cat6 structured cabling, biometric access control, and fire alarms with same-day Malaz survey dispatch. Call +966 53 298 0149.",
-    aboutTitle: "About Sysnet | Low Current & Security Systems Contractor Riyadh",
+      "Security camera installers and an ELV company in Riyadh and Dammam. CCTV installation, fire alarm systems, access control, and structured cabling. Malaz desk: +966 53 298 0149.",
+    aboutTitle: "ELV & Security Systems Company in Riyadh",
     aboutDescription:
-      "Sysnet Technologies. Engineering crews deploy from Malaz to survey and install CCTV, fire alarm, and structured cabling across Riyadh & Dammam.",
-    servicesTitle: "Low Current & Security Systems Services in Riyadh | Sysnet",
+      "Sysnet Technologies is an ELV and security system company in Saudi Arabia. Crews from Malaz install CCTV, fire alarms, and structured cabling in Riyadh and Dammam.",
+    servicesTitle: "CCTV, Fire Alarm & Cabling Services in Riyadh",
     servicesDescription:
-      "Explore 15 services: CCTV, cabling, access control, fire alarms, maintenance, ERP, pharmacy software, and more in Riyadh.",
-    projectsTitle: "Verified CCTV & Structured Cabling Projects in Riyadh | Sysnet",
+      "Commercial CCTV, video intercom, biometric access control, addressable fire alarms, fiber optic cabling, and CCTV maintenance contracts in Riyadh and Dammam.",
+    projectsTitle: "CCTV & Structured Cabling Projects in Riyadh",
     projectsDescription:
-      "Review verified low current installations across Riyadh: warehouse CCTV in Al Sulay, Cat6 cabling in Olaya, villa intercoms in Malaz, and clinic fire alarm panels.",
-    contactTitle: "Contact Sysnet Malaz Desk | Request Site Survey & Quote in Riyadh",
+      "Commercial CCTV in Al Sulay, structured cabling in Olaya, villa intercom in Malaz, and an addressable fire alarm panel for a clinic in Riyadh.",
+    contactTitle: "Book CCTV Installation in Riyadh & Dammam",
     contactDescription:
-      "Book an on-site survey for CCTV, network cabling, or fire safety in Riyadh and Dammam. Malaz desk responds the same day. Call +966 53 298 0149.",
+      "Request a survey from security camera installers in Riyadh. The Malaz desk also surveys Dammam. Call +966 53 298 0149.",
     privacyTitle: "How Sysnet Handles Survey Requests in Riyadh",
     privacyDescription:
       "Read how Sysnet uses a survey request from this site: the name, phone, and message that open WhatsApp. We do not sell that form. Ask us for a copy.",
@@ -83,8 +83,8 @@ export const en = {
     copyright: "© 2026 Sysnet Technologies.",
   },
   hero: {
-    title: "CCTV installation for Riyadh buildings.",
-    lede: "Sysnet Technologies surveys the site, writes the parts list, and installs CCTV, intercom, fire alarm, and network cable. The office is in Malaz.",
+    title: "CCTV installation in Riyadh and Dammam.",
+    lede: "Sysnet Technologies is an ELV and security system company. We survey and install CCTV, video intercom, fire alarms, access control, and structured cabling. The office is in Malaz, and the same crew surveys Dammam.",
     explore: "Explore services",
     contact: "Contact us",
     photoAlt: "Two bullet cameras with conduit and junction boxes on a concrete wall",
@@ -99,7 +99,7 @@ export const en = {
   },
   crew: {
     title: "One crew for the camera, the alarm, and the cable.",
-    body: "Facility managers and villa owners in Riyadh often end up with three contractors who will not share a cabinet. Sysnet puts CCTV, intrusion, fire alarm, access control, and structured cabling on one drawing and one visit plan. Sysnet Technologies. Desk in Malaz, Riyadh, Saudi Arabia.",
+    body: "Facility managers and villa owners in Riyadh often end up with three contractors who will not share a cabinet. Sysnet puts commercial CCTV, fire alarm installation, access control, and structured cabling on one drawing and one visit plan. Sysnet Technologies. Desk in Malaz, Riyadh, Saudi Arabia.",
     points: [
       "Floor plan marked before hardware is ordered",
       "Recorders, readers, and patch panels in one cabinet",
@@ -112,11 +112,11 @@ export const en = {
   industries: [
     {
       title: "Commercial offices",
-      text: "Olaya and King Fahd Road fit-outs: cameras at reception, data to desks.",
+      text: "Office CCTV and access control for Olaya and King Fahd Road, with data to each desk.",
     },
     {
       title: "Warehouses & logistics",
-      text: "Aisle, dock, and yard coverage, with retention long enough for a dispute.",
+      text: "Commercial CCTV for the aisle, the dock, and the yard, with retention long enough for a dispute.",
     },
     {
       title: "Clinics & schools",
@@ -124,7 +124,7 @@ export const en = {
     },
     {
       title: "Villas & compounds",
-      text: "Gate station, parking dome, and a monitor inside the house.",
+      text: "Home CCTV and a villa intercom: gate station, parking dome, and a monitor inside.",
     },
     {
       title: "Hospitality",
@@ -186,11 +186,11 @@ export const en = {
   },
   footer: {
     blurb:
-      "CCTV, fire alarm, access control, and network cabling for buildings in Riyadh and Dammam. The office is in Malaz.",
+      "ELV contractor for CCTV installation, fire alarms, access control, and structured cabling in Riyadh and Dammam. The office is in Malaz.",
   },
   areas: {
-    title: "Riyadh, Dammam, and Saudi Arabia",
-    body: "Our office is in Malaz, Riyadh. We survey sites across Riyadh and Dammam, and arrange the rest of Saudi Arabia when you ask.",
+    title: "CCTV installation in Riyadh and Dammam",
+    body: "Security camera installers based in Malaz, Riyadh. The same ELV crew surveys offices, villas, and warehouses in Riyadh and Dammam, and arranges the rest of Saudi Arabia when you ask.",
     places: [
       { name: "Saudi Arabia", detail: "Cities beyond Riyadh and Dammam are scheduled when you need a visit there." },
       { name: "Riyadh", detail: "Villas, offices, warehouses, clinics, schools, and compounds across the city." },
@@ -199,8 +199,8 @@ export const en = {
   },
   services: {
     cctv: {
-      title: "CCTV Cameras",
-      summary: "See the gate, the dock, and the corridors, and play any moment back when you need it.",
+      title: "CCTV Installation",
+      summary: "Home and commercial CCTV installation in Riyadh and Dammam, with playback when you need it.",
       detail:
         "Each view is marked on the floor plan before a bracket is drilled, so a dock, a villa gate, and a clinic corridor each get the right camera. The recorder is sized for the days you want to keep, and the cabinet is labelled for the next person. You watch every view play back before we leave.",
       alt: "Two outdoor cameras with conduit and junction boxes fixed to a concrete wall",
@@ -221,7 +221,7 @@ export const en = {
     },
     intercom: {
       title: "Video Intercom",
-      summary: "See who is at the gate and open the door from a monitor inside the building.",
+      summary: "Video intercom installation for villa gates and lobbies, answered from a monitor inside.",
       detail:
         "A station at the gate or in the lobby connects by cable to a monitor where people actually sit, in the majlis or at reception. You see the visitor, speak to them, and release the lock from that screen. A second button is added when two households or two tenants share the entrance.",
       alt: "Sleek modern smart video intercom door station with illuminated keypad mounted on an entrance wall",
@@ -239,8 +239,8 @@ export const en = {
       ],
     },
     cabling: {
-      title: "Network Cabling",
-      summary: "Labelled network outlets from the cabinet to every desk, camera, and door you rely on.",
+      title: "Structured Cabling",
+      summary: "Structured cabling and fiber optic installation from the cabinet to every desk, camera, and door.",
       detail:
         "Every outlet is numbered at the cabinet and at the faceplate, then tested before we leave. You keep a report that matches those numbers, so a later move or a new camera starts at the right point. Floor cabinets are left tidy, with room for the next device.",
       alt: "Blue and grey network cables plugged into a numbered patch panel",
@@ -278,7 +278,7 @@ export const en = {
     },
     access: {
       title: "Access Control",
-      summary: "Know who entered, and when, with card or fingerprint readers on the doors that matter.",
+      summary: "Access control and biometric attendance, with card or fingerprint readers on the doors that matter.",
       detail:
         "Readers go on the doors that need a record: a staff entrance, a server room, or a clinic store. Card or fingerprint is chosen for how that door is used, and the controller keeps the log. Your facility manager keeps the admin password, and the first people are enrolled with you.",
       alt: "A hand holding a phone beside a silver lock mounted on a white door",
@@ -296,8 +296,8 @@ export const en = {
       ],
     },
     "fire-alarm": {
-      title: "Fire and Intrusion Alarms",
-      summary: "Early warning for fire, and a separate night alarm, tested with the people on duty.",
+      title: "Fire Alarm Systems",
+      summary: "Addressable fire alarm installation in Riyadh and Dammam, with a separate night alarm for intrusion.",
       detail:
         "Detectors, call points, and sounders are placed against the drawing, with an addressable panel the supervisor can reach. Intrusion contacts on doors and glass sit on their own circuit, so a night event reads as intrusion. Both circuits are tested with the person who will be on duty.",
       alt: "A white smoke detector mounted on a pale ceiling",
@@ -316,8 +316,8 @@ export const en = {
       ],
     },
     "fire-safety": {
-      title: "Fire Safety Equipment",
-      summary: "Extinguishers, hose reels, and emergency lights placed where people actually leave.",
+      title: "Fire Safety",
+      summary: "Fire safety equipment for Riyadh and Dammam: extinguishers, hose reels, and emergency lights on the exit path.",
       detail:
         "Extinguishers, hose reels, and emergency lights are mounted on the exit route, where people can reach them. Each extinguisher location is written down with its service date. The supervisor walks that route with us and keeps the list.",
       alt: "A red fire extinguisher mounted on a painted wooden wall",
@@ -335,8 +335,8 @@ export const en = {
       ],
     },
     "home-office": {
-      title: "Home and Office Security",
-      summary: "Cameras, a door station, data points, and one tidy cabinet for your villa or office.",
+      title: "Home CCTV",
+      summary: "Home CCTV and a villa intercom in Riyadh and Dammam, with data points and one cabinet.",
       detail:
         "A villa or a small office can have the gate view, the recorder, a few data points, and the cabinet planned on one drawing. You still see each part as its own line. The routes are pulled once, and the picture, the door, and the outlets are tested together.",
       alt: "A white outdoor camera on a bracket against a concrete wall",
@@ -355,7 +355,7 @@ export const en = {
     },
     "smart-office": {
       title: "Smart Office",
-      summary: "Meeting rooms and desks that work on day one, with access and cabling in one cabinet.",
+      summary: "Smart office solutions for meeting rooms in Riyadh, with access and cabling in one cabinet.",
       detail:
         "The meeting-room display, desk outlets, and the door reader land in one cabinet, with a port map on the door. You can play the screen, badge the door, and use the table point before we call the room finished. Seats that need a dock are listed with the computers for that floor.",
       alt: "Server cabinets with yellow and blue patch leads behind mesh doors",
@@ -392,8 +392,8 @@ export const en = {
       ],
     },
     maintenance: {
-      title: "System Maintenance",
-      summary: "A clear repair visit for cameras and alarms, including systems another company installed.",
+      title: "CCTV Maintenance",
+      summary: "CCTV maintenance contracts and fire alarm repair visits in Riyadh and Dammam, including systems another company installed.",
       detail:
         "Tell us what stopped and we will inspect the cameras, recorder, readers, or alarm and restore what we can. If another company installed the system, we still take it on when we can open the recorder and follow the cabling. Any replacement is quoted before that work goes ahead.",
       alt: "Professional systems technician in uniform servicing a modern network cabinet in a bright commercial office",
@@ -528,8 +528,8 @@ export const en = {
     "Cameras on a typical Al Sulay store scope",
   ],
   about: {
-    title: "CCTV installation from a Malaz office.",
-    lede: "Sysnet Technologies is the name on the van and the invoice. The work is cameras, alarms, access control, and the cable that joins them.",
+    title: "ELV and CCTV installation from Malaz, Riyadh.",
+    lede: "Sysnet Technologies is a security system company in Saudi Arabia. The work is CCTV installation, fire alarms, access control, and the structured cabling that joins them.",
     heading: "Based in Riyadh, not a catalogue with a PO box.",
     p1: "The office is in Malaz. Calls go to +966 53 298 0149. Mail goes to sales@sysnet-ksa.com. Survey crews cover the city: Olaya towers, villas in the north, and stores in Al Sulay.",
     p2: "Procurement teams get a parts list they can read. Facility managers get one cabinet instead of three vendors pointing at each other. Homeowners get a gate station that rings a monitor inside the house.",
@@ -547,21 +547,21 @@ export const en = {
     techAlt: "Professional systems technician in uniform servicing a modern network cabinet in a bright commercial office",
   },
   servicesPage: {
-    title: "CCTV and cabling services in Riyadh.",
-    lede: "Each scope below is something we price on its own. Most Riyadh jobs combine two or three: a camera, a reader, and the cable between them.",
+    title: "CCTV, fire alarm, and cabling in Riyadh.",
+    lede: "Each scope below is something we price on its own. Most Riyadh and Dammam jobs combine commercial CCTV, access control, and the structured cabling between them.",
     other: "Other services for this building",
     includes: "What's included",
     leaves: "What you receive at completion",
   },
   projectsPage: {
-    title: "CCTV and cabling projects in Riyadh.",
+    title: "CCTV and structured cabling projects in Riyadh.",
     lede: "These are the jobs we price in Riyadh: how many cameras, how many data points, what the cabinet has to hold. They are typical scopes, not a claim that a named tenant hired us.",
     prompt: "Have a building that looks like one of these?",
     link: "Send the district and we will survey it.",
   },
   contact: {
-    title: "Book a CCTV survey in Riyadh.",
-    lede: "The form opens WhatsApp to the Malaz office. Hours are Saturday to Thursday, 9:00 to 18:00.",
+    title: "Book CCTV installation in Riyadh.",
+    lede: "The form opens WhatsApp to the Malaz office for a Riyadh or Dammam survey. Hours are Saturday to Thursday, 9:00 to 18:00.",
     heading: "Malaz office",
     address: "Address",
     phone: "Phone",

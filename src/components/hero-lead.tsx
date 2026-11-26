@@ -29,10 +29,10 @@ export function HeroLead({
     sanityData?.heroScopes && sanityData.heroScopes.length > 0
       ? sanityData.heroScopes
       : [
-          rtl ? "كاميرات المراقبة" : "CCTV Surveillance",
+          rtl ? "تركيب كاميرات مراقبة" : "CCTV Installation",
           rtl ? "إنذار الحريق" : "Fire Alarms",
-          rtl ? "التحكم بالدخول" : "Access Control",
-          rtl ? "تمديد الشبكات" : "Cat6 Structured Cabling",
+          rtl ? "بصمة حضور وانصراف" : "Access Control",
+          rtl ? "تمديد شبكات وفايبر" : "Structured Cabling",
         ];
 
   return (

@@ -1,18 +1,18 @@
 export const homePageDefaults = {
   heroBadgeEn: "Riyadh Field Operations Desk · Malaz",
   heroBadgeAr: "مكتب الرياض الميداني · حي الملز",
-  heroTitleEn: "CCTV installation for Riyadh buildings.",
-  heroTitleAr: "تركيب كاميرات مراقبة لمباني الرياض.",
+  heroTitleEn: "CCTV installation in Riyadh and Dammam.",
+  heroTitleAr: "تركيب كاميرات مراقبة في الرياض والدمام.",
   heroLedeEn:
-    "Sysnet Technologies surveys the site, writes the parts list, and installs CCTV, intercom, fire alarm, and network cable. The office is in Malaz.",
+    "Sysnet Technologies is an ELV and security system company. We survey and install CCTV, video intercom, fire alarms, access control, and structured cabling. The office is in Malaz, and the same crew surveys Dammam.",
   heroLedeAr:
-    "سيسنت تكنولوجيز تعاين الموقع وتكتب قائمة القطع وتركّب كاميرات المراقبة والإنتركم وإنذار الحريق وكيبل الشبكة. المكتب في الملز.",
+    "سيسنت تكنولوجيز شركة أنظمة تيار خفيف وأمنية. نعاين ونركّب كاميرات المراقبة والانتركم المرئي وإنذار الحريق والتحكم في الدخول وتمديد الشبكات. المكتب في الملز، والفريق نفسه يعاين الدمام.",
   heroExploreBtnEn: "Explore services",
   heroExploreBtnAr: "استعراض الخدمات",
   heroContactBtnEn: "Contact us",
   heroContactBtnAr: "تواصل مع المكتب",
-  heroScopesEn: ["CCTV Surveillance", "Fire Alarms", "Access Control", "Cat6 Structured Cabling"],
-  heroScopesAr: ["كاميرات المراقبة", "إنذار الحريق", "التحكم بالدخول", "تمديد الشبكات"],
+  heroScopesEn: ["CCTV Installation", "Fire Alarms", "Access Control", "Structured Cabling"],
+  heroScopesAr: ["تركيب كاميرات مراقبة", "إنذار الحريق", "بصمة حضور وانصراف", "تمديد شبكات وفايبر"],
 
   crewBadgeEn: "Unified Riyadh Field Crew",
   crewBadgeAr: "فريق عمل موحد في الرياض",
@@ -257,12 +257,12 @@ export const homePageDefaults = {
 export const aboutPageDefaults = {
   badgeEn: "Company Profile · Sysnet Technologies",
   badgeAr: "نبذة عن سيسنت تكنولوجيز",
-  titleEn: "CCTV installation from a Malaz office.",
-  titleAr: "تركيب كاميرات مراقبة من مكتب الملز.",
+  titleEn: "ELV and CCTV installation from Malaz, Riyadh.",
+  titleAr: "شركة كاميرات مراقبة وتيار خفيف من الملز.",
   ledeEn:
-    "Sysnet Technologies is the name on the van and the invoice. The work is cameras, alarms, access control, and the cable that joins them.",
+    "Sysnet Technologies is a security system company in Saudi Arabia. The work is CCTV installation, fire alarms, access control, and the structured cabling that joins them.",
   ledeAr:
-    "سيسنت تكنولوجيز هو الاسم على الفان والفاتورة. العمل يشمل الكاميرات والإنذارات والتحكم بالدخول وتمديدات الشبكات.",
+    "سيسنت تكنولوجيز شركة أنظمة أمنية في السعودية. العمل تركيب كاميرات مراقبة وإنذار حريق وتحكم في الدخول وتمديد الشبكات.",
   headingEn: "Based in Riyadh, not a catalogue with a PO box.",
   headingAr: "مقرنا في الرياض، ولسنا مجرد كتالوج بصندوق بريد.",
   p1En:
@@ -337,8 +337,8 @@ export const aboutPageDefaults = {
 export const servicesPageDefaults = {
   badgeEn: "15 Service Lines",
   badgeAr: "١٥ خط خدمة",
-  titleEn: "CCTV and cabling services in Riyadh.",
-  titleAr: "خدمات كاميرات المراقبة وتمديدات الشبكات في الرياض.",
+  titleEn: "CCTV, fire alarm, and cabling in Riyadh.",
+  titleAr: "تركيب كاميرات وإنذار حريق وتمديد شبكات في الرياض.",
   ledeEn:
     "Each scope below is something we price on its own. Most Riyadh jobs combine two or three: a camera, a reader, and the cable between them.",
   ledeAr:
@@ -374,8 +374,8 @@ export const servicesPageDefaults = {
 export const projectsPageDefaults = {
   badgeEn: "Real Riyadh Installation Scopes",
   badgeAr: "نماذج واقعية من مشاريع الرياض",
-  titleEn: "CCTV and cabling projects in Riyadh.",
-  titleAr: "مشاريع الكاميرات والكيابل في الرياض.",
+  titleEn: "CCTV and structured cabling projects in Riyadh.",
+  titleAr: "مشاريع تركيب كاميرات وتمديد شبكات في الرياض.",
   ledeEn:
     "These are typical scopes surveyed, installed, and handed over across Riyadh commercial towers, logistics warehouses, and residential compounds.",
   ledeAr:
@@ -759,10 +759,10 @@ export const defaultServices = [
     ctaBtnSurveyAr: "طلب معاينة",
     ctaBtnCallEn: "Call our desk",
     ctaBtnCallAr: "اتصل بالمكتب",
-    metaTitleEn: "CCTV installation in Riyadh for your site",
-    metaTitleAr: "تركيب كاميرات مراقبة بالرياض لموقعك",
-    metaDescriptionEn: "See gates, docks and corridors, with playback your team can find. Cameras are surveyed, installed and tested with you in Riyadh. Request a free site survey.",
-    metaDescriptionAr: "راقب البوابات والممرات وأرصفة التحميل مع تسجيلات سهلة البحث. معاينة وتركيب وفحص كاميرات المراقبة بالرياض. اطلب معاينة مجانية.",
+    metaTitleEn: "CCTV Installation in Riyadh and Dammam",
+    metaTitleAr: "تركيب كاميرات مراقبة الرياض والدمام",
+    metaDescriptionEn: "Security camera installers for home and commercial CCTV systems in Riyadh and Dammam. IP camera installation, surveyed and tested on site. Call +966 53 298 0149.",
+    metaDescriptionAr: "شركة كاميرات مراقبة للمنازل والفلل والمباني التجارية في الرياض والدمام. معاينة وتركيب وفحص. اتصل على 0532980149.",
   },
   {
     _id: "service-intercom",
